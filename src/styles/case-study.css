@@ -239,6 +239,7 @@
 .cs-thread-title em { font-style: italic; color: hsl(var(--aspen-gold)); }
 
 .cs-thread-body {
+  font-family: "DM Sans", sans-serif;
   font-size: 0.88rem; color: hsl(var(--bark-light));
   line-height: 1.7;
 }
