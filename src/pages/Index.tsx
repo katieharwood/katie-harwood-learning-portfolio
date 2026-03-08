@@ -1,5 +1,6 @@
-import { useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useMemo, useState } from "react";
 import portraitImg from "@/assets/portrait.png";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 const testimonials = [
   {
@@ -82,13 +83,13 @@ const Index = () => {
             <img src={portraitImg} alt="Katie Harwood portrait" />
           </div>
           <div className="header-content">
-            <p className="eyebrow">Portfolio</p>
+            <p className="eyebrow">Katie Harwood Portfolio</p>
             <h1>
               <span className="headline-line" id="h1">
                 L&D Leader.
               </span>
               <span className="headline-line" id="h2">
-                <span className="gold-italic">AI</span> Builder.
+                <span className="gold-italic">AI</span> <span className="gold-italic">Builder.</span>
               </span>
             </h1>
             <p className="subtitle" id="subtitle">
@@ -106,20 +107,26 @@ const Index = () => {
         </p>
         <div className="projects">
           {projects.map((p) => (
-            <a
-              key={p.num}
-              className="project-item"
-              href={p.href}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="project-num">{p.num}</span>
-              <span className="project-name">{p.name}</span>
-              <span className={`project-tag${p.comingSoon ? " coming-soon" : ""}`}>
-                {p.tag}
-              </span>
-              <span className="project-arrow">&rarr;</span>
-            </a>
+            <Tooltip key={p.num}>
+              <TooltipTrigger asChild>
+                <div
+                  className="project-item"
+                  role="button"
+                  tabIndex={0}
+                  onClick={(e) => e.preventDefault()}
+                >
+                  <span className="project-num">{p.num}</span>
+                  <span className="project-name">{p.name}</span>
+                  <span className={`project-tag${p.comingSoon ? " coming-soon" : ""}`}>
+                    {p.tag}
+                  </span>
+                  <span className="project-arrow">&rarr;</span>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent side="top" className="tooltip-coming-soon">
+                <p>{p.comingSoon ? "Coming soon" : "Case study coming soon"}</p>
+              </TooltipContent>
+            </Tooltip>
           ))}
         </div>
 
