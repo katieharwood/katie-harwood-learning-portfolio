@@ -187,6 +187,7 @@
   color: hsla(var(--aspen-gold) / 0.7); margin-bottom: 8px;
 }
 .cs-speed-body {
+  font-family: "DM Sans", sans-serif;
   font-size: 0.88rem; color: hsla(var(--stone-white) / 0.75);
   line-height: 1.65;
 }
