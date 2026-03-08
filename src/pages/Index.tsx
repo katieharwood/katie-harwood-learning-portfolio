@@ -22,9 +22,9 @@ const testimonials = [
 ];
 
 const projects = [
-  { num: "01", name: "Elevate \u2014 AI-Powered Onboarding", tag: "CASE STUDY", href: "/elevate" },
-  { num: "02", name: "Slack AI Agent for L&D", tag: "CASE STUDY", href: "#" },
-  { num: "03", name: "User Guide vILT Redesign", tag: "COMING SOON", comingSoon: true, href: "#" },
+  { num: "01", name: "Elevate: Manager Leadership Program", tag: "CASE STUDY", href: "/elevate" },
+  { num: "02", name: "Slack AI Agent: Building in Public", tag: "CASE STUDY", href: "#" },
+  { num: "03", name: "User Guide vILT", tag: "COMING SOON!", comingSoon: true, href: "#" },
 ];
 
 function wait(ms: number) {

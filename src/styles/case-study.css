@@ -139,6 +139,7 @@
 .cs-section-heading em { font-style: italic; color: hsl(var(--aspen-gold)); }
 
 .cs-body-text {
+  font-family: "DM Sans", sans-serif;
   font-size: 0.92rem; color: hsl(var(--bark));
   line-height: 1.75; margin-bottom: 16px;
 }
@@ -160,6 +161,7 @@
   color: hsl(var(--sage)); margin-bottom: 10px;
 }
 .cs-mapping-text {
+  font-family: "DM Sans", sans-serif;
   font-size: 0.88rem; color: hsl(var(--bark-light));
   line-height: 1.7;
 }
@@ -185,6 +187,7 @@
   color: hsla(var(--aspen-gold) / 0.7); margin-bottom: 8px;
 }
 .cs-speed-body {
+  font-family: "DM Sans", sans-serif;
   font-size: 0.88rem; color: hsla(var(--stone-white) / 0.75);
   line-height: 1.65;
 }
@@ -236,6 +239,7 @@
 .cs-thread-title em { font-style: italic; color: hsl(var(--aspen-gold)); }
 
 .cs-thread-body {
+  font-family: "DM Sans", sans-serif;
   font-size: 0.88rem; color: hsl(var(--bark-light));
   line-height: 1.7;
 }
