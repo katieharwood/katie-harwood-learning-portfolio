@@ -139,6 +139,7 @@
 .cs-section-heading em { font-style: italic; color: hsl(var(--aspen-gold)); }
 
 .cs-body-text {
+  font-family: "DM Sans", sans-serif;
   font-size: 0.92rem; color: hsl(var(--bark));
   line-height: 1.75; margin-bottom: 16px;
 }
