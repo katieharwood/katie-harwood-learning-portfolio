@@ -107,28 +107,44 @@ const Index = () => {
           Selected Projects
         </p>
         <div className="projects">
-          {projects.map((p) => (
-            <Tooltip key={p.num}>
-              <TooltipTrigger asChild>
-                <div
-                  className="project-item"
-                  role="button"
-                  tabIndex={0}
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <span className="project-num">{p.num}</span>
-                  <span className="project-name">{p.name}</span>
-                  <span className={`project-tag${p.comingSoon ? " coming-soon" : ""}`}>
-                    {p.tag}
-                  </span>
-                  <span className="project-arrow">&rarr;</span>
-                </div>
-              </TooltipTrigger>
-              <TooltipContent side="top" className="tooltip-coming-soon">
-                <p>{p.comingSoon ? "Coming soon" : "Case study coming soon"}</p>
-              </TooltipContent>
-            </Tooltip>
-          ))}
+          {projects.map((p) =>
+            p.href !== "#" ? (
+              <Link
+                key={p.num}
+                to={p.href}
+                className="project-item visible-link"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <span className="project-num">{p.num}</span>
+                <span className="project-name">{p.name}</span>
+                <span className={`project-tag${p.comingSoon ? " coming-soon" : ""}`}>
+                  {p.tag}
+                </span>
+                <span className="project-arrow">&rarr;</span>
+              </Link>
+            ) : (
+              <Tooltip key={p.num}>
+                <TooltipTrigger asChild>
+                  <div
+                    className="project-item"
+                    role="button"
+                    tabIndex={0}
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <span className="project-num">{p.num}</span>
+                    <span className="project-name">{p.name}</span>
+                    <span className={`project-tag${p.comingSoon ? " coming-soon" : ""}`}>
+                      {p.tag}
+                    </span>
+                    <span className="project-arrow">&rarr;</span>
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent side="top" className="tooltip-coming-soon">
+                  <p>{p.comingSoon ? "Coming soon" : "Case study coming soon"}</p>
+                </TooltipContent>
+              </Tooltip>
+            )
+          )}
         </div>
 
         {/* Currently Building */}
