@@ -89,7 +89,7 @@ const Index = () => {
                 L&D Leader.
               </span>
               <span className="headline-line" id="h2">
-                <span className="gold-italic">AI</span> Builder.
+                <span className="gold-italic">AI</span> <span className="gold-italic">Builder.</span>
               </span>
             </h1>
             <p className="subtitle" id="subtitle">
