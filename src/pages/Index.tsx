@@ -107,20 +107,26 @@ const Index = () => {
         </p>
         <div className="projects">
           {projects.map((p) => (
-            <a
-              key={p.num}
-              className="project-item"
-              href={p.href}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="project-num">{p.num}</span>
-              <span className="project-name">{p.name}</span>
-              <span className={`project-tag${p.comingSoon ? " coming-soon" : ""}`}>
-                {p.tag}
-              </span>
-              <span className="project-arrow">&rarr;</span>
-            </a>
+            <Tooltip key={p.num}>
+              <TooltipTrigger asChild>
+                <div
+                  className="project-item"
+                  role="button"
+                  tabIndex={0}
+                  onClick={(e) => e.preventDefault()}
+                >
+                  <span className="project-num">{p.num}</span>
+                  <span className="project-name">{p.name}</span>
+                  <span className={`project-tag${p.comingSoon ? " coming-soon" : ""}`}>
+                    {p.tag}
+                  </span>
+                  <span className="project-arrow">&rarr;</span>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent side="top" className="tooltip-coming-soon">
+                <p>{p.comingSoon ? "Coming soon" : "Case study coming soon"}</p>
+              </TooltipContent>
+            </Tooltip>
           ))}
         </div>
 
