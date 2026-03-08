@@ -83,7 +83,7 @@ const Index = () => {
             <img src={portraitImg} alt="Katie Harwood portrait" />
           </div>
           <div className="header-content">
-            <p className="eyebrow">Portfolio</p>
+            <p className="eyebrow">Katie Harwood Portfolio</p>
             <h1>
               <span className="headline-line" id="h1">
                 L&D Leader.
