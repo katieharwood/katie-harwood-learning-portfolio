@@ -215,9 +215,6 @@ const UserGuideVilt = () => {
         <div className="cs-section cs-two-col">
           <div className="cs-two-col-main">
             <p className="cs-section-label">Session Impact</p>
-            <h2 className="cs-section-heading">
-              Numbers that <em>speak.</em>
-            </h2>
 
             <div className="cs-results-grid">
               <div className="cs-result-card">
