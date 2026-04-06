@@ -642,7 +642,7 @@
   font-family: "DM Sans", sans-serif;
   font-size: 0.78rem; font-weight: 500;
   letter-spacing: 0.08em; text-transform: uppercase;
-  color: hsla(var(--stone-white) / 0.5);
+  color: hsl(var(--bark-light));
 }
 
 /* ── MOBILE ── */
