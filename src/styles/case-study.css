@@ -364,7 +364,7 @@
   font-size: 0.78rem; font-weight: 400;
   color: hsl(var(--bark-light)); line-height: 1.45;
 }
-.cs-result-card.full .cs-result-label { color: hsla(var(--stone-white) / 0.6); }
+.cs-result-card.full .cs-result-label { color: hsl(var(--bark)); }
 
 .cs-award-block { display: flex; align-items: flex-start; gap: 16px; }
 .cs-award-icon { font-size: 1.8rem; line-height: 1; flex-shrink: 0; margin-top: 2px; }
