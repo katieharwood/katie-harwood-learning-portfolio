@@ -45,6 +45,9 @@
   max-width: 720px;
   margin: 0 auto;
 }
+.cs-hero.cs-hero-wide {
+  max-width: 1080px;
+}
 .cs-case-label {
   font-family: "DM Sans", sans-serif;
   font-size: 0.68rem; font-weight: 500;

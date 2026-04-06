@@ -34,23 +34,23 @@ const UserGuideVilt = () => {
   const voicesFromTheRoom = [
     {
       quote: "WOW are any of my other NDs feeling some weight as you respond? This is a powerful tool.",
-      name: "Kelly R Smith",
-      role: "Manager",
+      name: "Manager",
+      role: "",
     },
     {
       quote: "The magic is that this tool is powerful for neurodivergent and neurotypical folks alike.",
-      name: "Brit Szafran",
-      role: "Manager",
+      name: "Manager",
+      role: "",
     },
     {
       quote: "I have ADHD and struggle with how to explain how my brain works.",
-      name: "IC",
-      role: "Post-session survey",
+      name: "Independent Contributor",
+      role: "",
     },
     {
       quote: "I think every Evolver should have a personalized User Guide.",
-      name: "IC",
-      role: "Post-session survey",
+      name: "Independent Contributor",
+      role: "",
     },
   ];
 
@@ -75,73 +75,73 @@ const UserGuideVilt = () => {
         </Link>
       </nav>
 
-      {/* HERO */}
-      <section className="cs-hero">
+      {/* HERO - wider layout */}
+      <section className="cs-hero cs-hero-wide">
         <p className="cs-case-label">Case Study 03</p>
         <h1 className="cs-hero-title">
-          How to Work With Me:
+          Build Your User Guide
           <br />
-          <em>Building Your User Guide</em>
+          <em>with an AI Assistant</em>
         </h1>
         <p className="cs-hero-subtitle">
-          A hands-on vILT workshop for psychological safety, self-awareness, and AI-powered communication.
+          A hands-on live workshop to build high-performing teams.
         </p>
         <div className="cs-stat-row">
           <span className="cs-stat-pill light">60-min Live Workshop</span>
-          <span className="cs-stat-pill light">55 Attendees</span>
+          <span className="cs-stat-pill light">AI-Powered</span>
           <span className="cs-stat-pill light">95% Belonging</span>
-          <span className="cs-stat-pill light">Neurodiversity Celebration Week</span>
         </div>
       </section>
 
       <div className="cs-divider" />
 
-      {/* CONTENT */}
-      <div className="cs-content">
-        {/* SITUATION */}
-        <div className="cs-section">
-          <p className="cs-section-label">The Situation</p>
-          <h2 className="cs-section-heading">
-            Communication is personal.
-            <br />
-            <em>Most teams never talk about it.</em>
-          </h2>
-          <p className="cs-body-text">
-            Teams perform best when people feel safe enough to say how they actually work — 
-            their stress signals, communication preferences, and what they need to do their best thinking. 
-            But most teams never have that conversation. I designed a 60-minute live workshop 
-            where employees build a personal "User Guide" with an AI assistant — turning invisible 
-            preferences into clear, professional language their teammates can actually use.
-          </p>
-          <div className="cs-mapping-callout">
-            <p className="cs-mapping-label">Why This Matters</p>
-            <p className="cs-mapping-text">
-              Psychological safety is the <strong>#1 factor in team effectiveness</strong> (Google's Project Aristotle). 
-              A User Guide isn't just a nice-to-have — it's <strong>actionable infrastructure</strong> for 
-              how teams communicate, especially when diverse working styles are in play.
+      {/* CONTENT - wider layout */}
+      <div className="cs-content cs-content-wide">
+        {/* SITUATION + SPEED BLOCK side by side */}
+        <div className="cs-section cs-two-col">
+          <div className="cs-two-col-main">
+            <p className="cs-section-label">The Situation</p>
+            <h2 className="cs-section-heading">
+              Communication is personal.
+              <br />
+              <em>Most teams never talk about it.</em>
+            </h2>
+            <p className="cs-body-text">
+              Teams perform best when people feel safe enough to say how they actually work — 
+              their stress signals, communication preferences, and what they need to do their best work. 
+              But most teams never have that conversation. I designed a 60-minute live workshop 
+              where employees build a personal "User Guide" with an AI assistant — turning invisible 
+              preferences into clear, professional language their teammates and managers can actually use.
             </p>
+            <div className="cs-mapping-callout">
+              <p className="cs-mapping-label">Why This Matters</p>
+              <p className="cs-mapping-text">
+                Psychological safety is the <strong>#1 factor in team effectiveness</strong> (Google's Project Aristotle). 
+                A User Guide isn't just a nice-to-have — it's <strong>actionable infrastructure</strong> for 
+                how teams communicate, especially when diverse working styles are in play.
+              </p>
+            </div>
           </div>
-        </div>
-
-        {/* SPEED BLOCK */}
-        <div className="cs-section">
-          <div className="cs-speed-block">
-            <div className="cs-speed-number">60</div>
-            <div className="cs-speed-text">
-              <p className="cs-speed-headline">
-                Minutes from intro to finished User Guide
-              </p>
-              <p className="cs-speed-body">
-                Facilitated live for the Evolve Neurodynamic ERG during Neurodiversity 
-                Celebration Week — March 31, 2026. Every participant left with a tangible 
-                artifact they could immediately share with their team.
-              </p>
-              <ul className="cs-speed-list">
-                <li>AI-Assisted</li>
-                <li>100% Left with Artifact</li>
-                <li>Live Facilitation</li>
-                <li>ERG Partnership</li>
-              </ul>
+          <div className="cs-two-col-side">
+            <div className="cs-speed-block cs-speed-stacked">
+              <div className="cs-speed-number">60</div>
+              <div className="cs-speed-unit">minutes</div>
+              <div className="cs-speed-text">
+                <p className="cs-speed-headline">
+                  From Intro to Finished User Guide
+                </p>
+                <p className="cs-speed-body">
+                  Facilitated live for the Evolve Neurodynamic ERG during Neurodiversity 
+                  Celebration Week — March 31, 2026. Every participant left with a tangible 
+                  artifact they could immediately share with their team.
+                </p>
+                <ul className="cs-speed-list">
+                  <li>AI-Assisted</li>
+                  <li>100% Left with Artifact</li>
+                  <li>Live Facilitation</li>
+                  <li>ERG Partnership</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -159,7 +159,7 @@ const UserGuideVilt = () => {
             moving from understanding to action.
           </p>
 
-          <div className="cs-thread-grid">
+          <div className="cs-thread-grid cs-thread-grid-2col">
             <div className="cs-thread">
               <p className="cs-thread-number">01 · Understand Psychological Safety</p>
               <h3 className="cs-thread-title">
@@ -212,79 +212,81 @@ const UserGuideVilt = () => {
           </div>
         </div>
 
-        {/* RESULTS */}
-        <div className="cs-section">
-          <p className="cs-section-label">Session Impact</p>
-          <h2 className="cs-section-heading">
-            Numbers that <em>speak.</em>
-          </h2>
+        {/* RESULTS + WORD CLOUD side by side */}
+        <div className="cs-section cs-two-col">
+          <div className="cs-two-col-main">
+            <p className="cs-section-label">Session Impact</p>
+            <h2 className="cs-section-heading">
+              Numbers that <em>speak.</em>
+            </h2>
 
-          <div className="cs-results-grid">
-            <div className="cs-result-card">
-              <div className="cs-result-number">
-                95<em>%</em>
+            <div className="cs-results-grid">
+              <div className="cs-result-card">
+                <div className="cs-result-number">
+                  95<em>%</em>
+                </div>
+                <div className="cs-result-label">
+                  Felt more comfortable sharing how they work — 4.73/5 session value
+                </div>
               </div>
-              <div className="cs-result-label">
-                Felt more comfortable sharing how they work — 4.73/5 session value
+              <div className="cs-result-card">
+                <div className="cs-result-number">
+                  88<em>%</em>
+                </div>
+                <div className="cs-result-label">
+                  Of managers plan to run this with their teams — 4.75/5 avg manager value + intent
+                </div>
               </div>
-            </div>
-            <div className="cs-result-card">
-              <div className="cs-result-number">
-                88<em>%</em>
+              <div className="cs-result-card">
+                <div className="cs-result-number">
+                  91<em>%</em>
+                </div>
+                <div className="cs-result-label">
+                  Will continue building or share their User Guide
+                </div>
               </div>
-              <div className="cs-result-label">
-                Of managers plan to run this with their teams — 4.75/5 avg manager value + intent
-              </div>
-            </div>
-            <div className="cs-result-card">
-              <div className="cs-result-number">
-                91<em>%</em>
-              </div>
-              <div className="cs-result-label">
-                Will continue building or share their User Guide — 100% left with a tangible artifact
-              </div>
-            </div>
-            <div className="cs-result-card">
-              <div className="cs-result-number">
-                100<em>%</em>
-              </div>
-              <div className="cs-result-label">
-                Left the session with a tangible artifact started in session
+              <div className="cs-result-card">
+                <div className="cs-result-number">
+                  100<em>%</em>
+                </div>
+                <div className="cs-result-label">
+                  Left the session with a tangible artifact started in session
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        {/* MENTI WORD CLOUD */}
-        <div className="cs-section">
-          <p className="cs-section-label">Menti Close: How Did That Feel?</p>
-          <div className="cs-word-cloud">
-            <span className="cs-word xl">empowering</span>
-            <span className="cs-word xl bold">validated</span>
-            <span className="cs-word lg">cathartic</span>
-            <span className="cs-word lg">introspective</span>
-            <span className="cs-word lg">supportive</span>
-            <span className="cs-word md">amazing</span>
-            <span className="cs-word sm">therapeutic</span>
-            <span className="cs-word sm">scary</span>
-            <span className="cs-word sm">vulnerable</span>
-            <span className="cs-word sm">hopeful</span>
-            <span className="cs-word sm">clarity</span>
-            <span className="cs-word sm">educative</span>
-            <span className="cs-word sm">comforting</span>
+          <div className="cs-two-col-side">
+            <p className="cs-section-label">Word Cloud</p>
+            <p className="cs-body-text" style={{ fontSize: "0.82rem", marginBottom: "16px" }}>
+              How did it feel to use AI to build a personal document like this?
+            </p>
+            <div className="cs-word-cloud">
+              <span className="cs-word xl">empowering</span>
+              <span className="cs-word xl bold">validated</span>
+              <span className="cs-word lg">cathartic</span>
+              <span className="cs-word lg">introspective</span>
+              <span className="cs-word lg">supportive</span>
+              <span className="cs-word md">amazing</span>
+              <span className="cs-word sm">therapeutic</span>
+              <span className="cs-word sm">scary</span>
+              <span className="cs-word sm">vulnerable</span>
+              <span className="cs-word sm">hopeful</span>
+              <span className="cs-word sm">clarity</span>
+              <span className="cs-word sm">educative</span>
+              <span className="cs-word sm">comforting</span>
+            </div>
           </div>
         </div>
 
         {/* VOICES FROM THE ROOM */}
         <div className="cs-testimonials cs-section">
           <p className="cs-testimonials-label">Voices from the Room</p>
-          <div className="cs-testimonial-grid">
+          <div className="cs-testimonial-grid cs-testimonial-grid-2col">
             {voicesFromTheRoom.map((v, i) => (
               <div className="cs-testimonial-card" key={i}>
                 <p className="cs-testimonial-quote">{v.quote}</p>
                 <div className="cs-testimonial-attribution">
                   <span className="cs-testimonial-name">{v.name}</span>
-                  <span className="cs-testimonial-role">{v.role}</span>
                 </div>
               </div>
             ))}
@@ -321,7 +323,7 @@ const UserGuideVilt = () => {
             real work on themselves — with AI as a thinking partner, not a gimmick. 
             The User Guide is infrastructure:{" "}
             <em>something teams can actually use</em> to communicate better, 
-            support neurodivergent colleagues, and build the kind of psychological safety 
+            support neurodivergent colleagues, and build the kind of psychological safety
             <em> that shows up in how people actually work together.</em>
           </p>
         </div>
