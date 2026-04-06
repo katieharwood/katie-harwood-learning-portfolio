@@ -299,7 +299,7 @@
   color: hsl(var(--forest)); margin-bottom: 12px;
   line-height: 1.25;
 }
-.cs-thread.accent .cs-thread-title { color: hsl(var(--stone-white)); }
+.cs-thread.accent .cs-thread-title { color: hsl(var(--forest)); }
 .cs-thread-title em { font-style: italic; color: hsl(var(--aspen-gold)); }
 
 .cs-thread-body {
