@@ -307,7 +307,7 @@
   font-size: 0.88rem; color: hsl(var(--bark-light));
   line-height: 1.7;
 }
-.cs-thread.accent .cs-thread-body { color: hsla(var(--stone-white) / 0.72); }
+.cs-thread.accent .cs-thread-body { color: hsl(var(--bark)); }
 
 .cs-thread-tags {
   display: flex; flex-wrap: wrap; gap: 6px;
