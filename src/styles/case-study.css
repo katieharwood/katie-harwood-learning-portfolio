@@ -394,7 +394,7 @@
   font-family: "DM Sans", sans-serif;
   font-size: 0.65rem; font-weight: 500;
   letter-spacing: 0.14em; text-transform: uppercase;
-  color: hsla(var(--aspen-gold) / 0.6); margin-bottom: 20px;
+  color: hsl(var(--forest)); opacity: 0.6; margin-bottom: 20px;
 }
 .cs-so-what-text {
   font-family: "Cormorant Garamond", serif;
