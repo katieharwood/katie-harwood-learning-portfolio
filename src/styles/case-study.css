@@ -627,7 +627,7 @@
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   padding: 64px 32px;
-  background: hsl(var(--forest));
+  background: hsl(123 16% 82%);
   gap: 12px;
 }
 .cs-video-play {
