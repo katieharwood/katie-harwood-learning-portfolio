@@ -255,7 +255,7 @@ const UserGuideVilt = () => {
             </div>
           </div>
           <div className="cs-two-col-side">
-            <p className="cs-section-label">Word Cloud</p>
+            
             <p className="cs-body-text" style={{ fontSize: "0.82rem", marginBottom: "16px" }}>
               How did it feel to use AI to build a personal document like this?
             </p>
