@@ -289,18 +289,6 @@ const UserGuideVilt = () => {
           </div>
         </div>
 
-        {/* KEY ENGAGEMENT SIGNALS */}
-        <div className="cs-section">
-          <p className="cs-section-label">Key Engagement Signals</p>
-          <div className="cs-mapping-callout">
-            <ul className="cs-engagement-list">
-              <li>Manager shared tool with team before session ended</li>
-              <li>Participants defined psychological safety unprompted</li>
-              <li>41% poll: need processing time before responding</li>
-              <li>22 survey responses (44% response rate) — 64% ICs / 36% Managers</li>
-            </ul>
-          </div>
-        </div>
 
         {/* VIDEO PLACEHOLDER */}
         <div className="cs-section">
