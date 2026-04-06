@@ -109,9 +109,8 @@ const UserGuideVilt = () => {
             <p className="cs-body-text">
               Teams perform best when people feel safe enough to say how they actually work — 
               their stress signals, communication preferences, and what they need to do their best work. 
-              But most teams never have that conversation. I designed a 60-minute live workshop 
-              where employees build a personal "User Guide" with an AI assistant — turning invisible 
-              preferences into clear, professional language their teammates and managers can actually use.
+              But most teams never have that conversation. This hands-on session turns invisible 
+              preferences into clear, professional language teammates and managers can actually use.
             </p>
             <div className="cs-mapping-callout">
               <p className="cs-mapping-label">Why This Matters</p>
