@@ -235,7 +235,7 @@
 .cs-speed-block {
   margin: 48px 0;
   padding: 28px 32px;
-  background: hsl(var(--forest));
+  background: hsl(123 16% 82%);
   display: flex; gap: 24px; align-items: flex-start;
 }
 .cs-speed-number {
