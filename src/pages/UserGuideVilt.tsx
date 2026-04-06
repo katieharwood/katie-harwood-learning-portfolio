@@ -182,7 +182,7 @@ const UserGuideVilt = () => {
               </p>
             </div>
 
-            <div className="cs-thread">
+            <div className="cs-thread accent">
               <p className="cs-thread-number">03 · Support Diverse Teams</p>
               <h3 className="cs-thread-title">
                 Explicit communication helps
