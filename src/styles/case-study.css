@@ -399,7 +399,7 @@
 .cs-so-what-text {
   font-family: "Cormorant Garamond", serif;
   font-weight: 300; font-size: 1.45rem;
-  line-height: 1.65; color: hsl(var(--stone-white));
+  line-height: 1.65; color: hsl(var(--forest));
   position: relative; z-index: 1;
 }
 .cs-so-what-text em { font-style: italic; color: hsl(var(--aspen-gold)); }
