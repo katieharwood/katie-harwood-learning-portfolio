@@ -45,6 +45,9 @@
   max-width: 720px;
   margin: 0 auto;
 }
+.cs-hero.cs-hero-wide {
+  max-width: 1080px;
+}
 .cs-case-label {
   font-family: "DM Sans", sans-serif;
   font-size: 0.68rem; font-weight: 500;
@@ -113,6 +116,67 @@
   max-width: 720px;
   margin: 0 auto;
   padding: 0 48px 80px;
+}
+.cs-content.cs-content-wide {
+  max-width: 1080px;
+}
+
+/* ── TWO COLUMN LAYOUT ── */
+.cs-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.cs-two-col-main,
+.cs-two-col-side {
+  min-width: 0;
+}
+
+/* Speed block stacked variant */
+.cs-speed-block.cs-speed-stacked {
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+}
+.cs-speed-unit {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: hsla(var(--aspen-gold) / 0.7);
+  margin-top: -8px;
+}
+
+/* Thread grid 2-col */
+.cs-thread-grid.cs-thread-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+/* Testimonial grid 2-col */
+.cs-testimonial-grid.cs-testimonial-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+@media (max-width: 768px) {
+  .cs-two-col {
+    grid-template-columns: 1fr;
+  }
+  .cs-hero.cs-hero-wide,
+  .cs-content.cs-content-wide {
+    max-width: 720px;
+  }
+  .cs-thread-grid.cs-thread-grid-2col {
+    grid-template-columns: 1fr;
+  }
+  .cs-testimonial-grid.cs-testimonial-grid-2col {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ── SECTIONS (scroll reveal) ── */
