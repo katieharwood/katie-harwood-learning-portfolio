@@ -248,7 +248,7 @@
   font-family: "DM Sans", sans-serif;
   font-size: 0.72rem; font-weight: 500;
   letter-spacing: 0.1em; text-transform: uppercase;
-  color: hsla(var(--aspen-gold) / 0.7); margin-bottom: 8px;
+  color: hsl(var(--forest)); opacity: 0.6; margin-bottom: 8px;
 }
 .cs-speed-body {
   font-family: "DM Sans", sans-serif;
