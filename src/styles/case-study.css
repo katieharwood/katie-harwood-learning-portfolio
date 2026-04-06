@@ -633,9 +633,9 @@
 .cs-video-play {
   width: 56px; height: 56px;
   display: flex; align-items: center; justify-content: center;
-  border: 2px solid hsla(var(--aspen-gold) / 0.5);
+  border: 2px solid hsla(var(--forest) / 0.3);
   border-radius: 50%;
-  color: hsl(var(--aspen-gold));
+  color: hsl(var(--forest));
   font-size: 1.2rem;
 }
 .cs-video-text {
