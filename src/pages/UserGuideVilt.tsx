@@ -1,8 +1,24 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 const UserGuideVilt = () => {
   const fabRef = useRef<HTMLButtonElement>(null);
+  const [activeQuote, setActiveQuote] = useState(0);
+
+  const voicesFromTheRoom = [
+    {
+      quote: "WOW are any of my other NDs feeling some weight as you respond? This is a powerful tool.",
+      name: "Manager",
+    },
+    {
+      quote: "The magic is that this tool is powerful for neurodivergent and neurotypical folks alike.",
+      name: "Manager",
+    },
+    {
+      quote: "I think every Evolver should have a personalized User Guide.",
+      name: "Independent Contributor",
+    },
+  ];
 
   useEffect(() => {
     const sections = document.querySelectorAll(".cs-section");
@@ -31,28 +47,13 @@ const UserGuideVilt = () => {
     };
   }, []);
 
-  const voicesFromTheRoom = [
-    {
-      quote: "WOW are any of my other NDs feeling some weight as you respond? This is a powerful tool.",
-      name: "Manager",
-      role: "",
-    },
-    {
-      quote: "The magic is that this tool is powerful for neurodivergent and neurotypical folks alike.",
-      name: "Manager",
-      role: "",
-    },
-    {
-      quote: "I have ADHD and struggle with how to explain how my brain works.",
-      name: "Independent Contributor",
-      role: "",
-    },
-    {
-      quote: "I think every Evolver should have a personalized User Guide.",
-      name: "Independent Contributor",
-      role: "",
-    },
-  ];
+  // Auto-rotate quotes
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveQuote((prev) => (prev + 1) % voicesFromTheRoom.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [voicesFromTheRoom.length]);
 
   return (
     <>
@@ -75,7 +76,7 @@ const UserGuideVilt = () => {
         </Link>
       </nav>
 
-      {/* HERO - wider layout */}
+      {/* HERO */}
       <section className="cs-hero cs-hero-wide">
         <p className="cs-case-label">Case Study 03</p>
         <h1 className="cs-hero-title">
@@ -95,9 +96,8 @@ const UserGuideVilt = () => {
 
       <div className="cs-divider" />
 
-      {/* CONTENT - wider layout */}
       <div className="cs-content cs-content-wide">
-        {/* SITUATION + SPEED BLOCK side by side */}
+        {/* SITUATION + SPEED BLOCK */}
         <div className="cs-section cs-two-col">
           <div className="cs-two-col-main">
             <p className="cs-section-label">The Situation</p>
@@ -135,7 +135,6 @@ const UserGuideVilt = () => {
                   artifact they could immediately share with their team.
                 </p>
                 <ul className="cs-speed-list">
-                  
                   <li>100% Left with Artifact</li>
                   <li>Live Facilitation</li>
                   <li>ERG Partnership</li>
@@ -211,7 +210,15 @@ const UserGuideVilt = () => {
           </div>
         </div>
 
-        {/* RESULTS + WORD CLOUD side by side */}
+        {/* PULL QUOTE */}
+        <div className="cs-pull-quote cs-section">
+          <p className="cs-pull-quote-text">
+            The User Guide is for everyone. You just need to be honest with yourself 
+            about how you work — <em>and then give people a way in.</em>
+          </p>
+        </div>
+
+        {/* RESULTS + WORD CLOUD */}
         <div className="cs-section cs-two-col">
           <div className="cs-two-col-main">
             <p className="cs-section-label">Session Impact</p>
@@ -252,7 +259,6 @@ const UserGuideVilt = () => {
             </div>
           </div>
           <div className="cs-two-col-side">
-            
             <p className="cs-body-text" style={{ fontSize: "0.82rem", marginBottom: "16px" }}>
               How did it feel to use AI to build a personal document like this?
             </p>
@@ -274,12 +280,18 @@ const UserGuideVilt = () => {
           </div>
         </div>
 
-        {/* VOICES FROM THE ROOM */}
+        {/* VOICES FROM THE ROOM — ROTATING */}
         <div className="cs-testimonials cs-section">
           <p className="cs-testimonials-label">Voices from the Room</p>
-          <div className="cs-testimonial-grid cs-testimonial-grid-2col">
+          <div
+            className="cs-testimonial-rotator"
+            onMouseEnter={() => {}}
+          >
             {voicesFromTheRoom.map((v, i) => (
-              <div className="cs-testimonial-card" key={i}>
+              <div
+                className={`cs-testimonial-card cs-testimonial-slide ${i === activeQuote ? "active" : ""}`}
+                key={i}
+              >
                 <p className="cs-testimonial-quote">{v.quote}</p>
                 <div className="cs-testimonial-attribution">
                   <span className="cs-testimonial-name">{v.name}</span>
@@ -287,8 +299,17 @@ const UserGuideVilt = () => {
               </div>
             ))}
           </div>
+          <div className="cs-testimonial-dots">
+            {voicesFromTheRoom.map((_, i) => (
+              <button
+                key={i}
+                className={`cs-testimonial-dot ${i === activeQuote ? "active" : ""}`}
+                onClick={() => setActiveQuote(i)}
+                aria-label={`Show quote ${i + 1}`}
+              />
+            ))}
+          </div>
         </div>
-
 
         {/* VIDEO PLACEHOLDER */}
         <div className="cs-section">
