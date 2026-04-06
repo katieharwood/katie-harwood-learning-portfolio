@@ -452,6 +452,55 @@
 @keyframes rise { to { opacity: 1; transform: translateY(0); } }
 @keyframes fade { to { opacity: 1; } }
 
+/* ── WORD CLOUD ── */
+.cs-word-cloud {
+  display: flex; flex-wrap: wrap;
+  align-items: baseline; gap: 8px 16px;
+  padding: 28px 32px; background: white;
+}
+.cs-word {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300; font-style: italic;
+  color: hsl(var(--forest));
+  line-height: 1.2;
+}
+.cs-word.xl { font-size: 2rem; }
+.cs-word.xl.bold { font-weight: 400; }
+.cs-word.lg { font-size: 1.5rem; }
+.cs-word.md { font-size: 1.25rem; color: hsl(var(--sage)); }
+.cs-word.sm { font-size: 1rem; color: hsl(var(--granite)); }
+
+/* ── ENGAGEMENT LIST ── */
+.cs-engagement-list {
+  list-style: disc; padding-left: 18px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.88rem; color: hsl(var(--bark));
+  line-height: 1.8;
+}
+
+/* ── VIDEO PLACEHOLDER ── */
+.cs-video-placeholder {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 64px 32px;
+  background: hsl(var(--forest));
+  gap: 12px;
+}
+.cs-video-play {
+  width: 56px; height: 56px;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid hsla(var(--aspen-gold) / 0.5);
+  border-radius: 50%;
+  color: hsl(var(--aspen-gold));
+  font-size: 1.2rem;
+}
+.cs-video-text {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.78rem; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: hsla(var(--stone-white) / 0.5);
+}
+
 /* ── MOBILE ── */
 @media (max-width: 600px) {
   .cs-nav { padding: 16px 24px; }
