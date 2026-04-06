@@ -233,7 +233,7 @@ const UserGuideVilt = () => {
                   88<em>%</em>
                 </div>
                 <div className="cs-result-label">
-                  Of managers plan to run this with their teams — 4.75/5 avg manager value + intent
+                  Of managers plan to run this with their teams
                 </div>
               </div>
               <div className="cs-result-card">
