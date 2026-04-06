@@ -214,7 +214,9 @@ const UserGuideVilt = () => {
         <div className="cs-pull-quote cs-section">
           <p className="cs-pull-quote-text">
             The User Guide is for everyone. You just need to be honest with yourself 
-            about how you work — <em>and then give people a way in.</em>
+            about how you work.
+            <br />
+            <em>— and then give people a way in.</em>
           </p>
         </div>
 
