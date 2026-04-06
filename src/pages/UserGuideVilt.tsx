@@ -124,12 +124,12 @@ const UserGuideVilt = () => {
           </div>
           <div className="cs-two-col-side">
             <div className="cs-speed-block cs-speed-stacked">
-              <div className="cs-speed-number">60</div>
-              <div className="cs-speed-unit">minutes</div>
+              <div className="cs-speed-number" style={{ fontSize: "2.2rem", lineHeight: 1.1 }}>
+                From Intro to Built
+                <br />
+                in 60 Minutes
+              </div>
               <div className="cs-speed-text">
-                <p className="cs-speed-headline">
-                  From Intro to Finished User Guide
-                </p>
                 <p className="cs-speed-body">
                   Facilitated live for the Evolve Neurodynamic ERG during Neurodiversity 
                   Celebration Week — March 31, 2026. Every participant left with a tangible 
