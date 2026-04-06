@@ -145,7 +145,7 @@
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: hsla(var(--aspen-gold) / 0.7);
+  color: hsl(var(--forest)); opacity: 0.6;
   margin-top: -8px;
 }
 
@@ -235,24 +235,24 @@
 .cs-speed-block {
   margin: 48px 0;
   padding: 28px 32px;
-  background: hsl(var(--forest));
+  background: hsl(123 16% 82%);
   display: flex; gap: 24px; align-items: flex-start;
 }
 .cs-speed-number {
   font-family: "Cormorant Garamond", serif;
   font-weight: 300; font-size: 3.5rem;
-  line-height: 1; color: hsl(var(--aspen-gold));
+  line-height: 1; color: hsl(var(--forest));
   flex-shrink: 0;
 }
 .cs-speed-headline {
   font-family: "DM Sans", sans-serif;
   font-size: 0.72rem; font-weight: 500;
   letter-spacing: 0.1em; text-transform: uppercase;
-  color: hsla(var(--aspen-gold) / 0.7); margin-bottom: 8px;
+  color: hsl(var(--forest)); opacity: 0.6; margin-bottom: 8px;
 }
 .cs-speed-body {
   font-family: "DM Sans", sans-serif;
-  font-size: 0.88rem; color: hsla(var(--stone-white) / 0.75);
+  font-size: 0.88rem; color: hsl(var(--bark));
   line-height: 1.65;
 }
 .cs-speed-list {
@@ -264,8 +264,8 @@
   font-family: "DM Sans", sans-serif;
   font-size: 0.7rem; font-weight: 500;
   padding: 3px 10px;
-  border: 1px solid hsla(var(--aspen-gold) / 0.3);
-  color: hsl(var(--aspen-gold));
+  border: 1px solid hsla(var(--forest) / 0.2);
+  color: hsl(var(--forest));
   letter-spacing: 0.03em;
 }
 
@@ -349,7 +349,7 @@
 .cs-result-card {
   padding: 28px 24px; background: white;
 }
-.cs-result-card.full { grid-column: 1 / -1; background: hsl(var(--forest)); }
+.cs-result-card.full { grid-column: 1 / -1; background: hsl(123 16% 82%); }
 .cs-result-number {
   font-family: "Cormorant Garamond", serif;
   font-weight: 300; font-size: 2.8rem;
@@ -358,13 +358,13 @@
 .cs-result-number em {
   font-style: italic; color: hsl(var(--aspen-gold)); font-size: 1.8rem;
 }
-.cs-result-card.full .cs-result-number { color: hsl(var(--aspen-gold)); }
+.cs-result-card.full .cs-result-number { color: hsl(var(--forest)); }
 .cs-result-label {
   font-family: "DM Sans", sans-serif;
   font-size: 0.78rem; font-weight: 400;
   color: hsl(var(--bark-light)); line-height: 1.45;
 }
-.cs-result-card.full .cs-result-label { color: hsla(var(--stone-white) / 0.6); }
+.cs-result-card.full .cs-result-label { color: hsl(var(--bark)); }
 
 .cs-award-block { display: flex; align-items: flex-start; gap: 16px; }
 .cs-award-icon { font-size: 1.8rem; line-height: 1; flex-shrink: 0; margin-top: 2px; }
@@ -382,7 +382,7 @@
 /* ── SO WHAT ── */
 .cs-so-what {
   margin-top: 64px; padding: 48px;
-  background: hsl(var(--forest)); position: relative; overflow: hidden;
+  background: hsl(123 16% 82%); position: relative; overflow: hidden;
 }
 .cs-so-what::before {
   content: "";
@@ -394,12 +394,12 @@
   font-family: "DM Sans", sans-serif;
   font-size: 0.65rem; font-weight: 500;
   letter-spacing: 0.14em; text-transform: uppercase;
-  color: hsla(var(--aspen-gold) / 0.6); margin-bottom: 20px;
+  color: hsl(var(--forest)); opacity: 0.6; margin-bottom: 20px;
 }
 .cs-so-what-text {
   font-family: "Cormorant Garamond", serif;
   font-weight: 300; font-size: 1.45rem;
-  line-height: 1.65; color: hsl(var(--stone-white));
+  line-height: 1.65; color: hsl(var(--forest));
   position: relative; z-index: 1;
 }
 .cs-so-what-text em { font-style: italic; color: hsl(var(--aspen-gold)); }
@@ -627,22 +627,22 @@
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   padding: 64px 32px;
-  background: hsl(var(--forest));
+  background: hsl(123 16% 82%);
   gap: 12px;
 }
 .cs-video-play {
   width: 56px; height: 56px;
   display: flex; align-items: center; justify-content: center;
-  border: 2px solid hsla(var(--aspen-gold) / 0.5);
+  border: 2px solid hsla(var(--forest) / 0.3);
   border-radius: 50%;
-  color: hsl(var(--aspen-gold));
+  color: hsl(var(--forest));
   font-size: 1.2rem;
 }
 .cs-video-text {
   font-family: "DM Sans", sans-serif;
   font-size: 0.78rem; font-weight: 500;
   letter-spacing: 0.08em; text-transform: uppercase;
-  color: hsla(var(--stone-white) / 0.5);
+  color: hsl(var(--bark-light));
 }
 
 /* ── MOBILE ── */
