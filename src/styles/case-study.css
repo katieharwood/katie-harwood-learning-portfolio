@@ -322,8 +322,8 @@
   color: hsl(var(--forest));
 }
 .cs-thread.accent .cs-thread-tag {
-  background: hsla(var(--aspen-gold) / 0.12);
-  color: hsl(var(--aspen-gold));
+  background: hsla(var(--forest) / 0.12);
+  color: hsl(var(--forest));
 }
 .cs-thread.coming-soon .cs-thread-tag {
   background: hsla(var(--aspen-gold) / 0.08);
