@@ -84,7 +84,7 @@ const UserGuideVilt = () => {
           <em>with an AI Assistant</em>
         </h1>
         <p className="cs-hero-subtitle">
-          A hands-on live workshop to build high-performing teams.
+          A hands-on workshop to build high-performing teams.
         </p>
         <div className="cs-stat-row">
           <span className="cs-stat-pill light">60-min Live Workshop</span>
