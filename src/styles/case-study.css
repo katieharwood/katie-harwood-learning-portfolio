@@ -382,7 +382,7 @@
 /* ── SO WHAT ── */
 .cs-so-what {
   margin-top: 64px; padding: 48px;
-  background: hsl(var(--forest)); position: relative; overflow: hidden;
+  background: hsl(123 16% 82%); position: relative; overflow: hidden;
 }
 .cs-so-what::before {
   content: "";
