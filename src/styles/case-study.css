@@ -241,7 +241,7 @@
 .cs-speed-number {
   font-family: "Cormorant Garamond", serif;
   font-weight: 300; font-size: 3.5rem;
-  line-height: 1; color: hsl(var(--aspen-gold));
+  line-height: 1; color: hsl(var(--forest));
   flex-shrink: 0;
 }
 .cs-speed-headline {
