@@ -264,8 +264,8 @@
   font-family: "DM Sans", sans-serif;
   font-size: 0.7rem; font-weight: 500;
   padding: 3px 10px;
-  border: 1px solid hsla(var(--aspen-gold) / 0.3);
-  color: hsl(var(--aspen-gold));
+  border: 1px solid hsla(var(--forest) / 0.2);
+  color: hsl(var(--forest));
   letter-spacing: 0.03em;
 }
 
