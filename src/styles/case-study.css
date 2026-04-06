@@ -358,7 +358,7 @@
 .cs-result-number em {
   font-style: italic; color: hsl(var(--aspen-gold)); font-size: 1.8rem;
 }
-.cs-result-card.full .cs-result-number { color: hsl(var(--aspen-gold)); }
+.cs-result-card.full .cs-result-number { color: hsl(var(--forest)); }
 .cs-result-label {
   font-family: "DM Sans", sans-serif;
   font-size: 0.78rem; font-weight: 400;
