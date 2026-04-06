@@ -136,7 +136,7 @@ const UserGuideVilt = () => {
                   artifact they could immediately share with their team.
                 </p>
                 <ul className="cs-speed-list">
-                  <li>AI-Assisted</li>
+                  
                   <li>100% Left with Artifact</li>
                   <li>Live Facilitation</li>
                   <li>ERG Partnership</li>
