@@ -112,36 +112,32 @@ const UserGuideVilt = () => {
               But most teams never have that conversation. This hands-on session turns invisible 
               preferences into clear, professional language teammates and managers can actually use.
             </p>
-            <div className="cs-mapping-callout">
-              <p className="cs-mapping-label">Why This Matters</p>
-              <p className="cs-mapping-text">
-                Psychological safety is the <strong>#1 factor in team effectiveness</strong> (Google's Project Aristotle). 
-                A User Guide isn't just a nice-to-have — it's <strong>actionable infrastructure</strong> for 
-                how teams communicate, especially when diverse working styles are in play.
-              </p>
-            </div>
           </div>
           <div className="cs-two-col-side">
-            <div className="cs-speed-block cs-speed-stacked">
-              <div className="cs-speed-number" style={{ fontSize: "2.2rem", lineHeight: 1.1 }}>
-                From Intro to Built
-                <br />
-                in 60 Minutes
-              </div>
-              <div className="cs-speed-text">
-                <p className="cs-speed-body">
-                  Facilitated live for the Evolve Neurodynamic ERG during Neurodiversity 
-                  Celebration Week — March 31, 2026. Every participant left with a tangible 
-                  artifact they could immediately share with their team.
-                </p>
-                <ul className="cs-speed-list">
-                  <li>100% Left with Artifact</li>
-                  <li>Live Facilitation</li>
-                  <li>ERG Partnership</li>
-                </ul>
+            <div className="cs-thread accent" style={{ height: "100%" }}>
+              <p className="cs-thread-number">From Intro to Built in 60 Minutes</p>
+              <p className="cs-thread-body">
+                Facilitated live for the Evolve Neurodynamic ERG during Neurodiversity 
+                Celebration Week — March 31, 2026. Every participant left with a tangible 
+                artifact they could immediately share with their team.
+              </p>
+              <div className="cs-thread-tags">
+                <span className="cs-thread-tag">100% Left with Artifact</span>
+                <span className="cs-thread-tag">Live Facilitation</span>
+                <span className="cs-thread-tag">ERG Partnership</span>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* WHY THIS MATTERS - full width */}
+        <div className="cs-mapping-callout cs-section" style={{ marginTop: "-36px" }}>
+          <p className="cs-mapping-label">Why This Matters</p>
+          <p className="cs-mapping-text">
+            Psychological safety is the <strong>#1 factor in team effectiveness</strong> (Google's Project Aristotle). 
+            A User Guide isn't just a nice-to-have — it's <strong>actionable infrastructure</strong> for 
+            how teams communicate, especially when diverse working styles are in play.
+          </p>
         </div>
 
         {/* LEARNING OBJECTIVES */}
