@@ -290,7 +290,7 @@
   letter-spacing: 0.12em; text-transform: uppercase;
   color: hsl(var(--granite)); margin-bottom: 8px;
 }
-.cs-thread.accent .cs-thread-number { color: hsla(var(--aspen-gold) / 0.55); }
+.cs-thread.accent .cs-thread-number { color: hsl(var(--forest)); opacity: 0.6; }
 .cs-thread.coming-soon .cs-thread-number { color: hsl(var(--aspen-gold)); }
 
 .cs-thread-title {
