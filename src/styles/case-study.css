@@ -281,7 +281,7 @@
   transition: border-color 0.2s var(--ease);
 }
 .cs-thread:hover { border-left-color: hsl(var(--sage)); }
-.cs-thread.accent { border-left-color: hsl(var(--aspen-gold)); background: hsl(var(--forest)); }
+.cs-thread.accent { border-left-color: hsl(var(--aspen-gold)); background: hsl(123 16% 82%); }
 .cs-thread.coming-soon { border-left-color: hsla(var(--aspen-gold) / 0.3); background: white; }
 
 .cs-thread-number {
