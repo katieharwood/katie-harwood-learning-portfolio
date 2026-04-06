@@ -195,7 +195,7 @@ const UserGuideVilt = () => {
               </p>
             </div>
 
-            <div className="cs-thread accent">
+            <div className="cs-thread">
               <p className="cs-thread-number">04 · Leverage AI for Self-Reflection</p>
               <h3 className="cs-thread-title">
                 Complex preferences,
