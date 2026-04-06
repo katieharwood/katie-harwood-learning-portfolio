@@ -225,7 +225,7 @@ const UserGuideVilt = () => {
                   95<em>%</em>
                 </div>
                 <div className="cs-result-label">
-                  Felt more comfortable sharing how they work — 4.73/5 session value
+                  Felt more comfortable sharing how they work
                 </div>
               </div>
               <div className="cs-result-card">
