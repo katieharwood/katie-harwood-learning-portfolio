@@ -240,7 +240,8 @@
     grid-template-columns: 1fr;
     gap: 24px;
   }
-  .cs-speech-bubble::before {
+  .cs-speech-bubble::before,
+  .cs-speech-bubble::after {
     display: none;
   }
   .cs-two-col {
