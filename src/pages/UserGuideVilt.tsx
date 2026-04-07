@@ -50,10 +50,10 @@ const UserGuideVilt = () => {
   // Auto-rotate quotes
   useEffect(() => {
     const timer = setInterval(() => {
-      setActiveQuote((prev) => (prev + 1) % voicesFromTheRoom.length);
+      setActiveQuote((prev) => (prev + 1) % heroQuotes.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [voicesFromTheRoom.length]);
+  }, [heroQuotes.length]);
 
   return (
     <>
