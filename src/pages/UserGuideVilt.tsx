@@ -241,6 +241,14 @@ const UserGuideVilt = () => {
             <br />
             <em>— and then give people a way in.</em>
           </p>
+          <a
+            href="https://gemini.google.com/gem/1K0X5T8p05PZWPcXaemb43UMCizeiM008?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cs-gem-pill"
+          >
+            ✦ Try the AI Assistant — Build Your Own User Guide
+          </a>
         </div>
 
         {/* RESULTS + WORD CLOUD */}
