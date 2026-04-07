@@ -1,4 +1,4 @@
-import { useEffect, useRef, useMemo, useState } from "react";
+import { useEffect, useRef, useMemo, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import portraitImg from "@/assets/portrait.png";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -23,8 +23,23 @@ const testimonials = [
 
 const projects: { num: string; name: string; tag: string; href: string; comingSoon?: boolean }[] = [
   { num: "01", name: "Elevate: Manager Leadership Program", tag: "CASE STUDY", href: "/elevate" },
-  { num: "02", name: "Slack AI Agent: Building in Public", tag: "CASE STUDY", href: "#" },
-  { num: "03", name: "Build Your User Guide with an AI Assistant", tag: "CASE STUDY + VIDEO", href: "/build-user-guide" },
+  { num: "02", name: "Build Your User Guide with an AI Assistant", tag: "CASE STUDY + VIDEO", href: "/build-user-guide" },
+  { num: "03", name: "Slack AI Agent: Building in Public", tag: "COMING SOON!", href: "#", comingSoon: true },
+];
+
+const currentlyBuilding = [
+  {
+    label: "✦ Currently Building",
+    title: "My User Guide AI Assistant",
+    desc: "Create Your Own 'How to Work with Me' Doc",
+    href: "https://gemini.google.com/gem/1K0X5T8p05PZWPcXaemb43UMCizeiM008?usp=sharing",
+  },
+  {
+    label: "✦ Currently Building",
+    title: "Emoji Decoder Ring 💍",
+    desc: "Find the right one. Decode the cryptic ones.",
+    href: "https://lnkd.in/g-ra6zsY",
+  },
 ];
 
 function wait(ms: number) {
