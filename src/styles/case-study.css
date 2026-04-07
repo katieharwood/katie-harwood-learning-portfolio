@@ -48,6 +48,65 @@
 .cs-hero.cs-hero-wide {
   max-width: 1080px;
 }
+
+/* Two-column hero with speech bubble */
+.cs-hero-twocol {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 48px;
+  align-items: center;
+}
+.cs-hero-left {
+  min-width: 0;
+}
+.cs-hero-bubble-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cs-speech-bubble {
+  position: relative;
+  background: hsl(123 16% 82%);
+  border-radius: 20px;
+  padding: 28px 24px 20px;
+  max-width: 320px;
+  width: 100%;
+}
+.cs-speech-bubble::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 14px solid hsl(123 16% 82%);
+}
+.cs-speech-bubble .cs-testimonial-rotator {
+  min-height: 140px;
+}
+.cs-bubble-quote {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: hsl(var(--forest));
+  margin-bottom: 12px;
+}
+.cs-bubble-quote::before { content: "\201C"; }
+.cs-bubble-quote::after { content: "\201D"; }
+.cs-bubble-name {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: hsl(var(--bark));
+}
+.cs-speech-bubble .cs-testimonial-dots {
+  margin-top: 12px;
+}
 .cs-case-label {
   font-family: "DM Sans", sans-serif;
   font-size: 0.68rem; font-weight: 500;
@@ -164,6 +223,13 @@
 }
 
 @media (max-width: 768px) {
+  .cs-hero-twocol {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .cs-speech-bubble::before {
+    display: none;
+  }
   .cs-two-col {
     grid-template-columns: 1fr;
   }

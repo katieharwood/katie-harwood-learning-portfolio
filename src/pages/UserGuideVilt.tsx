@@ -5,18 +5,18 @@ const UserGuideVilt = () => {
   const fabRef = useRef<HTMLButtonElement>(null);
   const [activeQuote, setActiveQuote] = useState(0);
 
-  const voicesFromTheRoom = [
-    {
-      quote: "WOW are any of my other NDs feeling some weight as you respond? This is a powerful tool.",
-      name: "Manager",
-    },
+  const heroQuotes = [
     {
       quote: "The magic is that this tool is powerful for neurodivergent and neurotypical folks alike.",
-      name: "Manager",
+      name: "Brit S., Manager",
     },
     {
-      quote: "I think every Evolver should have a personalized User Guide.",
-      name: "Independent Contributor",
+      quote: "People assume everybody thinks the same... 10 years ago this wasn't even something people opened their brains up to.",
+      name: "Lahari J., Director of Talent Management",
+    },
+    {
+      quote: "The AI tool completely understood what I was inferring and put words where I've lacked them. That was liberating.",
+      name: "Lainie S., Independent Contributor",
     },
   ];
 
@@ -50,10 +50,10 @@ const UserGuideVilt = () => {
   // Auto-rotate quotes
   useEffect(() => {
     const timer = setInterval(() => {
-      setActiveQuote((prev) => (prev + 1) % voicesFromTheRoom.length);
+      setActiveQuote((prev) => (prev + 1) % heroQuotes.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [voicesFromTheRoom.length]);
+  }, [heroQuotes.length]);
 
   return (
     <>
@@ -77,20 +77,47 @@ const UserGuideVilt = () => {
       </nav>
 
       {/* HERO */}
-      <section className="cs-hero cs-hero-wide">
-        <p className="cs-case-label">Case Study 03</p>
-        <h1 className="cs-hero-title">
-          Build Your User Guide
-          <br />
-          <em>with an AI Assistant</em>
-        </h1>
-        <p className="cs-hero-subtitle">
-          A hands-on workshop to build high-performing teams.
-        </p>
-        <div className="cs-stat-row">
-          <span className="cs-stat-pill light">60-min Live Workshop</span>
-          <span className="cs-stat-pill light">AI-Powered</span>
-          <span className="cs-stat-pill light">95% Belonging</span>
+      <section className="cs-hero cs-hero-wide cs-hero-twocol">
+        <div className="cs-hero-left">
+          <p className="cs-case-label">Case Study 03</p>
+          <h1 className="cs-hero-title">
+            Build Your User Guide
+            <br />
+            <em>with an AI Assistant</em>
+          </h1>
+          <p className="cs-hero-subtitle">
+            A hands-on workshop to build high-performing teams.
+          </p>
+          <div className="cs-stat-row">
+            <span className="cs-stat-pill light">60-min Workshop</span>
+            <span className="cs-stat-pill light">AI-Powered</span>
+            <span className="cs-stat-pill light">95% Belonging</span>
+          </div>
+        </div>
+        <div className="cs-hero-bubble-wrap">
+          <div className="cs-speech-bubble">
+            <div className="cs-testimonial-rotator">
+              {heroQuotes.map((v, i) => (
+                <div
+                  className={`cs-testimonial-slide ${i === activeQuote ? "active" : ""}`}
+                  key={i}
+                >
+                  <p className="cs-bubble-quote">{v.quote}</p>
+                  <p className="cs-bubble-name">— {v.name}</p>
+                </div>
+              ))}
+            </div>
+            <div className="cs-testimonial-dots">
+              {heroQuotes.map((_, i) => (
+                <button
+                  key={i}
+                  className={`cs-testimonial-dot ${i === activeQuote ? "active" : ""}`}
+                  onClick={() => setActiveQuote(i)}
+                  aria-label={`Show quote ${i + 1}`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -279,36 +306,6 @@ const UserGuideVilt = () => {
           </div>
         </div>
 
-        {/* VOICES FROM THE ROOM — ROTATING */}
-        <div className="cs-testimonials cs-section">
-          <p className="cs-testimonials-label">Voices from the Room</p>
-          <div
-            className="cs-testimonial-rotator"
-            onMouseEnter={() => {}}
-          >
-            {voicesFromTheRoom.map((v, i) => (
-              <div
-                className={`cs-testimonial-card cs-testimonial-slide ${i === activeQuote ? "active" : ""}`}
-                key={i}
-              >
-                <p className="cs-testimonial-quote">{v.quote}</p>
-                <div className="cs-testimonial-attribution">
-                  <span className="cs-testimonial-name">{v.name}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="cs-testimonial-dots">
-            {voicesFromTheRoom.map((_, i) => (
-              <button
-                key={i}
-                className={`cs-testimonial-dot ${i === activeQuote ? "active" : ""}`}
-                onClick={() => setActiveQuote(i)}
-                aria-label={`Show quote ${i + 1}`}
-              />
-            ))}
-          </div>
-        </div>
 
         {/* VIDEO PLACEHOLDER */}
         <div className="cs-section">
