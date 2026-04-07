@@ -694,6 +694,26 @@
   .cs-pull-quote-text { font-size: 1.2rem; }
 }
 
+.cs-gem-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: hsl(var(--forest));
+  color: hsl(var(--stone-white));
+  font-family: "Inter", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.25s, transform 0.2s;
+}
+.cs-gem-pill:hover {
+  background: hsl(var(--bark));
+  transform: translateY(-1px);
+}
+
 /* ── ENGAGEMENT LIST ── */
 .cs-engagement-list {
   list-style: disc; padding-left: 18px;
