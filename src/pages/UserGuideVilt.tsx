@@ -77,20 +77,47 @@ const UserGuideVilt = () => {
       </nav>
 
       {/* HERO */}
-      <section className="cs-hero cs-hero-wide">
-        <p className="cs-case-label">Case Study 03</p>
-        <h1 className="cs-hero-title">
-          Build Your User Guide
-          <br />
-          <em>with an AI Assistant</em>
-        </h1>
-        <p className="cs-hero-subtitle">
-          A hands-on workshop to build high-performing teams.
-        </p>
-        <div className="cs-stat-row">
-          <span className="cs-stat-pill light">60-min Live Workshop</span>
-          <span className="cs-stat-pill light">AI-Powered</span>
-          <span className="cs-stat-pill light">95% Belonging</span>
+      <section className="cs-hero cs-hero-wide cs-hero-twocol">
+        <div className="cs-hero-left">
+          <p className="cs-case-label">Case Study 03</p>
+          <h1 className="cs-hero-title">
+            Build Your User Guide
+            <br />
+            <em>with an AI Assistant</em>
+          </h1>
+          <p className="cs-hero-subtitle">
+            A hands-on workshop to build high-performing teams.
+          </p>
+          <div className="cs-stat-row">
+            <span className="cs-stat-pill light">60-min Workshop</span>
+            <span className="cs-stat-pill light">AI-Powered</span>
+            <span className="cs-stat-pill light">95% Belonging</span>
+          </div>
+        </div>
+        <div className="cs-hero-bubble-wrap">
+          <div className="cs-speech-bubble">
+            <div className="cs-testimonial-rotator">
+              {heroQuotes.map((v, i) => (
+                <div
+                  className={`cs-testimonial-slide ${i === activeQuote ? "active" : ""}`}
+                  key={i}
+                >
+                  <p className="cs-bubble-quote">{v.quote}</p>
+                  <p className="cs-bubble-name">— {v.name}</p>
+                </div>
+              ))}
+            </div>
+            <div className="cs-testimonial-dots">
+              {heroQuotes.map((_, i) => (
+                <button
+                  key={i}
+                  className={`cs-testimonial-dot ${i === activeQuote ? "active" : ""}`}
+                  onClick={() => setActiveQuote(i)}
+                  aria-label={`Show quote ${i + 1}`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
