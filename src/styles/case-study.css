@@ -223,6 +223,13 @@
 }
 
 @media (max-width: 768px) {
+  .cs-hero-twocol {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .cs-speech-bubble::before {
+    display: none;
+  }
   .cs-two-col {
     grid-template-columns: 1fr;
   }
