@@ -52,6 +52,25 @@ const Index = () => {
     []
   );
 
+  const [cbIndex, setCbIndex] = useState(0);
+  const cbTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startCbTimer = useCallback(() => {
+    cbTimerRef.current = setInterval(() => {
+      setCbIndex((prev) => (prev + 1) % currentlyBuilding.length);
+    }, 4000);
+  }, []);
+
+  const resetCbTimer = useCallback(() => {
+    if (cbTimerRef.current) clearInterval(cbTimerRef.current);
+    startCbTimer();
+  }, [startCbTimer]);
+
+  useEffect(() => {
+    startCbTimer();
+    return () => { if (cbTimerRef.current) clearInterval(cbTimerRef.current); };
+  }, [startCbTimer]);
+
   const pageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
