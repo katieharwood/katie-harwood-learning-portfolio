@@ -5,18 +5,18 @@ const UserGuideVilt = () => {
   const fabRef = useRef<HTMLButtonElement>(null);
   const [activeQuote, setActiveQuote] = useState(0);
 
-  const voicesFromTheRoom = [
-    {
-      quote: "WOW are any of my other NDs feeling some weight as you respond? This is a powerful tool.",
-      name: "Manager",
-    },
+  const heroQuotes = [
     {
       quote: "The magic is that this tool is powerful for neurodivergent and neurotypical folks alike.",
-      name: "Manager",
+      name: "Brit S., Manager",
     },
     {
-      quote: "I think every Evolver should have a personalized User Guide.",
-      name: "Independent Contributor",
+      quote: "People assume everybody thinks the same... 10 years ago this wasn't even something people opened their brains up to.",
+      name: "Lahari J., Director of Talent Management",
+    },
+    {
+      quote: "The AI tool completely understood what I was inferring and put words where I've lacked them. That was liberating.",
+      name: "Lainie S., Independent Contributor",
     },
   ];
 
