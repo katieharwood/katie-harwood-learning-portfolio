@@ -1,4 +1,4 @@
-import { useEffect, useRef, useMemo, useState } from "react";
+import { useEffect, useRef, useMemo, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import portraitImg from "@/assets/portrait.png";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -23,8 +23,23 @@ const testimonials = [
 
 const projects: { num: string; name: string; tag: string; href: string; comingSoon?: boolean }[] = [
   { num: "01", name: "Elevate: Manager Leadership Program", tag: "CASE STUDY", href: "/elevate" },
-  { num: "02", name: "Slack AI Agent: Building in Public", tag: "CASE STUDY", href: "#" },
-  { num: "03", name: "Build Your User Guide with an AI Assistant", tag: "CASE STUDY + VIDEO", href: "/build-user-guide" },
+  { num: "02", name: "Build Your User Guide with an AI Assistant", tag: "CASE STUDY + VIDEO", href: "/build-user-guide" },
+  { num: "03", name: "Slack AI Agent: Building in Public", tag: "COMING SOON!", href: "#", comingSoon: true },
+];
+
+const currentlyBuilding = [
+  {
+    label: "✦ Currently Building",
+    title: "My User Guide AI Assistant",
+    desc: "Create Your Own 'How to Work with Me' Doc",
+    href: "https://gemini.google.com/gem/1K0X5T8p05PZWPcXaemb43UMCizeiM008?usp=sharing",
+  },
+  {
+    label: "✦ Currently Building",
+    title: "Emoji Decoder Ring 💍",
+    desc: "Find the right one. Decode the cryptic ones.",
+    href: "https://lnkd.in/g-ra6zsY",
+  },
 ];
 
 function wait(ms: number) {
@@ -36,6 +51,25 @@ const Index = () => {
     () => testimonials[Math.floor(Math.random() * testimonials.length)],
     []
   );
+
+  const [cbIndex, setCbIndex] = useState(0);
+  const cbTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startCbTimer = useCallback(() => {
+    cbTimerRef.current = setInterval(() => {
+      setCbIndex((prev) => (prev + 1) % currentlyBuilding.length);
+    }, 4000);
+  }, []);
+
+  const resetCbTimer = useCallback(() => {
+    if (cbTimerRef.current) clearInterval(cbTimerRef.current);
+    startCbTimer();
+  }, [startCbTimer]);
+
+  useEffect(() => {
+    startCbTimer();
+    return () => { if (cbTimerRef.current) clearInterval(cbTimerRef.current); };
+  }, [startCbTimer]);
 
   const pageRef = useRef<HTMLDivElement>(null);
 
@@ -147,21 +181,37 @@ const Index = () => {
           )}
         </div>
 
-        {/* Currently Building */}
-        <a
-          className="currently-building"
-          id="currentlyBuilding"
-          href="https://lnkd.in/g-ra6zsY"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div className="cb-content">
-            <p className="cb-label">&#10022; Currently Building</p>
-            <p className="cb-title">Emoji Decoder Ring 💍</p>
-            <p className="cb-desc">Find the right one. Decode the cryptic ones.</p>
+        {/* Currently Building — Carousel */}
+        <div className="currently-building-carousel" id="currentlyBuilding">
+          <div className="cb-rotator">
+            {currentlyBuilding.map((item, i) => (
+              <a
+                key={i}
+                className={`currently-building cb-slide ${i === cbIndex ? "active" : ""}`}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="cb-content">
+                  <p className="cb-label">{item.label}</p>
+                  <p className="cb-title">{item.title}</p>
+                  <p className="cb-desc">{item.desc}</p>
+                </div>
+                <span className="cb-arrow">&rarr;</span>
+              </a>
+            ))}
           </div>
-          <span className="cb-arrow">&rarr;</span>
-        </a>
+          <div className="cb-dots">
+            {currentlyBuilding.map((_, i) => (
+              <button
+                key={i}
+                className={`cb-dot ${i === cbIndex ? "active" : ""}`}
+                onClick={() => { setCbIndex(i); resetCbTimer(); }}
+                aria-label={`Show item ${i + 1}`}
+              />
+            ))}
+          </div>
+        </div>
 
         {/* Testimonial */}
         <div className="testimonial-wrap" id="testimonialWrap">

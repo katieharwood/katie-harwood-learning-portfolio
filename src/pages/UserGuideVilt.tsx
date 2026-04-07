@@ -79,7 +79,7 @@ const UserGuideVilt = () => {
       {/* HERO */}
       <section className="cs-hero cs-hero-wide cs-hero-twocol">
         <div className="cs-hero-left">
-          <p className="cs-case-label">Case Study 03</p>
+          <p className="cs-case-label">Case Study 02</p>
           <h1 className="cs-hero-title">
             Build Your User Guide
             <br />
