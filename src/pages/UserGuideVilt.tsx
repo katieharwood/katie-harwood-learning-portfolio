@@ -125,36 +125,19 @@ const UserGuideVilt = () => {
 
       <div className="cs-content cs-content-wide">
         {/* SITUATION + SPEED BLOCK */}
-        <div className="cs-section cs-two-col">
-          <div className="cs-two-col-main">
-            <p className="cs-section-label">The Situation</p>
-            <h2 className="cs-section-heading">
-              Communication is personal.
-              <br />
-              <em>Most teams never talk about it.</em>
-            </h2>
-            <p className="cs-body-text">
-              Teams perform best when people feel safe enough to say how they actually work — 
-              their stress signals, communication preferences, and what they need to do their best work. 
-              But most teams never have that conversation. This hands-on session turns invisible 
-              preferences into clear, professional language teammates and managers can actually use.
-            </p>
-          </div>
-          <div className="cs-two-col-side">
-            <div className="cs-thread accent" style={{ height: "100%" }}>
-              <p className="cs-thread-number">From Intro to Built in 60 Minutes</p>
-              <p className="cs-thread-body">
-                Facilitated live for the Evolve Neurodynamic ERG during Neurodiversity 
-                Celebration Week — March 31, 2026. Every participant left with a tangible 
-                artifact they could immediately share with their team.
-              </p>
-              <div className="cs-thread-tags">
-                <span className="cs-thread-tag">100% Left with Artifact</span>
-                <span className="cs-thread-tag">Live Facilitation</span>
-                <span className="cs-thread-tag">ERG Partnership</span>
-              </div>
-            </div>
-          </div>
+        <div className="cs-section">
+          <p className="cs-section-label">The Situation</p>
+          <h2 className="cs-section-heading">
+            Communication is personal.
+            <br />
+            <em>Most teams never talk about it.</em>
+          </h2>
+          <p className="cs-body-text">
+            Teams perform best when people feel safe enough to say how they actually work — 
+            their stress signals, communication preferences, and what they need to do their best work. 
+            But most teams never have that conversation. This hands-on session turns invisible 
+            preferences into clear, professional language teammates and managers can actually use.
+          </p>
         </div>
 
         {/* WHY THIS MATTERS - full width */}
