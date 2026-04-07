@@ -306,36 +306,6 @@ const UserGuideVilt = () => {
           </div>
         </div>
 
-        {/* VOICES FROM THE ROOM — ROTATING */}
-        <div className="cs-testimonials cs-section">
-          <p className="cs-testimonials-label">Voices from the Room</p>
-          <div
-            className="cs-testimonial-rotator"
-            onMouseEnter={() => {}}
-          >
-            {voicesFromTheRoom.map((v, i) => (
-              <div
-                className={`cs-testimonial-card cs-testimonial-slide ${i === activeQuote ? "active" : ""}`}
-                key={i}
-              >
-                <p className="cs-testimonial-quote">{v.quote}</p>
-                <div className="cs-testimonial-attribution">
-                  <span className="cs-testimonial-name">{v.name}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="cs-testimonial-dots">
-            {voicesFromTheRoom.map((_, i) => (
-              <button
-                key={i}
-                className={`cs-testimonial-dot ${i === activeQuote ? "active" : ""}`}
-                onClick={() => setActiveQuote(i)}
-                aria-label={`Show quote ${i + 1}`}
-              />
-            ))}
-          </div>
-        </div>
 
         {/* VIDEO PLACEHOLDER */}
         <div className="cs-section">
