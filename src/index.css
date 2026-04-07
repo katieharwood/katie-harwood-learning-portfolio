@@ -280,7 +280,36 @@
   transition: transform 0.25s ease, color 0.25s ease;
 }
 
-/* Currently Building */
+/* Currently Building — Carousel */
+.currently-building-carousel {
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.currently-building-carousel.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.cb-rotator {
+  position: relative;
+  min-height: 90px;
+  overflow: hidden;
+}
+.cb-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+.cb-slide.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  position: relative;
+}
 .currently-building {
   background: hsl(var(--forest));
   border-radius: 8px;
@@ -290,21 +319,33 @@
   gap: 16px;
   text-decoration: none;
   color: inherit;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.5s ease, transform 0.5s ease, background 0.25s ease;
-  margin-bottom: 40px;
   cursor: pointer;
-}
-.currently-building.visible {
-  opacity: 1;
-  transform: translateY(0);
+  transition: background 0.25s ease;
 }
 .currently-building:hover {
   background: #354a37;
 }
 .currently-building:hover .cb-arrow {
   transform: translateX(4px);
+}
+.cb-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 10px;
+}
+.cb-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: none;
+  background: hsl(var(--bark-light) / 0.3);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s ease;
+}
+.cb-dot.active {
+  background: hsl(var(--aspen-gold));
 }
 
 .cb-label {
