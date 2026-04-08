@@ -770,31 +770,11 @@
   align-items: start;
 }
 
-/* ── Hero quote card (Forest bg) ── */
-.hm-hero-quote-card {
-  background: hsl(var(--forest));
-  padding: 32px 28px;
-  border-radius: 4px;
-  max-width: 380px;
+/* ── Happy Money speech bubble overrides (longer quotes) ── */
+.hm-hero-grid .cs-speech-bubble .cs-testimonial-rotator {
+  min-height: 260px;
 }
-.hm-hero-quote-text {
-  font-family: "Cormorant Garamond", serif;
-  font-style: italic; font-weight: 300;
-  font-size: 0.95rem; line-height: 1.6;
-  color: hsl(var(--stone-white));
-  margin-bottom: 16px;
-}
-.hm-hero-quote-name {
-  font-family: "DM Sans", sans-serif;
-  font-size: 0.78rem; font-weight: 500;
-  color: hsl(var(--aspen-gold));
-}
-.hm-hero-quote-role {
-  font-family: "DM Sans", sans-serif;
-  font-size: 0.68rem; font-weight: 300;
-  color: hsla(var(--stone-white) / 0.6);
-  margin-top: 2px;
-}
+
 
 /* ── Situation numbered items ── */
 .hm-situation-items {
