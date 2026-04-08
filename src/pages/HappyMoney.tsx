@@ -20,7 +20,7 @@ const heroTestimonials = [
     role: "Director of Talent Experience & Programs · Direct Manager",
   },
   {
-    quote: "She not only evolved Onboarding to become a world-class program but also enlisted interest and engagement from the business to participate and drive some of the content management... I was so proud of and impressed by how she showed up, got buy-in quickly and project managed the effort across many levels and groups to get to a beautiful final product, which was appreciated and felt by our entire company.",
+    quote: "She not only evolved Onboarding to become a world-class program but also enlisted interest and engagement from the business to participate and drive some of the content management...she showed up, got buy-in quickly and project managed the effort across many levels and groups to get to a beautiful final product.",
     name: "Eric Saggese",
     role: "Global People & Culture Leader · Senior Stakeholder",
   },

@@ -770,11 +770,32 @@
   align-items: start;
 }
 
-/* ── Happy Money speech bubble overrides (longer quotes) ── */
-.hm-hero-grid .cs-speech-bubble .cs-testimonial-rotator {
-  min-height: 260px;
+/* ── Happy Money speech bubble overrides (forest bg, longer quotes) ── */
+.hm-hero-grid .cs-speech-bubble {
+  background: hsl(var(--forest));
+  border-color: hsl(var(--forest));
 }
-
+.hm-hero-grid .cs-speech-bubble::before {
+  border-right-color: hsl(var(--forest));
+}
+.hm-hero-grid .cs-speech-bubble::after {
+  border-right-color: hsl(var(--forest));
+}
+.hm-hero-grid .cs-speech-bubble .cs-testimonial-rotator {
+  min-height: 240px;
+}
+.hm-hero-grid .cs-bubble-quote {
+  color: hsl(var(--stone-white));
+}
+.hm-hero-grid .cs-bubble-name {
+  color: hsl(var(--aspen-gold));
+}
+.hm-hero-grid .cs-speech-bubble .cs-testimonial-dot {
+  background: hsla(var(--stone-white) / 0.4);
+}
+.hm-hero-grid .cs-speech-bubble .cs-testimonial-dot.active {
+  background: hsl(var(--aspen-gold));
+}
 
 /* ── Situation numbered items ── */
 .hm-situation-items {
