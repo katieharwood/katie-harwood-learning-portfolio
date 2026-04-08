@@ -797,39 +797,115 @@
   background: hsl(var(--aspen-gold));
 }
 
-/* ── Situation numbered items ── */
-.hm-situation-items {
-  display: flex; flex-direction: column;
-  gap: 24px; margin-top: 16px;
-}
-.hm-situation-item {
-  display: flex; gap: 20px; align-items: flex-start;
-}
-.hm-situation-num {
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 300; font-size: 1.8rem;
-  color: hsl(var(--aspen-gold));
-  line-height: 1; flex-shrink: 0;
-  min-width: 36px;
-}
-.hm-situation-title {
-  font-family: "DM Sans", sans-serif;
-  font-size: 0.88rem; font-weight: 500;
-  color: hsl(var(--forest));
-  margin-bottom: 6px;
+/* ── Triptych Cards (The Situation) ── */
+.hm-triptych {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
 }
 
-/* ── Philosophy callout ── */
-.hm-philosophy-callout {
-  margin-top: 24px;
-  padding: 24px 28px;
-  background: hsl(123 16% 82%);
+.hm-triptych-card {
+  background: hsl(var(--stone-white));
+  border: 1px solid hsl(213 12% 61%);
   border-left: 3px solid hsl(var(--aspen-gold));
+  border-radius: 6px;
+  padding: 28px 24px;
 }
-.hm-philosophy-callout .cs-body-text {
+
+.hm-triptych-illus {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: hsl(213 12% 61% / 0.18);
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.hm-triptych-eyebrow {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: hsl(var(--rose));
+  margin-bottom: 10px;
+}
+
+.hm-triptych-title {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-size: 1.4rem;
+  line-height: 1.25;
+  color: hsl(var(--bark));
+  margin-bottom: 12px;
+}
+
+.hm-triptych-body {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: hsl(var(--bark-light));
+}
+
+.hm-triptych-closing {
+  font-family: "Cormorant Garamond", serif;
   font-style: italic;
-  color: hsl(var(--forest));
+  font-weight: 300;
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: hsl(var(--bark));
+  text-align: center;
+  margin-top: 44px;
 }
+
+@media (max-width: 768px) {
+  .hm-triptych {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Philosophy Section (revised) ── */
+.hm-philosophy-body {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: hsl(var(--bark-light));
+  max-width: 60ch;
+  margin-bottom: 0;
+}
+
+.hm-philosophy-pullquote {
+  margin: 52px auto;
+  text-align: center;
+  max-width: 700px;
+}
+
+.hm-pullquote-rule {
+  border: none;
+  border-top: 1px solid hsl(213 12% 61% / 0.4);
+  margin: 0;
+}
+
+.hm-pullquote-text {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 2.1rem;
+  line-height: 1.45;
+  color: hsl(var(--aspen-gold));
+  padding: 36px 0;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .hm-pullquote-text {
+    font-size: 1.4rem;
+  }
+}
+
+/* ── (legacy situation/philosophy styles removed) ── */
 
 /* ── Zero-to-One Two-Panel Grid ── */
 .hm-zero-to-one-grid {
