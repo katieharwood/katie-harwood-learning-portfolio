@@ -1,4 +1,5 @@
 import { useEffect, useRef, useMemo, useState, useCallback } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import portraitImg from "@/assets/portrait.png";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -24,7 +25,7 @@ const testimonials = [
 const projects: { num: string; name: string; tag: string; href: string; comingSoon?: boolean }[] = [
   { num: "01", name: "Elevate: Manager Leadership Program", tag: "CASE STUDY", href: "/elevate" },
   { num: "02", name: "Build Your User Guide with an AI Assistant", tag: "CASE STUDY + VIDEO", href: "/build-user-guide" },
-  { num: "03", name: "Happy Money: Manager Readiness Program", tag: "CASE STUDY", href: "/happy-money" },
+  { num: "03", name: "0-1 Built at Speed: Manager Readiness Program", tag: "CASE STUDY", href: "/happy-money" },
   { num: "04", name: "Slack AI Agent: Building in Public", tag: "COMING SOON!", href: "#", comingSoon: true },
 ];
 
@@ -52,6 +53,11 @@ const Index = () => {
     () => testimonials[Math.floor(Math.random() * testimonials.length)],
     []
   );
+
+  const [projectOffset, setProjectOffset] = useState(0);
+  const visibleCount = 3;
+  const canScrollDown = projectOffset + visibleCount < projects.length;
+  const canScrollUp = projectOffset > 0;
 
   const [cbIndex, setCbIndex] = useState(0);
   const cbTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -141,45 +147,62 @@ const Index = () => {
         <p className="section-label" id="projectsLabel">
           Selected Projects
         </p>
-        <div className="projects">
-          {projects.map((p) =>
-            p.href !== "#" ? (
-              <Link
-                key={p.num}
-                to={p.href}
-                className="project-item visible-link"
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
-                <span className="project-num">{p.num}</span>
-                <span className="project-name">{p.name}</span>
-                <span className={`project-tag${p.comingSoon ? " coming-soon" : ""}`}>
-                  {p.tag}
-                </span>
-                <span className="project-arrow">&rarr;</span>
-              </Link>
-            ) : (
-              <Tooltip key={p.num}>
-                <TooltipTrigger asChild>
-                  <div
-                    className="project-item"
-                    role="button"
-                    tabIndex={0}
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <span className="project-num">{p.num}</span>
-                    <span className="project-name">{p.name}</span>
-                    <span className={`project-tag${p.comingSoon ? " coming-soon" : ""}`}>
-                      {p.tag}
-                    </span>
-                    <span className="project-arrow">&rarr;</span>
-                  </div>
-                </TooltipTrigger>
-                <TooltipContent side="top" className="tooltip-coming-soon">
-                  <p>{p.comingSoon ? "Coming soon" : "Case study coming soon"}</p>
-                </TooltipContent>
-              </Tooltip>
-            )
+        <div className="projects-scroll-container">
+          {canScrollUp && (
+            <button className="projects-scroll-btn scroll-up" onClick={() => setProjectOffset(o => Math.max(0, o - 1))} aria-label="Scroll up">
+              <ChevronUp size={18} />
+            </button>
           )}
+          <div className="projects">
+            {projects.slice(projectOffset, projectOffset + visibleCount).map((p) =>
+              p.href !== "#" ? (
+                <Link
+                  key={p.num}
+                  to={p.href}
+                  className="project-item visible-link"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <span className="project-num">{p.num}</span>
+                  <span className="project-name">{p.name}</span>
+                  <span className={`project-tag${p.comingSoon ? " coming-soon" : ""}`}>
+                    {p.tag}
+                  </span>
+                  <span className="project-arrow">&rarr;</span>
+                </Link>
+              ) : (
+                <Tooltip key={p.num}>
+                  <TooltipTrigger asChild>
+                    <div
+                      className="project-item"
+                      role="button"
+                      tabIndex={0}
+                      onClick={(e) => e.preventDefault()}
+                    >
+                      <span className="project-num">{p.num}</span>
+                      <span className="project-name">{p.name}</span>
+                      <span className={`project-tag${p.comingSoon ? " coming-soon" : ""}`}>
+                        {p.tag}
+                      </span>
+                      <span className="project-arrow">&rarr;</span>
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent side="top" className="tooltip-coming-soon">
+                    <p>{p.comingSoon ? "Coming soon" : "Case study coming soon"}</p>
+                  </TooltipContent>
+                </Tooltip>
+              )
+            )}
+          </div>
+          {canScrollDown && (
+            <button className="projects-scroll-btn scroll-down" onClick={() => setProjectOffset(o => Math.min(projects.length - visibleCount, o + 1))} aria-label="Scroll down">
+              <ChevronDown size={18} />
+            </button>
+          )}
+          <div className="projects-scroll-dots">
+            {Array.from({ length: projects.length - visibleCount + 1 }).map((_, i) => (
+              <span key={i} className={`scroll-dot ${i === projectOffset ? "active" : ""}`} onClick={() => setProjectOffset(i)} />
+            ))}
+          </div>
         </div>
 
         {/* Currently Building — Carousel */}
