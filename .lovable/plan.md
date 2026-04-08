@@ -1,26 +1,13 @@
-## Plan: User Guide vILT — Engagement & Readability Overhaul
+## Plan: Happy Money / Blaze Case Study
 
-### 1. Word Cloud — Gentle Float Animation (mobile-safe)
-- Words softly drift up/down with CSS keyframes at different speeds/delays
-- Subtle opacity pulse to feel "alive"
-- On mobile: simpler fade-pulse only (no positional drift to avoid layout issues)
-
-### 2. Quotes — Auto-Rotating Cards
-- Remove the ADHD quote (3 remaining)
-- Show one quote at a time, auto-fading between them every ~5 seconds
-- Subtle fade + slight slide transition
-- Pause on hover (desktop)
-
-### 3. Learning Objective Cards — Soft Sage/Muted Green
-- Replace Forest Green (`#2C3D2E`) background with a soft sage green (e.g., `#A8B5A0` or `#C2CFBA`)
-- Dark Forest Green text on light sage background for contrast
-- Applies to all `.cs-thread` cards sitewide (affects Elevate page too)
-
-### 4. Pull Quote — "The User Guide is for everyone..."
-- Add a styled pull-quote block between the Situation section and Session Impact
-- Large Cormorant Garamond italic, centered, with subtle top/bottom borders
-- Text: *"The User Guide is for everyone. You just need to be honest with yourself about how you work — and then give people a way in."*
-
-### 5. Files Changed
-- `src/pages/UserGuideVilt.tsx` — remove quote, add pull quote, restructure quotes to rotating
-- `src/styles/case-study.css` — word cloud animation, rotating quote styles, sage card colors
+### Built
+- Full case study page at `/happy-money` with 8 sections (Hero, Situation, Philosophy, Build/Constellation, System, In Their Words, Outcomes, What This Work Reveals)
+- Interactive SVG constellation visualization (scroll-triggered, hover-expand, animated lines)
+- Mobile: constellation replaced with vertical stacked nodes; all grids collapse to single column
+- No date references anywhere in the case study
+- Hero: two-column with Forest-bg pull quote card
+- Module cards: 2×2 grid with Rose Granite eyebrows, Aspen Gold titles
+- Framework cards: 3-column layout
+- Two testimonial treatments: Lauren (Forest hero card), Eric (editorial with sage border)
+- CTA links to LinkedIn; Next → Slack AI Agent
+- Home page updated: Happy Money added as project 03, Slack AI Agent renumbered to 04
