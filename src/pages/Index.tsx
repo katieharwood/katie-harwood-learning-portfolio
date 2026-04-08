@@ -24,7 +24,8 @@ const testimonials = [
 const projects: { num: string; name: string; tag: string; href: string; comingSoon?: boolean }[] = [
   { num: "01", name: "Elevate: Manager Leadership Program", tag: "CASE STUDY", href: "/elevate" },
   { num: "02", name: "Build Your User Guide with an AI Assistant", tag: "CASE STUDY + VIDEO", href: "/build-user-guide" },
-  { num: "03", name: "Slack AI Agent: Building in Public", tag: "COMING SOON!", href: "#", comingSoon: true },
+  { num: "03", name: "Happy Money: Manager Readiness Program", tag: "CASE STUDY", href: "/happy-money" },
+  { num: "04", name: "Slack AI Agent: Building in Public", tag: "COMING SOON!", href: "#", comingSoon: true },
 ];
 
 const currentlyBuilding = [

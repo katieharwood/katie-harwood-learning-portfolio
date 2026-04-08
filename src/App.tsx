@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Elevate from "./pages/Elevate";
 import UserGuideVilt from "./pages/UserGuideVilt";
+import HappyMoney from "./pages/HappyMoney";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,6 +21,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/elevate" element={<Elevate />} />
           <Route path="/build-user-guide" element={<UserGuideVilt />} />
+          <Route path="/happy-money" element={<HappyMoney />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

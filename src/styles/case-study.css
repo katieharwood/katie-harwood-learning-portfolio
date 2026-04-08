@@ -758,3 +758,437 @@
   .cs-thread { padding: 22px 20px; }
   .cs-testimonial-card { padding: 24px 20px; }
 }
+
+/* ═══════════════════════════════════════════════
+   HAPPY MONEY CASE STUDY
+   ═══════════════════════════════════════════════ */
+
+/* ── Hero grid ── */
+.hm-hero-grid {
+  grid-template-columns: 1fr 380px;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ── Hero quote card (Forest bg) ── */
+.hm-hero-quote-card {
+  background: hsl(var(--forest));
+  padding: 32px 28px;
+  border-radius: 4px;
+  max-width: 380px;
+}
+.hm-hero-quote-text {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic; font-weight: 300;
+  font-size: 0.95rem; line-height: 1.6;
+  color: hsl(var(--stone-white));
+  margin-bottom: 16px;
+}
+.hm-hero-quote-name {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.78rem; font-weight: 500;
+  color: hsl(var(--aspen-gold));
+}
+.hm-hero-quote-role {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.68rem; font-weight: 300;
+  color: hsla(var(--stone-white) / 0.6);
+  margin-top: 2px;
+}
+
+/* ── Situation numbered items ── */
+.hm-situation-items {
+  display: flex; flex-direction: column;
+  gap: 24px; margin-top: 16px;
+}
+.hm-situation-item {
+  display: flex; gap: 20px; align-items: flex-start;
+}
+.hm-situation-num {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300; font-size: 1.8rem;
+  color: hsl(var(--aspen-gold));
+  line-height: 1; flex-shrink: 0;
+  min-width: 36px;
+}
+.hm-situation-title {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.88rem; font-weight: 500;
+  color: hsl(var(--forest));
+  margin-bottom: 6px;
+}
+
+/* ── Philosophy callout ── */
+.hm-philosophy-callout {
+  margin-top: 24px;
+  padding: 24px 28px;
+  background: hsl(123 16% 82%);
+  border-left: 3px solid hsl(var(--aspen-gold));
+}
+.hm-philosophy-callout .cs-body-text {
+  font-style: italic;
+  color: hsl(var(--forest));
+}
+
+/* ── Constellation (desktop) ── */
+.hm-constellation-wrap {
+  margin: 40px auto;
+  max-width: 600px;
+}
+.hm-constellation {
+  width: 100%; height: auto;
+}
+.hm-constellation-line {
+  stroke: hsl(var(--aspen-gold));
+  stroke-width: 1.5;
+  opacity: 0;
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+}
+.hm-constellation-line.draw {
+  animation: drawLine 0.8s var(--ease) forwards;
+}
+.hm-constellation-crossline {
+  stroke: hsl(var(--aspen-gold));
+  stroke-width: 0.75;
+  opacity: 0;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+}
+.hm-constellation-crossline.draw {
+  animation: drawCrossLine 1s var(--ease) forwards;
+}
+
+@keyframes drawLine {
+  to { stroke-dashoffset: 0; opacity: 0.35; }
+}
+@keyframes drawCrossLine {
+  to { stroke-dashoffset: 0; opacity: 0.15; }
+}
+
+/* Center node */
+.hm-center-node {
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+}
+.hm-center-node.visible {
+  opacity: 1;
+  animation: centerPulse 3s ease-in-out infinite;
+}
+.hm-center-node circle {
+  fill: hsl(var(--forest));
+}
+.hm-center-label {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px; font-weight: 500;
+  fill: hsl(var(--stone-white));
+  letter-spacing: 0.1em;
+}
+.hm-center-sublabel {
+  font-family: "DM Sans", sans-serif;
+  font-size: 7px; font-weight: 500;
+  fill: hsla(var(--stone-white) / 0.6);
+  letter-spacing: 0.12em;
+}
+
+@keyframes centerPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+/* Outer nodes */
+.hm-outer-node {
+  opacity: 0;
+  cursor: pointer;
+  transition: opacity 0.5s var(--ease);
+}
+.hm-outer-node.visible {
+  animation: nodeAppear 0.5s var(--ease) forwards;
+}
+.hm-outer-node circle {
+  fill: hsl(var(--sage));
+  transition: r 0.2s var(--ease);
+}
+.hm-outer-node.hovered circle {
+  fill: hsl(123 16% 45%);
+}
+.hm-node-label {
+  font-family: "DM Sans", sans-serif;
+  font-size: 7px; font-weight: 500;
+  fill: hsl(var(--stone-white));
+  letter-spacing: 0.04em;
+}
+.hm-node-desc {
+  font-family: "DM Sans", sans-serif;
+  font-size: 10px; font-weight: 400;
+  color: hsl(var(--bark-light));
+  text-align: center;
+  line-height: 1.4;
+  padding: 4px;
+}
+
+@keyframes nodeAppear {
+  from { opacity: 0; transform: scale(0.7); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Mobile constellation (stacked) */
+.hm-constellation-mobile {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  margin: 32px 0;
+  padding-left: 24px;
+  position: relative;
+}
+.hm-mobile-node {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  position: relative;
+  padding-bottom: 20px;
+}
+.hm-mobile-node-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: hsl(var(--sage));
+  flex-shrink: 0;
+  margin-top: 4px;
+  z-index: 1;
+}
+.hm-mobile-node-line {
+  position: absolute;
+  left: 5px; top: 16px;
+  width: 2px;
+  height: calc(100% - 8px);
+  background: hsla(var(--aspen-gold) / 0.25);
+}
+.hm-mobile-node-label {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.82rem; font-weight: 500;
+  color: hsl(var(--forest));
+}
+.hm-mobile-node-desc {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.78rem; font-weight: 300;
+  color: hsl(var(--bark-light));
+  line-height: 1.5;
+  margin-top: 2px;
+}
+.hm-mobile-center-node {
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 20px;
+  padding: 16px;
+  background: hsl(var(--forest));
+  border-radius: 4px;
+}
+.hm-mobile-center-node span {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.78rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: hsl(var(--stone-white));
+}
+
+/* ── Timeline ── */
+.hm-timeline {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 32px;
+  padding: 20px 0;
+  border-top: 1px solid hsla(var(--granite) / 0.2);
+}
+.hm-timeline-item {
+  flex: 1;
+  text-align: center;
+}
+.hm-timeline-week {
+  display: block;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: hsl(var(--forest));
+  margin-bottom: 4px;
+}
+.hm-timeline-phase {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.72rem; font-weight: 300;
+  color: hsl(var(--bark-light));
+}
+
+/* ── Module cards ── */
+.hm-module-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-top: 28px;
+}
+.hm-module-card {
+  padding: 28px 24px;
+  background: white;
+  border: 1px solid hsla(var(--granite) / 0.15);
+}
+.hm-module-eyebrow {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.62rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: hsl(var(--rose));
+  margin-bottom: 8px;
+}
+.hm-module-title {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300; font-size: 1.25rem;
+  color: hsl(var(--aspen-gold));
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+/* ── Framework cards ── */
+.hm-framework-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+  margin-top: 20px;
+}
+.hm-framework-card {
+  padding: 24px 20px;
+  background: white;
+  border: 1px solid hsla(var(--granite) / 0.15);
+}
+.hm-framework-title {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300; font-size: 1.15rem;
+  color: hsl(var(--forest));
+  margin-bottom: 6px;
+}
+.hm-framework-desc {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic; font-weight: 300;
+  font-size: 0.88rem;
+  color: hsl(var(--aspen-gold));
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+/* ── Testimonial quote hero (Forest bg) ── */
+.hm-quote-hero {
+  margin-top: 28px;
+  padding: 36px 32px;
+  background: hsl(var(--forest));
+  border-radius: 4px;
+}
+.hm-quote-hero-text {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic; font-weight: 300;
+  font-size: 1.15rem; line-height: 1.65;
+  color: hsl(var(--stone-white));
+  margin-bottom: 20px;
+}
+.hm-quote-hero-attr {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.hm-quote-hero-name {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.82rem; font-weight: 500;
+  color: hsl(var(--aspen-gold));
+}
+.hm-quote-hero-role {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.72rem; font-weight: 300;
+  color: hsla(var(--stone-white) / 0.5);
+}
+
+/* ── Testimonial quote editorial ── */
+.hm-quote-editorial {
+  margin-top: 24px;
+  padding: 28px 32px;
+  background: white;
+  border-left: 3px solid hsl(var(--sage));
+}
+.hm-quote-editorial-text {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic; font-weight: 300;
+  font-size: 1.05rem; line-height: 1.65;
+  color: hsl(var(--forest));
+  margin-bottom: 16px;
+}
+.hm-quote-editorial-attr {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.hm-quote-editorial-name {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.82rem; font-weight: 500;
+  color: hsl(var(--bark));
+}
+.hm-quote-editorial-role {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.72rem; font-weight: 300;
+  color: hsl(var(--bark-light));
+}
+
+/* ── CTA button ── */
+.hm-cta-button {
+  display: inline-block;
+  padding: 14px 32px;
+  background: hsl(var(--sage));
+  color: hsl(var(--stone-white));
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.88rem; font-weight: 500;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.hm-cta-button:hover {
+  background: hsl(var(--forest));
+  transform: translateY(-1px);
+}
+
+/* ── Proved list ── */
+.hm-proved-list {
+  margin-top: 24px;
+  padding: 24px 28px;
+  background: white;
+  border-left: 3px solid hsl(var(--sage));
+}
+
+/* ═══ HAPPY MONEY MOBILE ═══ */
+@media (max-width: 768px) {
+  .hm-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .hm-hero-quote-card {
+    max-width: 100%;
+  }
+  .hm-constellation-wrap {
+    display: none;
+  }
+  .hm-constellation-mobile {
+    display: flex;
+  }
+  .hm-module-grid {
+    grid-template-columns: 1fr;
+  }
+  .hm-framework-grid {
+    grid-template-columns: 1fr;
+  }
+  .hm-timeline {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .hm-timeline-item {
+    flex: 0 0 calc(50% - 6px);
+  }
+  .hm-situation-item {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .hm-quote-hero,
+  .hm-quote-editorial {
+    padding: 24px 20px;
+  }
+  .hm-cta-button {
+    display: block;
+    text-align: center;
+  }
+}
