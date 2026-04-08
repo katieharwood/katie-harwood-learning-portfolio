@@ -52,8 +52,8 @@ const operationalTools = [
 const loopPhases = [
   { label: "Discovery &\nAlignment", short: "Discover" },
   { label: "Architecture &\nDesign", short: "Design" },
-  { label: "Pilot &\nLaunch", short: "Launch" },
   { label: "Build &\nFacilitation", short: "Build" },
+  { label: "Pilot &\nLaunch", short: "Launch" },
 ];
 
 /* ── FlipCard component ── */
