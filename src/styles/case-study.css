@@ -459,7 +459,7 @@
   color: hsla(var(--stone-white) / 0.5); line-height: 1.5;
 }
 
-/* ── SO WHAT ── */
+/* ── SO WHAT (legacy — kept for other pages) ── */
 .cs-so-what {
   margin-top: 64px; padding: 48px;
   background: hsl(123 16% 82%); position: relative; overflow: hidden;
