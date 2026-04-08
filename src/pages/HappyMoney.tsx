@@ -133,7 +133,7 @@ const HappyMoney = () => {
               <div>
                 <p className="hm-situation-title">Attrition was climbing.</p>
                 <p className="cs-body-text">
-                  Industry data was clear: a negative onboarding experience makes new hires 2x more likely to leave. Happy Money's own numbers showed nearly 30% of the workforce had already departed within the first year. The OX (Onboarding Experience) team had built something exceptional for Day 1 and Day 2. But what happened after that — when new hires crossed over to their managers — was largely unstructured.
+                  Industry data was clear: a negative onboarding experience makes new hires 2x more likely to leave. As an Onboarding team of one, I had built something exceptional for Day 1-3. But what happened after that — when new hires crossed over to their managers — was largely unstructured.
                 </p>
               </div>
             </div>
