@@ -923,11 +923,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 92%;
-  height: 92%;
+  width: 55%;
+  height: 55%;
   color: hsla(var(--forest) / 0.35);
   pointer-events: none;
-  z-index: 0;
+  z-index: 2;
   animation: circleTrace 20s linear infinite;
 }
 
