@@ -175,7 +175,7 @@ const Index = () => {
                 <Tooltip key={p.num}>
                   <TooltipTrigger asChild>
                     <div
-                      className="project-item"
+                      className={`project-item${revealDone ? " visible" : ""}`}
                       role="button"
                       tabIndex={0}
                       onClick={(e) => e.preventDefault()}
