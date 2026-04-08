@@ -307,8 +307,8 @@ const HappyMoney = () => {
                     cx="150" cy="150" r="120"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="2"
-                    strokeDasharray="8,6"
+                    strokeWidth="3.5"
+                    strokeDasharray="10,7"
                     strokeLinecap="round"
                   />
                   {/* Arrowhead at top (clockwise) */}
