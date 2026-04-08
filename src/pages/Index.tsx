@@ -102,6 +102,7 @@ const Index = () => {
         await wait(100);
         items[i].classList.add("visible");
       }
+      setRevealDone(true);
       await wait(200);
       addVisible("currentlyBuilding");
       await wait(400);
