@@ -232,9 +232,11 @@ const HappyMoney = () => {
             </div>
           </div>
 
-          <p className="hm-triptych-closing" style={{ background: 'hsl(123, 16%, 82%)', borderRadius: '999px', padding: '16px 40px', display: 'inline-block', maxWidth: '100%' }}>
+          <div style={{ textAlign: 'center', marginTop: '44px' }}>
+          <p className="hm-triptych-closing" style={{ background: 'hsl(123, 16%, 82%)', borderRadius: '999px', padding: '16px 40px', display: 'inline-block' }}>
             The retention crisis was the burning platform. The opportunity was to give managers what they were missing.
           </p>
+          </div>
         </div>
 
         {/* SECTION 2 — THE PHILOSOPHY */}
