@@ -54,6 +54,11 @@ const Index = () => {
     []
   );
 
+  const [projectOffset, setProjectOffset] = useState(0);
+  const visibleCount = 3;
+  const canScrollDown = projectOffset + visibleCount < projects.length;
+  const canScrollUp = projectOffset > 0;
+
   const [cbIndex, setCbIndex] = useState(0);
   const cbTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
