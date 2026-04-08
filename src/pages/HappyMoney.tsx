@@ -356,7 +356,7 @@ const HappyMoney = () => {
               {[
                 { title: "Launch Plan: The First 30", body: "A structured onboarding checklist for new hires — covering culture integration, relationship building, team tools, and 30-day goals. Lived in Lattice as a reusable manager template." },
                 { title: "Manager Checklist", body: "A day-by-day action guide for managers from pre-start-date through Week 4. Built to eliminate the \"I don't know what to do\" problem entirely." },
-                { title: "New Peep Scavenger Hunt", body: "A customizable discovery tool for new hires covering their first 30 days — from Slack channels to wellness resources to cross-functional meet-and-greets. Designed to make culture integration feel like exploration, not orientation." },
+                { title: "New Hire Scavenger Hunt", body: "A customizable discovery tool for new hires covering their first 30 days — from Slack channels to wellness resources to cross-functional meet-and-greets. Designed to make culture integration feel like exploration, not orientation." },
               ].map((tool) => (
                 <div key={tool.title} className="hm-framework-card">
                   <h3 className="hm-framework-title">{tool.title}</h3>
