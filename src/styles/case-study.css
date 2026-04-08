@@ -923,8 +923,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 55%;
-  height: 55%;
+  width: 40%;
+  height: 40%;
   color: hsla(var(--forest) / 0.35);
   pointer-events: none;
   z-index: 2;
