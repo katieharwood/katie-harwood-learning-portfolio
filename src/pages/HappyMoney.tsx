@@ -80,7 +80,6 @@ const HappyMoney = () => {
   const fabRef = useRef<HTMLButtonElement>(null);
   const constellationRef = useRef<HTMLDivElement>(null);
   const [constellationVisible, setConstellationVisible] = useState(false);
-  const [hoveredNode, setHoveredNode] = useState<string | null>(null);
   const [activeQuote, setActiveQuote] = useState(0);
 
   useEffect(() => {
