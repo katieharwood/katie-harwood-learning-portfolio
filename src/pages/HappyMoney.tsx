@@ -194,73 +194,62 @@ const HappyMoney = () => {
 
         {/* SECTION 1 — THE SITUATION */}
         <div className="cs-section">
-          <p className="cs-section-label">The Situation</p>
+          <p className="cs-section-label">THE SITUATION</p>
           <h2 className="cs-section-heading">
             Managers were the missing link.<br />
             <em>And the data knew it.</em>
           </h2>
-          <p className="cs-body-text">
-            Happy Money was a fast-growing fintech startup with a culture it was proud of — and a retention problem it couldn't ignore.
-          </p>
-          <p className="cs-body-text" style={{ fontWeight: 500, color: "hsl(var(--forest))", marginBottom: 12 }}>
-            Three things were happening at once:
-          </p>
-          <div className="hm-situation-items">
-            <div className="hm-situation-item">
-              <span className="hm-situation-num">01</span>
-              <div>
-                <p className="hm-situation-title">Attrition was climbing.</p>
-                <p className="cs-body-text">
-                  Industry data was clear: a negative onboarding experience makes new hires 2x more likely to leave. As an Onboarding team of one, I had built something exceptional for Day 1-3. But what happened after that — when new hires crossed over to their managers — was largely unstructured.
-                </p>
-              </div>
+
+          <div className="hm-triptych">
+            {/* Card 01 */}
+            <div className="hm-triptych-card">
+              <div className="hm-triptych-illus" />
+              <p className="hm-triptych-eyebrow">RETENTION</p>
+              <h3 className="hm-triptych-title">Attrition<br />was climbing.</h3>
+              <p className="hm-triptych-body">
+                A bad onboarding makes new hires 2x more likely to leave. The data was loud.
+              </p>
             </div>
-            <div className="hm-situation-item">
-              <span className="hm-situation-num">02</span>
-              <div>
-                <p className="hm-situation-title">A new tool, no training.</p>
-                <p className="cs-body-text">
-                  The company had recently adopted Lattice as its performance management and 1:1 platform. Managers were expected to use it to build and track new hire launch plans. Most had no idea how.
-                </p>
-              </div>
+
+            {/* Card 02 */}
+            <div className="hm-triptych-card">
+              <div className="hm-triptych-illus" />
+              <p className="hm-triptych-eyebrow">TOOLING</p>
+              <h3 className="hm-triptych-title">New tool,<br />no playbook.</h3>
+              <p className="hm-triptych-body">
+                Lattice was live. Most managers had never opened it.
+              </p>
             </div>
-            <div className="hm-situation-item">
-              <span className="hm-situation-num">03</span>
-              <div>
-                <p className="hm-situation-title">Managers were flying blind.</p>
-                <p className="cs-body-text">
-                  There was no shared framework for how to onboard a new team member. No consistent language. No structured handoff between company onboarding and team integration. Managers wanted to do right by their people — they just didn't have the infrastructure to do it well.
-                </p>
-              </div>
+
+            {/* Card 03 */}
+            <div className="hm-triptych-card">
+              <div className="hm-triptych-illus" />
+              <p className="hm-triptych-eyebrow">READINESS</p>
+              <h3 className="hm-triptych-title">No map.<br />No handoff.<br />No language.</h3>
+              <p className="hm-triptych-body">
+                No shared framework. No structured handoff. Managers wanted to do right by their people — nothing showed them how.
+              </p>
             </div>
           </div>
-          <p className="cs-body-text" style={{ marginTop: 20 }}>
-            The retention crisis was the burning platform. The opportunity was to give managers the knowledge, tools, and confidence to close the gap.
+
+          <p className="hm-triptych-closing">
+            The retention crisis was the burning platform. The opportunity was to give managers what they were missing.
           </p>
         </div>
 
         {/* SECTION 2 — THE PHILOSOPHY */}
-        <div className="cs-section">
-          <p className="cs-section-label">The Philosophy</p>
+        <div className="cs-section hm-philosophy-section">
+          <p className="cs-section-label">THE PHILOSOPHY</p>
           <h2 className="cs-section-heading">
             Launching people is a <em>values act.</em>
           </h2>
-          <p className="cs-body-text">
-            Before a single slide was built or a single stakeholder was interviewed, there was a frame.
+          <p className="hm-philosophy-body">
+            I don't build training programs. I build human experiences that happen to teach something. Learning sat inside Workplace Experience at Happy Money — not beside it. That positioning shaped everything I built. Every framework, every tool, every facilitated moment was designed around one idea: launching people well is a values act.
           </p>
-          <p className="cs-body-text">
-            I don't build training programs. I build human experiences that happen to teach something. The distinction matters — because the difference between a manager who launches a new hire well and one who doesn't isn't usually knowledge. It's intention. It's culture. It's whether the team they're walking into feels like a place where they belong.
-          </p>
-          <p className="cs-body-text">
-            At Happy Money, learning sat inside Workplace Experience and People & Culture — not in a silo beside it. That positioning shaped everything. A checklist isn't just a to-do list. A launch plan isn't just a Lattice template. They're signals. They tell a new person: <em>someone thought about you before you arrived.</em>
-          </p>
-          <p className="cs-body-text">
-            Every component of this program — every framework, every tool, every facilitated moment — was designed to make that signal louder.
-          </p>
-          <div className="hm-philosophy-callout">
-            <p className="cs-body-text" style={{ marginBottom: 0 }}>
-              I build at the intersection of people and possibility. Even the most operational thing I design is a human experience in disguise.
-            </p>
+          <div className="hm-philosophy-pullquote">
+            <hr className="hm-pullquote-rule" />
+            <p className="hm-pullquote-text">"Someone thought about you before you arrived."</p>
+            <hr className="hm-pullquote-rule" />
           </div>
         </div>
 
