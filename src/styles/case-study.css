@@ -1228,8 +1228,8 @@
     gap: 10px;
   }
   .hm-circle-arrow {
-    width: 85%;
-    height: 85%;
+    width: 50%;
+    height: 50%;
   }
   .hm-situation-item {
     flex-direction: column;
