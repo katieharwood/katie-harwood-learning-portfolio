@@ -55,6 +55,7 @@ const Index = () => {
   );
 
   const [projectOffset, setProjectOffset] = useState(0);
+  const [revealDone, setRevealDone] = useState(false);
   const visibleCount = 3;
   const canScrollDown = projectOffset + visibleCount < projects.length;
   const canScrollUp = projectOffset > 0;

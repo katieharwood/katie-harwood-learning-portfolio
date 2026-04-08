@@ -877,6 +877,11 @@
   animation: spokeAppear 0.4s var(--ease) forwards;
 }
 
+@keyframes spokeAppear {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 .hm-workstream-dot {
   width: 8px;
   height: 8px;
