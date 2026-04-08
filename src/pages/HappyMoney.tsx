@@ -83,10 +83,10 @@ const HappyMoney = () => {
       <section className="cs-hero cs-hero-wide">
         <div className="cs-hero-twocol hm-hero-grid">
           <div className="cs-hero-left">
-            <p className="cs-case-label">CASE STUDY · HAPPY MONEY</p>
+            <p className="cs-case-label">CASE STUDY · 0-1 BUILT AT SPEED</p>
             <h1 className="cs-hero-title">
-              Zero to One.<br />
-              <em>Built at speed.</em>
+              0-1 Built at Speed.<br />
+              <em>Manager Readiness Program</em>
             </h1>
             <p className="cs-hero-subtitle">
               How I architected a manager readiness system from scratch — in 8 weeks — inside a fast-moving unicorn startup.
