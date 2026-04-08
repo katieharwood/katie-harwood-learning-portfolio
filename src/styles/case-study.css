@@ -907,170 +907,355 @@
 
 /* ── (legacy situation/philosophy styles removed) ── */
 
-/* ── Zero-to-One Two-Panel Grid ── */
-.hm-zero-to-one-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
+/* ══════════════════════════════════════════════════
+   CONSTELLATION — SVG lines + HTML pill cards
+   ══════════════════════════════════════════════════ */
+.hm-constellation {
+  position: relative;
+  width: 100%;
+  height: 520px;
   margin-top: 48px;
-  align-items: start;
 }
 
-.hm-panel-title {
-  font-family: "DM Sans", sans-serif;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: hsl(var(--aspen-gold));
-  margin-bottom: 20px;
-}
-
-/* ── Left Panel: Workstream Card Grid ── */
-.hm-version-panel {
-  position: relative;
-}
-
-.hm-workstream-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.hm-workstream-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 14px 16px;
-  background: hsl(var(--stone-white));
-  border: 1px solid hsl(123 16% 88%);
-  border-radius: 10px;
-  opacity: 0;
-  transform: translateY(8px);
-}
-
-.hm-workstream-card.visible {
-  animation: spokeAppear 0.4s var(--ease) forwards;
-}
-
-@keyframes spokeAppear {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.hm-workstream-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: hsl(var(--sage));
-  flex-shrink: 0;
-  margin-top: 5px;
-}
-
-.hm-workstream-name {
-  font-family: "DM Sans", sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: hsl(var(--forest));
-  line-height: 1.3;
-  margin: 0 0 4px;
-}
-
-.hm-workstream-desc {
-  font-family: "DM Sans", sans-serif;
-  font-size: 0.78rem;
-  font-weight: 300;
-  color: hsl(var(--bark-light));
-  line-height: 1.45;
-  margin: 0;
-}
-
-/* ── Right Panel: Iteration Engine ── */
-.hm-engine-panel {
-  position: relative;
-}
-
-.hm-engine-container {
-  position: relative;
-}
-
-.hm-circle-arrow {
+.hm-constellation-svg {
   position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hm-constellation-line {
+  stroke: hsl(var(--aspen-gold));
+  stroke-width: 0.25;
+  stroke-dasharray: 0.8 0.8;
+  opacity: 0;
+}
+.hm-constellation-line.visible {
+  animation: drawConstellationLine 600ms ease forwards;
+}
+@keyframes drawConstellationLine {
+  from { opacity: 0; }
+  to   { opacity: 0.35; }
+}
+
+/* Center node */
+.hm-center-node {
+  position: absolute;
+  z-index: 2;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 40%;
-  height: 40%;
-  color: hsla(var(--forest) / 0.35);
-  pointer-events: none;
-  z-index: 2;
-  animation: circleTrace 20s linear infinite;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: hsl(var(--forest));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
-
-@keyframes circleTrace {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
+.hm-center-node.visible {
+  opacity: 1;
+  animation: centerPulse 4s ease-in-out infinite;
 }
-
-.hm-engine-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  position: relative;
-  z-index: 1;
+@keyframes centerPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50%      { transform: translate(-50%, -50%) scale(1.04); }
 }
-
-.hm-engine-card {
-  padding: 22px 18px;
-  background: hsl(var(--stone-white));
-  border: 1px solid hsl(123 16% 88%);
-  border-radius: 12px;
-  text-align: center;
-  transition: box-shadow 0.2s var(--ease), transform 0.2s var(--ease);
+.hm-center-v1 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  color: hsl(var(--stone-white));
+  line-height: 1;
 }
-
-.hm-engine-card:hover {
-  box-shadow: 0 4px 16px hsla(var(--forest) / 0.1);
-  transform: translateY(-2px);
-}
-
-.hm-engine-num {
+.hm-center-delivery {
   font-family: "DM Sans", sans-serif;
-  font-size: 0.65rem;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 0.6rem;
   letter-spacing: 0.1em;
-  color: hsl(var(--aspen-gold));
-  display: block;
-  margin-bottom: 8px;
+  text-transform: uppercase;
+  color: hsl(var(--stone-white));
+  margin-top: 2px;
 }
 
-.hm-engine-short {
+/* Pill cards */
+.hm-pill-card {
+  position: absolute;
+  z-index: 2;
+  background: hsl(var(--stone-white));
+  border: 1px solid hsl(var(--granite));
+  border-radius: 999px;
+  padding: 8px 18px;
+  width: 170px;
+  text-align: center;
+  cursor: default;
+  opacity: 0;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hm-pill-card.visible {
+  animation: pillAppear 0.4s ease forwards;
+}
+@keyframes pillAppear {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hm-pill-card.hovered {
+  background: hsl(var(--sage));
+  transform: scale(1.04) !important;
+  box-shadow: 0 4px 20px hsla(var(--forest) / 0.15);
+}
+.hm-pill-card.hovered .hm-pill-label {
+  color: hsl(var(--stone-white));
+}
+.hm-pill-label {
   font-family: "DM Sans", sans-serif;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: hsl(var(--forest));
-  margin: 0 0 4px;
+  font-weight: 500;
+  font-size: 0.82rem;
+  color: hsl(var(--bark));
+  display: block;
+  line-height: 1.3;
+}
+.hm-pill-desc {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  font-size: 0.7rem;
+  color: hsl(var(--stone-white));
+  line-height: 1.4;
+  display: none;
+  margin-top: 4px;
+}
+.hm-pill-card.hovered .hm-pill-desc {
+  display: block;
+  animation: fade 0.2s ease forwards;
+}
+
+/* ══════════════════════════════════════════════════
+   4-PHASE RIBBON
+   ══════════════════════════════════════════════════ */
+.hm-ribbon {
+  margin-top: 56px;
+}
+.hm-ribbon-row {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+}
+.hm-ribbon-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hm-phase-card {
+  background: hsl(var(--stone-white));
+  border: 1px solid hsl(var(--granite));
+  border-radius: 8px;
+  padding: 16px 20px;
+  text-align: center;
+  min-width: 140px;
+}
+.hm-phase-num {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: hsl(var(--rose));
+  display: block;
+  margin-bottom: 6px;
+}
+.hm-phase-title {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-size: 1.1rem;
+  color: hsl(var(--bark));
+  display: block;
   line-height: 1.2;
 }
-
-.hm-engine-full {
+.hm-phase-subtitle {
   font-family: "DM Sans", sans-serif;
-  font-size: 0.75rem;
-  font-weight: 400;
+  font-weight: 300;
+  font-size: 0.8rem;
   color: hsl(var(--bark-light));
-  margin: 0;
-  line-height: 1.35;
+  display: block;
+  margin-top: 4px;
 }
-
-.hm-engine-mantra {
+.hm-ribbon-arrow {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.2rem;
+  color: hsl(var(--aspen-gold));
+  flex-shrink: 0;
+}
+.hm-ribbon-return {
+  position: relative;
+  height: 50px;
+  margin-top: 8px;
+}
+.hm-ribbon-return-svg {
+  width: 100%;
+  height: 100%;
+}
+.hm-ribbon-return-label {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: hsl(var(--bark-light));
+  white-space: nowrap;
+}
+.hm-ribbon-mantra {
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
   font-weight: 300;
-  font-size: 1.1rem;
-  color: hsl(var(--aspen-gold));
-  margin-top: 20px;
-  letter-spacing: 0.04em;
+  font-size: 1rem;
+  color: hsl(var(--bark-light));
   text-align: center;
+  margin-top: 24px;
+}
+
+/* ══════════════════════════════════════════════════
+   LABELED LISTS (Frameworks + Tools)
+   ══════════════════════════════════════════════════ */
+.hm-labeled-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+  margin-top: 24px;
+}
+.hm-labeled-item {
+  padding-left: 16px;
+}
+.hm-labeled-list--sage .hm-labeled-item {
+  border-left: 2px solid hsl(var(--sage));
+}
+.hm-labeled-list--rose .hm-labeled-item {
+  border-left: 2px solid hsl(var(--rose));
+}
+.hm-labeled-name {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: hsl(var(--aspen-gold));
+  margin-bottom: 8px;
+}
+.hm-labeled-desc {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: hsl(var(--bark-light));
+}
+
+/* ══════════════════════════════════════════════════
+   OUTCOMES QUOTE
+   ══════════════════════════════════════════════════ */
+.hm-outcomes-quote {
+  margin: 48px 0;
+}
+.hm-outcomes-quote-rule {
+  border: none;
+  border-top: 1px solid hsl(var(--granite));
+  margin: 0;
+}
+.hm-outcomes-quote-text {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.65;
+  color: hsl(var(--bark));
+  padding: 32px 0 16px;
+  margin: 0;
+}
+.hm-outcomes-quote-attr {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: hsl(var(--bark-light));
+  margin: 0;
+  padding-bottom: 32px;
+}
+
+/* ══════════════════════════════════════════════════
+   WHAT THIS WORK REVEALS — Forest dark panel
+   ══════════════════════════════════════════════════ */
+.hm-reveals {
+  margin-top: 64px;
+  padding: 80px 48px !important;
+  background: hsl(var(--forest));
+  position: relative;
+  overflow: hidden;
+  /* break out of content max-width */
+  margin-left: -48px;
+  margin-right: -48px;
+  width: calc(100% + 96px);
+}
+.hm-reveals-label {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: hsl(var(--sage));
+  margin-bottom: 20px;
+}
+.hm-reveals-opening {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-size: 1.6rem;
+  line-height: 1.4;
+  color: hsl(var(--stone-white));
+  margin-bottom: 24px;
+}
+.hm-reveals-opening em {
+  font-style: italic;
+  color: hsl(var(--aspen-gold));
+}
+.hm-reveals-body {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: hsl(var(--stone-white));
+  max-width: 65ch;
+  margin: 0 auto 16px;
+}
+.hm-reveals-closing {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.3rem;
+  color: hsl(var(--aspen-gold));
+  text-align: center;
+  margin-top: 32px;
+}
+.hm-reveals-cta {
+  display: inline-block;
+  padding: 12px 28px;
+  background: hsl(var(--sage));
+  color: hsl(var(--stone-white));
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.hm-reveals-cta:hover {
+  background: hsl(var(--bark));
+  transform: translateY(-1px);
 }
 
 /* ── Flip Cards ── */
@@ -1139,13 +1324,6 @@
   font-style: italic;
   margin-bottom: 8px !important;
 }
-.hm-flip-framework .hm-flip-card-inner {
-  min-height: 140px;
-}
-.hm-flip-framework .hm-flip-card-front,
-.hm-flip-framework .hm-flip-card-back {
-  padding: 24px 20px;
-}
 
 /* ── Module cards ── */
 .hm-module-grid {
@@ -1174,31 +1352,18 @@
   line-height: 1.2;
 }
 
-/* ── Framework cards ── */
+/* ── Framework cards (legacy — kept for reference) ── */
 .hm-framework-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2px;
   margin-top: 20px;
 }
-.hm-framework-card {
-  padding: 24px 20px;
-  background: white;
-  border: 1px solid hsla(var(--granite) / 0.15);
-}
 .hm-framework-title {
   font-family: "Cormorant Garamond", serif;
   font-weight: 300; font-size: 1.15rem;
   color: hsl(var(--forest));
   margin-bottom: 6px;
-}
-.hm-framework-desc {
-  font-family: "Cormorant Garamond", serif;
-  font-style: italic; font-weight: 300;
-  font-size: 0.88rem;
-  color: hsl(var(--aspen-gold));
-  margin-bottom: 10px;
-  line-height: 1.4;
 }
 
 /* ── Testimonial quote hero (Forest bg) ── */
@@ -1229,34 +1394,6 @@
   color: hsla(var(--stone-white) / 0.5);
 }
 
-/* ── Testimonial quote editorial ── */
-.hm-quote-editorial {
-  margin-top: 24px;
-  padding: 28px 32px;
-  background: white;
-  border-left: 3px solid hsl(var(--sage));
-}
-.hm-quote-editorial-text {
-  font-family: "Cormorant Garamond", serif;
-  font-style: italic; font-weight: 300;
-  font-size: 1.05rem; line-height: 1.65;
-  color: hsl(var(--forest));
-  margin-bottom: 16px;
-}
-.hm-quote-editorial-attr {
-  display: flex; flex-direction: column; gap: 2px;
-}
-.hm-quote-editorial-name {
-  font-family: "DM Sans", sans-serif;
-  font-size: 0.82rem; font-weight: 500;
-  color: hsl(var(--bark));
-}
-.hm-quote-editorial-role {
-  font-family: "DM Sans", sans-serif;
-  font-size: 0.72rem; font-weight: 300;
-  color: hsl(var(--bark-light));
-}
-
 /* ── CTA button ── */
 .hm-cta-button {
   display: inline-block;
@@ -1274,44 +1411,84 @@
   transform: translateY(-1px);
 }
 
-/* ── Proved list ── */
-.hm-proved-list {
-  margin-top: 24px;
-  padding: 24px 28px;
-  background: white;
-  border-left: 3px solid hsl(var(--sage));
-}
-
 /* ═══ HAPPY MONEY MOBILE ═══ */
 @media (max-width: 768px) {
   .hm-hero-grid {
     grid-template-columns: 1fr;
     gap: 28px;
   }
-  .hm-hero-quote-card {
-    max-width: 100%;
+
+  /* Constellation: hide SVG, show as pill grid */
+  .hm-constellation {
+    height: auto;
+    min-height: 0;
   }
-  .hm-zero-to-one-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
+  .hm-constellation-svg,
+  .hm-center-node {
+    display: none;
   }
-  .hm-workstream-grid {
-    grid-template-columns: 1fr;
-    gap: 8px;
+  .hm-constellation .hm-pill-card {
+    position: static !important;
+    transform: none !important;
+    width: 100%;
+    border-radius: 12px;
+    text-align: left;
+    padding: 12px 16px;
   }
-  .hm-engine-grid {
+  .hm-constellation {
+    display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
   }
-  .hm-circle-arrow {
-    width: 50%;
-    height: 50%;
+  .hm-pill-card.visible {
+    animation: none;
+    opacity: 1;
   }
-  .hm-situation-item {
-    flex-direction: column;
-    gap: 8px;
+  .hm-pill-desc {
+    display: block;
+    color: hsl(var(--bark-light));
   }
-  .hm-cta-button {
+
+  /* Ribbon: 2x2 */
+  .hm-ribbon-row {
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+  .hm-ribbon-arrow {
+    display: none;
+  }
+  .hm-phase-card {
+    min-width: 120px;
+  }
+  .hm-ribbon-return-svg {
+    display: none;
+  }
+  .hm-ribbon-return {
+    height: auto;
+    text-align: center;
+    margin-top: 16px;
+  }
+  .hm-ribbon-return-label {
+    position: static;
+    transform: none;
+  }
+
+  /* Labeled lists */
+  .hm-labeled-list {
+    grid-template-columns: 1fr;
+  }
+
+  /* Reveals */
+  .hm-reveals {
+    margin-left: -24px;
+    margin-right: -24px;
+    width: calc(100% + 48px);
+    padding: 48px 24px !important;
+  }
+
+  .hm-cta-button,
+  .hm-reveals-cta {
     display: block;
     text-align: center;
   }
@@ -1320,8 +1497,5 @@
   }
   .hm-flip-card-inner {
     min-height: 140px;
-  }
-  .hm-flip-framework .hm-flip-card-inner {
-    min-height: 120px;
   }
 }
