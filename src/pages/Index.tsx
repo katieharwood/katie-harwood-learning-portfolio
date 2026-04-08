@@ -161,7 +161,7 @@ const Index = () => {
                 <Link
                   key={p.num}
                   to={p.href}
-                  className="project-item visible-link"
+                  className={`project-item${revealDone ? " visible" : ""}`}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
                   <span className="project-num">{p.num}</span>
