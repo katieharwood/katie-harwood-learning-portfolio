@@ -1214,20 +1214,17 @@
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  .hm-hub-center {
-    width: 100px;
-    height: 100px;
+  .hm-workstream-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
-  .hm-hub-v1 {
-    font-size: 1.2rem;
-  }
-  .hm-ribbon-phases {
+  .hm-engine-grid {
     grid-template-columns: 1fr 1fr;
     gap: 10px;
   }
-  .hm-infinity-watermark {
-    width: 180px;
-    height: 90px;
+  .hm-circle-arrow {
+    width: 85%;
+    height: 85%;
   }
   .hm-situation-item {
     flex-direction: column;
