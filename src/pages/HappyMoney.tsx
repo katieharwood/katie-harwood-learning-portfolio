@@ -12,12 +12,76 @@ const constellationNodes = [
   { id: "gtm", label: "Go-to-Market", desc: "Launch comms · registration · promotion · facilitator recruitment" },
 ];
 
+/* ── Hero testimonials ── */
+const heroTestimonials = [
+  {
+    quote: "It is rare to come across the combination of talent that Katie possesses. With a mind that is highly creative, innovative, and resourceful, and equally strategic and visionary, you get an explosive powerhouse that can bring incredible change, structure, process, and vision to an organization extremely quickly.",
+    name: "Lauren Benton-Cissel",
+    role: "Director of Talent Experience & Programs · Direct Manager",
+  },
+  {
+    quote: "She not only evolved Onboarding to become a world-class program but also enlisted interest and engagement from the business to participate and drive some of the content management... I was so proud of and impressed by how she showed up, got buy-in quickly and project managed the effort across many levels and groups to get to a beautiful final product, which was appreciated and felt by our entire company.",
+    name: "Eric Saggese",
+    role: "Global People & Culture Leader · Senior Stakeholder",
+  },
+];
+
+/* ── Module data ── */
+const modules = [
+  { num: "01", title: "How We Launch", tagline: "60-min workshop on onboarding philosophy & the critical Handoff", body: "A 60-minute workshop covering Happy Money's onboarding philosophy, the OX experience, retention data, and the critical \"Handoff\" period between company onboarding and team integration. Required for all managers. Prerequisite for everything that follows." },
+  { num: "02", title: "Building Launch Plans", tagline: "Hands-on session building real First 30 plans in Lattice", body: "A 60-minute hands-on workshop where managers built their actual First 30 launch plan inside Lattice — the company's new performance management tool. Not theory. Live work time with facilitated support." },
+  { num: "03", title: "Coaching New Peeps", tagline: "Peer-to-peer manager panel surfacing tacit knowledge", body: "A 45-minute manager discussion panel — peer-to-peer learning from managers who were already launching well. Designed to surface tacit knowledge, build cross-functional connection, and give managers a space to learn from each other." },
+  { num: "04", title: "Launching Managers", tagline: "Advanced session for managers of managers", body: "A 60-minute advanced session for managers of managers. Covered team integration, cultural alignment, growth mindset, and Happy Money's commitment to Radical Belonging. Required Core Strengths as a prerequisite." },
+];
+
+/* ── Framework data ── */
+const frameworks = [
+  { title: "The Handoff", tagline: "The critical gap between company onboarding and the team", desc: "The critical gap between company onboarding and team integration", body: "Visualized as a bridge that managers and new hires cross together. Made the invisible transition visible and gave managers a shared mental model for their role in it." },
+  { title: "The 411", tagline: "A first-1:1 framework built around six questions", desc: "A first-1:1 framework built around six questions", body: "Who, What, Where, Why, When, and How. Gave managers a practical structure for that first conversation that covered expectations, context, belonging, and purpose." },
+  { title: "The Dream Journey", tagline: "A day-by-day roadmap for a manager's first 30 days", desc: "A day-by-day, week-by-week roadmap for a manager's first 30 days", body: "From \"quiet prep days\" during OX to walking meetings in Week 3. Concrete, human, and grounded in what actually makes people feel welcomed." },
+];
+
+/* ── Operational tools data ── */
+const operationalTools = [
+  { title: "Launch Plan: The First 30", tagline: "Structured onboarding checklist living in Lattice", body: "A structured onboarding checklist for new hires — covering culture integration, relationship building, team tools, and 30-day goals. Lived in Lattice as a reusable manager template." },
+  { title: "Manager Checklist", tagline: "Day-by-day action guide from pre-start through Week 4", body: "A day-by-day action guide for managers from pre-start-date through Week 4. Built to eliminate the \"I don't know what to do\" problem entirely." },
+  { title: "New Hire Scavenger Hunt", tagline: "Customizable discovery tool for new hires' first 30 days", body: "A customizable discovery tool for new hires covering their first 30 days — from Slack channels to wellness resources to cross-functional meet-and-greets. Designed to make culture integration feel like exploration, not orientation." },
+];
+
+/* ── Infinite loop phases ── */
+const loopPhases = [
+  { label: "Discovery &\nAlignment", short: "Discover" },
+  { label: "Architecture &\nDesign", short: "Design" },
+  { label: "Build &\nFacilitation", short: "Build" },
+  { label: "Pilot &\nLaunch", short: "Launch" },
+];
+
+/* ── FlipCard component ── */
+const FlipCard = ({ front, back, className = "" }: { front: React.ReactNode; back: React.ReactNode; className?: string }) => {
+  const [flipped, setFlipped] = useState(false);
+  return (
+    <div
+      className={`hm-flip-card ${flipped ? "flipped" : ""} ${className}`}
+      onClick={() => setFlipped(!flipped)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === "Enter" && setFlipped(!flipped)}
+    >
+      <div className="hm-flip-card-inner">
+        <div className="hm-flip-card-front">{front}</div>
+        <div className="hm-flip-card-back">{back}</div>
+      </div>
+    </div>
+  );
+};
+
 const HappyMoney = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const fabRef = useRef<HTMLButtonElement>(null);
   const constellationRef = useRef<HTMLDivElement>(null);
   const [constellationVisible, setConstellationVisible] = useState(false);
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
+  const [activeQuote, setActiveQuote] = useState(0);
 
   useEffect(() => {
     const sections = document.querySelectorAll(".cs-section");
@@ -57,6 +121,14 @@ const HappyMoney = () => {
       cObs.disconnect();
       window.removeEventListener("scroll", handleScroll);
     };
+  }, []);
+
+  /* Auto-rotate hero testimonials */
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveQuote((prev) => (prev + 1) % heroTestimonials.length);
+    }, 7000);
+    return () => clearInterval(timer);
   }, []);
 
   /* ── Constellation geometry ── */
@@ -99,11 +171,25 @@ const HappyMoney = () => {
           </div>
           <div className="cs-hero-bubble-wrap">
             <div className="hm-hero-quote-card">
-              <p className="hm-hero-quote-text">
-                "It is rare to come across the combination of talent that Katie possesses. With a mind that is highly creative, innovative, and resourceful, and equally strategic and visionary, you get an explosive powerhouse that can bring incredible change, structure, process, and vision to an organization extremely quickly."
-              </p>
-              <p className="hm-hero-quote-name">Lauren Benton-Cissel</p>
-              <p className="hm-hero-quote-role">Director of Talent Experience & Programs · Direct Manager</p>
+              <div className="cs-testimonial-rotator">
+                {heroTestimonials.map((t, i) => (
+                  <div key={i} className={`cs-testimonial-slide ${i === activeQuote ? "active" : ""}`}>
+                    <p className="hm-hero-quote-text">"{t.quote}"</p>
+                    <p className="hm-hero-quote-name">{t.name}</p>
+                    <p className="hm-hero-quote-role">{t.role}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="cs-testimonial-dots" style={{ marginTop: 16 }}>
+                {heroTestimonials.map((_, i) => (
+                  <button
+                    key={i}
+                    className={`cs-testimonial-dot ${i === activeQuote ? "active" : ""}`}
+                    onClick={() => setActiveQuote(i)}
+                    aria-label={`Testimonial ${i + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -186,7 +272,7 @@ const HappyMoney = () => {
           </div>
         </div>
 
-        {/* SECTION 3 — THE BUILD / CONSTELLATION */}
+        {/* SECTION 3 — THE BUILD / CONSTELLATION + INFINITE LOOP */}
         <div className="cs-section">
           <p className="cs-section-label">How I Build Zero to One</p>
           <h2 className="cs-section-heading">
@@ -276,28 +362,63 @@ const HappyMoney = () => {
             </div>
           </div>
 
-          {/* Timeline bar */}
-          <div className="hm-timeline">
-            <div className="hm-timeline-item">
-              <span className="hm-timeline-week">WEEK 1–2</span>
-              <span className="hm-timeline-phase">Discovery & Alignment</span>
+          {/* Infinite Loop Visual — replaces timeline */}
+          <div className="hm-loop-wrap">
+            <svg className="hm-loop-svg" viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg">
+              {/* Figure-8 / infinity path */}
+              <path
+                className="hm-loop-track"
+                d="M 150,140 C 150,60 300,60 300,140 C 300,220 450,220 450,140 C 450,60 300,60 300,140 C 300,220 150,220 150,140 Z"
+                fill="none"
+              />
+              <path
+                className="hm-loop-runner"
+                d="M 150,140 C 150,60 300,60 300,140 C 300,220 450,220 450,140 C 450,60 300,60 300,140 C 300,220 150,220 150,140 Z"
+                fill="none"
+              />
+              {/* Phase labels positioned around the loop */}
+              {/* Top-left: Discovery */}
+              <text x="185" y="78" textAnchor="middle" className="hm-loop-phase-label">Discovery &amp;</text>
+              <text x="185" y="93" textAnchor="middle" className="hm-loop-phase-label">Alignment</text>
+              {/* Top-right: Architecture */}
+              <text x="415" y="78" textAnchor="middle" className="hm-loop-phase-label">Architecture &amp;</text>
+              <text x="415" y="93" textAnchor="middle" className="hm-loop-phase-label">Design</text>
+              {/* Bottom-right: Build */}
+              <text x="415" y="198" textAnchor="middle" className="hm-loop-phase-label">Build &amp;</text>
+              <text x="415" y="213" textAnchor="middle" className="hm-loop-phase-label">Facilitation</text>
+              {/* Bottom-left: Launch */}
+              <text x="185" y="198" textAnchor="middle" className="hm-loop-phase-label">Pilot &amp;</text>
+              <text x="185" y="213" textAnchor="middle" className="hm-loop-phase-label">Launch</text>
+              {/* Center crossing point — iteration marker */}
+              <circle cx="300" cy="140" r="22" className="hm-loop-center" />
+              <text x="300" y="137" textAnchor="middle" className="hm-loop-center-text">ITERATE</text>
+              <text x="300" y="150" textAnchor="middle" className="hm-loop-center-sub">V1 → V2 → V3</text>
+              {/* Phase dots */}
+              <circle cx="150" cy="140" r="5" className="hm-loop-dot" />
+              <circle cx="300" cy="68" r="5" className="hm-loop-dot" style={{ animationDelay: "1.5s" }} />
+              <circle cx="450" cy="140" r="5" className="hm-loop-dot" style={{ animationDelay: "3s" }} />
+              <circle cx="300" cy="212" r="5" className="hm-loop-dot" style={{ animationDelay: "4.5s" }} />
+            </svg>
+            <p className="hm-loop-mantra">Try. Learn. Improve. Repeat.</p>
+          </div>
+
+          {/* Mobile: vertical loop */}
+          <div className="hm-loop-mobile">
+            {loopPhases.map((phase, i) => (
+              <div key={i} className="hm-loop-mobile-phase">
+                <div className="hm-loop-mobile-marker">{i + 1}</div>
+                <span className="hm-loop-mobile-label">{phase.short}</span>
+                {i < loopPhases.length - 1 && <span className="hm-loop-mobile-arrow">→</span>}
+              </div>
+            ))}
+            <div className="hm-loop-mobile-return">
+              <span>↩ Loop back — V1 → V2 → V3</span>
             </div>
-            <div className="hm-timeline-item">
-              <span className="hm-timeline-week">WEEK 3–4</span>
-              <span className="hm-timeline-phase">Architecture & Design</span>
-            </div>
-            <div className="hm-timeline-item">
-              <span className="hm-timeline-week">WEEK 5–6</span>
-              <span className="hm-timeline-phase">Build & Facilitation</span>
-            </div>
-            <div className="hm-timeline-item">
-              <span className="hm-timeline-week">WEEK 7–8</span>
-              <span className="hm-timeline-phase">Pilot & Launch</span>
-            </div>
+            <p className="hm-loop-mantra">Try. Learn. Improve. Repeat.</p>
           </div>
         </div>
 
-        {/* SECTION 4 — WHAT GOT BUILT */}
+        {/* SECTION 4 — WHAT GOT BUILT (Flip Cards) */}
         <div className="cs-section">
           <p className="cs-section-label">The System</p>
           <h2 className="cs-section-heading">
@@ -305,21 +426,29 @@ const HappyMoney = () => {
             <em>One connected experience.</em>
           </h2>
           <p className="cs-body-text">
-            This wasn't a single training. It was a sequenced learning system — designed with prerequisites, a clear arc, and tools that lived beyond the classroom. Every component was built to connect: to each other, to the business, and to the humans using them.
+            This wasn't a single training. It was a sequenced learning system — designed with prerequisites, a clear arc, and tools that lived beyond the classroom.
           </p>
+          <p className="cs-body-text hm-flip-hint">Click any card to learn more →</p>
 
           <div className="hm-module-grid">
-            {[
-              { num: "01", title: "How We Launch", body: "A 60-minute workshop covering Happy Money's onboarding philosophy, the OX experience, retention data, and the critical \"Handoff\" period between company onboarding and team integration. Required for all managers. Prerequisite for everything that follows." },
-              { num: "02", title: "Building Launch Plans", body: "A 60-minute hands-on workshop where managers built their actual First 30 launch plan inside Lattice — the company's new performance management tool. Not theory. Live work time with facilitated support." },
-              { num: "03", title: "Coaching New Peeps", body: "A 45-minute manager discussion panel — peer-to-peer learning from managers who were already launching well. Designed to surface tacit knowledge, build cross-functional connection, and give managers a space to learn from each other." },
-              { num: "04", title: "Launching Managers", body: "A 60-minute advanced session for managers of managers. Covered team integration, cultural alignment, growth mindset, and Happy Money's commitment to Radical Belonging. Required Core Strengths as a prerequisite." },
-            ].map((m) => (
-              <div key={m.num} className="hm-module-card">
-                <p className="hm-module-eyebrow">MODULE {m.num}</p>
-                <h3 className="hm-module-title">{m.title}</h3>
-                <p className="cs-body-text">{m.body}</p>
-              </div>
+            {modules.map((m) => (
+              <FlipCard
+                key={m.num}
+                front={
+                  <>
+                    <p className="hm-module-eyebrow">MODULE {m.num}</p>
+                    <h3 className="hm-module-title">{m.title}</h3>
+                    <p className="hm-flip-tagline">{m.tagline}</p>
+                  </>
+                }
+                back={
+                  <>
+                    <p className="hm-module-eyebrow">MODULE {m.num}</p>
+                    <h3 className="hm-flip-back-title">{m.title}</h3>
+                    <p className="hm-flip-back-body">{m.body}</p>
+                  </>
+                }
+              />
             ))}
           </div>
 
@@ -334,16 +463,23 @@ const HappyMoney = () => {
               Three frameworks created from scratch and woven through the entire program:
             </p>
             <div className="hm-framework-grid">
-              {[
-                { title: "The Handoff", desc: "The critical gap between company onboarding and team integration", body: "Visualized as a bridge that managers and new hires cross together. Made the invisible transition visible and gave managers a shared mental model for their role in it." },
-                { title: "The 411", desc: "A first-1:1 framework built around six questions", body: "Who, What, Where, Why, When, and How. Gave managers a practical structure for that first conversation that covered expectations, context, belonging, and purpose." },
-                { title: "The Dream Journey", desc: "A day-by-day, week-by-week roadmap for a manager's first 30 days", body: "From \"quiet prep days\" during OX to walking meetings in Week 3. Concrete, human, and grounded in what actually makes people feel welcomed." },
-              ].map((fw) => (
-                <div key={fw.title} className="hm-framework-card">
-                  <h3 className="hm-framework-title">{fw.title}</h3>
-                  <p className="hm-framework-desc">{fw.desc}</p>
-                  <p className="cs-body-text">{fw.body}</p>
-                </div>
+              {frameworks.map((fw) => (
+                <FlipCard
+                  key={fw.title}
+                  className="hm-flip-framework"
+                  front={
+                    <>
+                      <h3 className="hm-framework-title">{fw.title}</h3>
+                      <p className="hm-flip-tagline">{fw.tagline}</p>
+                    </>
+                  }
+                  back={
+                    <>
+                      <h3 className="hm-flip-back-title">{fw.title}</h3>
+                      <p className="hm-flip-back-body">{fw.body}</p>
+                    </>
+                  }
+                />
               ))}
             </div>
           </div>
@@ -353,49 +489,29 @@ const HappyMoney = () => {
             <p className="cs-section-label">Operational Tools</p>
             <p className="cs-body-text">Three tools designed to live beyond the training:</p>
             <div className="hm-framework-grid">
-              {[
-                { title: "Launch Plan: The First 30", body: "A structured onboarding checklist for new hires — covering culture integration, relationship building, team tools, and 30-day goals. Lived in Lattice as a reusable manager template." },
-                { title: "Manager Checklist", body: "A day-by-day action guide for managers from pre-start-date through Week 4. Built to eliminate the \"I don't know what to do\" problem entirely." },
-                { title: "New Hire Scavenger Hunt", body: "A customizable discovery tool for new hires covering their first 30 days — from Slack channels to wellness resources to cross-functional meet-and-greets. Designed to make culture integration feel like exploration, not orientation." },
-              ].map((tool) => (
-                <div key={tool.title} className="hm-framework-card">
-                  <h3 className="hm-framework-title">{tool.title}</h3>
-                  <p className="cs-body-text">{tool.body}</p>
-                </div>
+              {operationalTools.map((tool) => (
+                <FlipCard
+                  key={tool.title}
+                  className="hm-flip-framework"
+                  front={
+                    <>
+                      <h3 className="hm-framework-title">{tool.title}</h3>
+                      <p className="hm-flip-tagline">{tool.tagline}</p>
+                    </>
+                  }
+                  back={
+                    <>
+                      <h3 className="hm-flip-back-title">{tool.title}</h3>
+                      <p className="hm-flip-back-body">{tool.body}</p>
+                    </>
+                  }
+                />
               ))}
             </div>
           </div>
         </div>
 
-        {/* SECTION 5 — IN THEIR WORDS */}
-        <div className="cs-section">
-          <p className="cs-section-label">In Their Words</p>
-          <h2 className="cs-section-heading">
-            What the work felt like <em>from the inside.</em>
-          </h2>
-
-          {/* Lauren — hero treatment */}
-          <div className="hm-quote-hero">
-            <p className="hm-quote-hero-text">
-              "It is rare to come across the combination of talent that Katie possesses. With a mind that is highly creative, innovative, and resourceful, and equally strategic and visionary, you get an explosive powerhouse that can bring incredible change, structure, process, and vision to an organization extremely quickly."
-            </p>
-            <div className="hm-quote-hero-attr">
-              <span className="hm-quote-hero-name">Lauren Benton-Cissel</span>
-              <span className="hm-quote-hero-role">Director of Talent Experience & Programs · Direct Manager</span>
-            </div>
-          </div>
-
-          {/* Eric — editorial treatment */}
-          <div className="hm-quote-editorial">
-            <p className="hm-quote-editorial-text">
-              "She not only evolved Onboarding to become a world-class program but also enlisted interest and engagement from the business to participate and drive some of the content management... I was so proud of and impressed by how she showed up, got buy-in quickly and project managed the effort across many levels and groups to get to a beautiful final product, which was appreciated and felt by our entire company."
-            </p>
-            <div className="hm-quote-editorial-attr">
-              <span className="hm-quote-editorial-name">Eric Saggese</span>
-              <span className="hm-quote-editorial-role">Global People & Culture Leader · Senior Stakeholder</span>
-            </div>
-          </div>
-        </div>
+        {/* SECTION 5 — IN THEIR WORDS — REMOVED (quotes moved to hero) */}
 
         {/* SECTION 6 — HONEST OUTCOMES */}
         <div className="cs-section">

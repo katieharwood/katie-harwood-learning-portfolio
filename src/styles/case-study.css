@@ -989,31 +989,199 @@
   color: hsl(var(--stone-white));
 }
 
-/* ── Timeline ── */
-.hm-timeline {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  margin-top: 32px;
-  padding: 20px 0;
-  border-top: 1px solid hsla(var(--granite) / 0.2);
-}
-.hm-timeline-item {
-  flex: 1;
+/* ── Infinite Loop Visual ── */
+.hm-loop-wrap {
+  margin: 40px auto 0;
+  max-width: 600px;
   text-align: center;
 }
-.hm-timeline-week {
-  display: block;
-  font-family: "DM Sans", sans-serif;
-  font-size: 0.68rem; font-weight: 500;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: hsl(var(--forest));
-  margin-bottom: 4px;
+.hm-loop-svg {
+  width: 100%;
+  height: auto;
 }
-.hm-timeline-phase {
+.hm-loop-track {
+  stroke: hsla(var(--sage) / 0.25);
+  stroke-width: 2;
+}
+.hm-loop-runner {
+  stroke: hsl(var(--aspen-gold));
+  stroke-width: 2.5;
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: loopTrace 6s var(--ease) infinite;
+}
+@keyframes loopTrace {
+  0% { stroke-dashoffset: 1200; }
+  100% { stroke-dashoffset: 0; }
+}
+.hm-loop-phase-label {
   font-family: "DM Sans", sans-serif;
-  font-size: 0.72rem; font-weight: 300;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  fill: hsl(var(--bark));
+}
+.hm-loop-center {
+  fill: hsl(var(--forest));
+}
+.hm-loop-center-text {
+  font-family: "DM Sans", sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  fill: hsl(var(--stone-white));
+}
+.hm-loop-center-sub {
+  font-family: "DM Sans", sans-serif;
+  font-size: 6px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  fill: hsla(var(--stone-white) / 0.6);
+}
+.hm-loop-dot {
+  fill: hsl(var(--aspen-gold));
+  opacity: 0.6;
+  animation: loopDotPulse 3s ease-in-out infinite;
+}
+@keyframes loopDotPulse {
+  0%, 100% { opacity: 0.4; r: 4; }
+  50% { opacity: 1; r: 6; }
+}
+.hm-loop-mantra {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.1rem;
+  color: hsl(var(--aspen-gold));
+  margin-top: 20px;
+  letter-spacing: 0.04em;
+}
+
+/* Mobile loop */
+.hm-loop-mobile {
+  display: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 32px 0 0;
+  padding: 24px 20px;
+  background: hsl(123 16% 82%);
+  border-radius: 4px;
+}
+.hm-loop-mobile-phase {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hm-loop-mobile-marker {
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: hsl(var(--forest));
+  color: hsl(var(--stone-white));
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+.hm-loop-mobile-label {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: hsl(var(--forest));
+}
+.hm-loop-mobile-arrow {
+  color: hsl(var(--aspen-gold));
+  font-size: 0.88rem;
+}
+.hm-loop-mobile-return {
+  width: 100%;
+  text-align: center;
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid hsla(var(--forest) / 0.15);
+}
+.hm-loop-mobile-return span {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: hsl(var(--aspen-gold));
+  letter-spacing: 0.04em;
+}
+
+/* ── Flip Cards ── */
+.hm-flip-card {
+  perspective: 800px;
+  cursor: pointer;
+  min-height: 180px;
+}
+.hm-flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+  transition: transform 0.6s var(--ease);
+  transform-style: preserve-3d;
+}
+.hm-flip-card.flipped .hm-flip-card-inner {
+  transform: rotateY(180deg);
+}
+.hm-flip-card-front,
+.hm-flip-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  padding: 28px 24px;
+  border: 1px solid hsla(var(--granite) / 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.hm-flip-card-front {
+  background: white;
+}
+.hm-flip-card-back {
+  background: hsl(123 16% 82%);
+  transform: rotateY(180deg);
+  overflow-y: auto;
+}
+.hm-flip-tagline {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 0.88rem;
+  line-height: 1.45;
   color: hsl(var(--bark-light));
+  margin-top: auto;
+}
+.hm-flip-back-title {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-size: 1.05rem;
+  color: hsl(var(--forest));
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.hm-flip-back-body {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.82rem;
+  color: hsl(var(--bark));
+  line-height: 1.65;
+}
+.hm-flip-hint {
+  font-size: 0.78rem !important;
+  color: hsl(var(--granite)) !important;
+  font-style: italic;
+  margin-bottom: 8px !important;
+}
+.hm-flip-framework .hm-flip-card-inner {
+  min-height: 140px;
+}
+.hm-flip-framework .hm-flip-card-front,
+.hm-flip-framework .hm-flip-card-back {
+  padding: 24px 20px;
 }
 
 /* ── Module cards ── */
@@ -1172,23 +1340,27 @@
   .hm-framework-grid {
     grid-template-columns: 1fr;
   }
-  .hm-timeline {
-    flex-wrap: wrap;
-    gap: 12px;
+  .hm-loop-wrap {
+    display: none;
   }
-  .hm-timeline-item {
-    flex: 0 0 calc(50% - 6px);
+  .hm-loop-mobile {
+    display: flex;
   }
   .hm-situation-item {
     flex-direction: column;
     gap: 8px;
   }
-  .hm-quote-hero,
-  .hm-quote-editorial {
-    padding: 24px 20px;
-  }
   .hm-cta-button {
     display: block;
     text-align: center;
+  }
+  .hm-flip-card {
+    min-height: 140px;
+  }
+  .hm-flip-card-inner {
+    min-height: 140px;
+  }
+  .hm-flip-framework .hm-flip-card-inner {
+    min-height: 120px;
   }
 }
