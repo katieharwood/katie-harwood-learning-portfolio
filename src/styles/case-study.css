@@ -1340,23 +1340,27 @@
   .hm-framework-grid {
     grid-template-columns: 1fr;
   }
-  .hm-timeline {
-    flex-wrap: wrap;
-    gap: 12px;
+  .hm-loop-wrap {
+    display: none;
   }
-  .hm-timeline-item {
-    flex: 0 0 calc(50% - 6px);
+  .hm-loop-mobile {
+    display: flex;
   }
   .hm-situation-item {
     flex-direction: column;
     gap: 8px;
   }
-  .hm-quote-hero,
-  .hm-quote-editorial {
-    padding: 24px 20px;
-  }
   .hm-cta-button {
     display: block;
     text-align: center;
+  }
+  .hm-flip-card {
+    min-height: 140px;
+  }
+  .hm-flip-card-inner {
+    min-height: 140px;
+  }
+  .hm-flip-framework .hm-flip-card-inner {
+    min-height: 120px;
   }
 }
