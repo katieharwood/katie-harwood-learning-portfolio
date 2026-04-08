@@ -147,45 +147,62 @@ const Index = () => {
         <p className="section-label" id="projectsLabel">
           Selected Projects
         </p>
-        <div className="projects">
-          {projects.map((p) =>
-            p.href !== "#" ? (
-              <Link
-                key={p.num}
-                to={p.href}
-                className="project-item visible-link"
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
-                <span className="project-num">{p.num}</span>
-                <span className="project-name">{p.name}</span>
-                <span className={`project-tag${p.comingSoon ? " coming-soon" : ""}`}>
-                  {p.tag}
-                </span>
-                <span className="project-arrow">&rarr;</span>
-              </Link>
-            ) : (
-              <Tooltip key={p.num}>
-                <TooltipTrigger asChild>
-                  <div
-                    className="project-item"
-                    role="button"
-                    tabIndex={0}
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <span className="project-num">{p.num}</span>
-                    <span className="project-name">{p.name}</span>
-                    <span className={`project-tag${p.comingSoon ? " coming-soon" : ""}`}>
-                      {p.tag}
-                    </span>
-                    <span className="project-arrow">&rarr;</span>
-                  </div>
-                </TooltipTrigger>
-                <TooltipContent side="top" className="tooltip-coming-soon">
-                  <p>{p.comingSoon ? "Coming soon" : "Case study coming soon"}</p>
-                </TooltipContent>
-              </Tooltip>
-            )
+        <div className="projects-scroll-container">
+          {canScrollUp && (
+            <button className="projects-scroll-btn scroll-up" onClick={() => setProjectOffset(o => Math.max(0, o - 1))} aria-label="Scroll up">
+              <ChevronUp size={18} />
+            </button>
           )}
+          <div className="projects">
+            {projects.slice(projectOffset, projectOffset + visibleCount).map((p) =>
+              p.href !== "#" ? (
+                <Link
+                  key={p.num}
+                  to={p.href}
+                  className="project-item visible-link"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <span className="project-num">{p.num}</span>
+                  <span className="project-name">{p.name}</span>
+                  <span className={`project-tag${p.comingSoon ? " coming-soon" : ""}`}>
+                    {p.tag}
+                  </span>
+                  <span className="project-arrow">&rarr;</span>
+                </Link>
+              ) : (
+                <Tooltip key={p.num}>
+                  <TooltipTrigger asChild>
+                    <div
+                      className="project-item"
+                      role="button"
+                      tabIndex={0}
+                      onClick={(e) => e.preventDefault()}
+                    >
+                      <span className="project-num">{p.num}</span>
+                      <span className="project-name">{p.name}</span>
+                      <span className={`project-tag${p.comingSoon ? " coming-soon" : ""}`}>
+                        {p.tag}
+                      </span>
+                      <span className="project-arrow">&rarr;</span>
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent side="top" className="tooltip-coming-soon">
+                    <p>{p.comingSoon ? "Coming soon" : "Case study coming soon"}</p>
+                  </TooltipContent>
+                </Tooltip>
+              )
+            )}
+          </div>
+          {canScrollDown && (
+            <button className="projects-scroll-btn scroll-down" onClick={() => setProjectOffset(o => Math.min(projects.length - visibleCount, o + 1))} aria-label="Scroll down">
+              <ChevronDown size={18} />
+            </button>
+          )}
+          <div className="projects-scroll-dots">
+            {Array.from({ length: projects.length - visibleCount + 1 }).map((_, i) => (
+              <span key={i} className={`scroll-dot ${i === projectOffset ? "active" : ""}`} onClick={() => setProjectOffset(i)} />
+            ))}
+          </div>
         </div>
 
         {/* Currently Building — Carousel */}
