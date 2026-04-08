@@ -1,45 +1,39 @@
 
 
-## Plan: Happy Money Case Study — Scannability & Iterative Loop Overhaul
+## Plan: Redesign "How I Build Zero to One" Infinite Loop Visual
 
-### 1. Hero quotes — rotate both testimonials in speech bubble
+### Problem
+The current SVG figure-8 is cramped in a 600×280 viewBox with 9px and 6px font sizes. Labels overlap the animated path, the center "ITERATE" circle is too small, and everything is stacked vertically in a narrow column.
 
-Move Lauren and Eric's quotes into the hero section using the same speech-bubble + auto-rotate pattern from the User Guide case study. Reuse the existing `cs-speech-bubble`, `cs-testimonial-rotator`, `cs-testimonial-slide`, `cs-testimonial-dot` CSS classes. Remove the entire "In Their Words" section (Section 5).
+### Solution: Horizontal layout with larger, readable elements
 
-**Quotes (2):**
-- Lauren Benton-Cissel — existing hero quote
-- Eric Saggese — existing editorial quote
+**1. Expand the SVG canvas and make it horizontal**
+- Change `viewBox` from `0 0 600 280` to `0 0 900 360`
+- Increase `max-width` from `600px` to `900px` (or remove cap entirely to use full section width)
+- This gives each lobe of the figure-8 much more room
 
-### 2. System section — flip cards for scannability
+**2. Enlarge all text and circles**
+- Phase labels: `9px` → `14px`
+- Center "ITERATE" text: `8px` → `14px`
+- Center "V1 → V2 → V3" sub-text: `6px` → `11px`
+- Center circle radius: `22` → `38`
+- Phase dots: radius `4–6` → `7–10`
 
-Replace the current module cards, framework cards, and operational tool cards with flip cards:
+**3. Move labels outside the path**
+- Position phase labels well outside the loop curves (above/below the path, not on top of it)
+- Add small connector lines or dots linking labels to their position on the path
+- Recalculate label positions: push Discovery/Architecture labels above the loop, Build/Launch labels below
 
-- **Front**: Title + one-line tagline (e.g. "How We Launch" / "60-min workshop on onboarding philosophy & the critical Handoff")
-- **Back**: Full description text (current body copy)
-- Click/tap to flip. On mobile, tap toggles.
+**4. Adjust the figure-8 path geometry**
+- Widen the lobes so curves are more generous and less cramped
+- Updated path coordinates to use the full 900×360 space
 
-This applies to all three card grids:
-- 4 module cards (2×2)
-- 3 framework cards (3-col)
-- 3 operational tool cards (3-col)
-
-Each card gets a CSS 3D transform flip effect. Front uses the existing sage/cream palette; back uses a slightly darker treatment to signal depth.
-
-### 3. Iterative loop — animated infinite loop visual
-
-Replace the static timeline bar (Week 1–2 through Week 7–8) with an animated infinite loop (figure-8 / Möbius-style path) showing the four phases flowing continuously:
-
-**Discovery & Alignment → Architecture & Design → Build & Facilitation → Pilot & Launch → (loop back)**
-
-- SVG path animation that traces the loop continuously
-- Phase labels positioned along the path
-- A subtle "V1 → V2 → V3" counter or marker that pulses at the launch point, showing each iteration
-- Annotation text: "Try. Learn. Improve. Repeat." or similar
-- On mobile: simplified to a vertical circular flow diagram
-
-The existing constellation stays — this replaces only the timeline bar beneath it.
+**5. CSS updates**
+- `.hm-loop-wrap` max-width → `900px` or `100%`
+- All font-size values scaled up proportionally
+- Ensure the runner animation `stroke-dasharray` / `stroke-dashoffset` values match the new longer path length
 
 ### Files affected
-- `src/pages/HappyMoney.tsx` — hero speech bubble, remove In Their Words section, flip card components, infinite loop SVG
-- `src/styles/case-study.css` — flip card 3D transforms, infinite loop animation keyframes, speech bubble styles (reuse existing)
+- `src/pages/HappyMoney.tsx` — updated SVG viewBox, path `d` attribute, text positions, circle sizes
+- `src/styles/case-study.css` — updated font sizes, circle sizes, max-width for `.hm-loop-wrap`
 
