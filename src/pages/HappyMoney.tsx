@@ -170,17 +170,16 @@ const HappyMoney = () => {
             </div>
           </div>
           <div className="cs-hero-bubble-wrap">
-            <div className="hm-hero-quote-card">
+            <div className="cs-speech-bubble">
               <div className="cs-testimonial-rotator">
                 {heroTestimonials.map((t, i) => (
                   <div key={i} className={`cs-testimonial-slide ${i === activeQuote ? "active" : ""}`}>
-                    <p className="hm-hero-quote-text">"{t.quote}"</p>
-                    <p className="hm-hero-quote-name">{t.name}</p>
-                    <p className="hm-hero-quote-role">{t.role}</p>
+                    <p className="cs-bubble-quote">"{t.quote}"</p>
+                    <p className="cs-bubble-name">— {t.name}, {t.role}</p>
                   </div>
                 ))}
               </div>
-              <div className="cs-testimonial-dots" style={{ marginTop: 16 }}>
+              <div className="cs-testimonial-dots">
                 {heroTestimonials.map((_, i) => (
                   <button
                     key={i}
@@ -462,6 +461,7 @@ const HappyMoney = () => {
             <p className="cs-body-text">
               Three frameworks created from scratch and woven through the entire program:
             </p>
+            <p className="hm-flip-hint">Click any card to learn more</p>
             <div className="hm-framework-grid">
               {frameworks.map((fw) => (
                 <FlipCard
