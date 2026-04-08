@@ -461,6 +461,7 @@ const HappyMoney = () => {
             <p className="cs-body-text">
               Three frameworks created from scratch and woven through the entire program:
             </p>
+            <p className="hm-flip-hint">Click any card to learn more</p>
             <div className="hm-framework-grid">
               {frameworks.map((fw) => (
                 <FlipCard
