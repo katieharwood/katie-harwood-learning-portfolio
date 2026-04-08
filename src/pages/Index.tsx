@@ -1,4 +1,5 @@
 import { useEffect, useRef, useMemo, useState, useCallback } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import portraitImg from "@/assets/portrait.png";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
