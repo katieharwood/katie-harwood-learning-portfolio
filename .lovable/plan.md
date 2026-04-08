@@ -1,26 +1,32 @@
-## Plan: User Guide vILT — Engagement & Readability Overhaul
 
-### 1. Word Cloud — Gentle Float Animation (mobile-safe)
-- Words softly drift up/down with CSS keyframes at different speeds/delays
-- Subtle opacity pulse to feel "alive"
-- On mobile: simpler fade-pulse only (no positional drift to avoid layout issues)
 
-### 2. Quotes — Auto-Rotating Cards
-- Remove the ADHD quote (3 remaining)
-- Show one quote at a time, auto-fading between them every ~5 seconds
-- Subtle fade + slight slide transition
-- Pause on hover (desktop)
+## Plan: Happy Money Case Study — Remove Dates & Ensure Mobile Responsiveness
 
-### 3. Learning Objective Cards — Soft Sage/Muted Green
-- Replace Forest Green (`#2C3D2E`) background with a soft sage green (e.g., `#A8B5A0` or `#C2CFBA`)
-- Dark Forest Green text on light sage background for contrast
-- Applies to all `.cs-thread` cards sitewide (affects Elevate page too)
+### Changes
 
-### 4. Pull Quote — "The User Guide is for everyone..."
-- Add a styled pull-quote block between the Situation section and Session Impact
-- Large Cormorant Garamond italic, centered, with subtle top/bottom borders
-- Text: *"The User Guide is for everyone. You just need to be honest with yourself about how you work — and then give people a way in."*
+**1. Remove all date references from copy**
+In the handoff content for `src/pages/HappyMoney.tsx`:
+- Hero eyebrow: change from "CASE STUDY · HAPPY MONEY · 2021" → "CASE STUDY · HAPPY MONEY"
+- Lauren's testimonial attribution: remove "· December 2022"
+- Eric's testimonial attribution: remove "· November 2022"
+- No other date references in body copy (the "8 weeks" timeline is a duration, not a date — keeping it)
 
-### 5. Files Changed
-- `src/pages/UserGuideVilt.tsx` — remove quote, add pull quote, restructure quotes to rotating
-- `src/styles/case-study.css` — word cloud animation, rotating quote styles, sage card colors
+**2. Mobile responsiveness built into every section**
+All new CSS will include mobile breakpoints (`@media (max-width: 768px)`):
+- **Hero**: Two-column layout stacks vertically; pull quote card goes full-width below headline
+- **Constellation visualization**: Radial SVG replaced with a vertical stacked list of nodes with connector dots on mobile
+- **Module cards**: 2×2 grid collapses to single column
+- **Framework cards**: 3-column layout collapses to single column
+- **Testimonial cards**: Full-width, reduced padding
+- **Timeline bar**: Horizontal scroll or 2×2 grid on narrow screens
+- **Typography**: Display headings scale down (clamp or vw-based sizing)
+- **Skill tag pills**: Flex-wrap to accommodate narrow widths
+
+**3. Updated plan file (`.lovable/plan.md`)**
+Reflect the date removal and mobile requirements.
+
+### Files affected
+- `src/pages/HappyMoney.tsx` (new — all copy sans dates)
+- `src/styles/case-study.css` (new styles with mobile breakpoints)
+- `.lovable/plan.md` (updated plan)
+
