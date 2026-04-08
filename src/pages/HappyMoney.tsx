@@ -89,7 +89,7 @@ const HappyMoney = () => {
               <em>Built at speed.</em>
             </h1>
             <p className="cs-hero-subtitle">
-              How I architected a manager readiness system from scratch — in 8 weeks — inside a fast-moving fintech startup.
+              How I architected a manager readiness system from scratch — in 8 weeks — inside a fast-moving unicorn startup.
             </p>
             <div className="cs-stat-row">
               {["Curriculum Architecture", "Instructional Design", "Facilitation", "Stakeholder Strategy", "Program Design", "Learning Systems"].map((t) => (
