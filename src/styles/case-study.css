@@ -1007,18 +1007,18 @@
 .hm-loop-runner {
   stroke: hsl(var(--aspen-gold));
   stroke-width: 3;
-  stroke-dasharray: 1200;
-  stroke-dashoffset: 1200;
-  animation: loopTrace 6s var(--ease) infinite;
+  stroke-dasharray: 1800;
+  stroke-dashoffset: 1800;
+  animation: loopTrace 8s var(--ease) infinite;
 }
 @keyframes loopTrace {
-  0% { stroke-dashoffset: 1200; }
+  0% { stroke-dashoffset: 1800; }
   100% { stroke-dashoffset: 0; }
 }
 .hm-loop-phase-label {
   font-family: "DM Sans", sans-serif;
-  font-size: 9px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   fill: hsl(var(--bark));
@@ -1028,14 +1028,14 @@
 }
 .hm-loop-center-text {
   font-family: "DM Sans", sans-serif;
-  font-size: 8px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   letter-spacing: 0.12em;
   fill: hsl(var(--stone-white));
 }
 .hm-loop-center-sub {
   font-family: "DM Sans", sans-serif;
-  font-size: 6px;
+  font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.06em;
   fill: hsla(var(--stone-white) / 0.6);
@@ -1046,8 +1046,8 @@
   animation: loopDotPulse 3s ease-in-out infinite;
 }
 @keyframes loopDotPulse {
-  0%, 100% { opacity: 0.4; r: 4; }
-  50% { opacity: 1; r: 6; }
+  0%, 100% { opacity: 0.4; r: 6; }
+  50% { opacity: 1; r: 10; }
 }
 .hm-loop-mantra {
   font-family: "Cormorant Garamond", serif;
