@@ -311,8 +311,8 @@ const HappyMoney = () => {
                     strokeDasharray="10,7"
                     strokeLinecap="round"
                   />
-                  {/* Arrowhead at top (clockwise) */}
-                  <polygon points="150,30 157,42 143,42" fill="currentColor" />
+                  {/* Arrowhead extending outward from the circle path (clockwise direction at top) */}
+                  <polygon points="150,18 157,30 143,30" fill="currentColor" />
                 </svg>
 
                 <div className="hm-engine-grid">
