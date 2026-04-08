@@ -131,12 +131,6 @@ const HappyMoney = () => {
     return () => clearInterval(timer);
   }, []);
 
-  /* ── Constellation geometry ── */
-  const cx = 300, cy = 220, r = 170;
-  const nodePositions = constellationNodes.map((_, i) => {
-    const angle = (Math.PI * 2 * i) / constellationNodes.length - Math.PI / 2;
-    return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
-  });
 
   return (
     <>
