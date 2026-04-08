@@ -363,40 +363,44 @@ const HappyMoney = () => {
 
           {/* Infinite Loop Visual — replaces timeline */}
           <div className="hm-loop-wrap">
-            <svg className="hm-loop-svg" viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg">
-              {/* Figure-8 / infinity path */}
+            <svg className="hm-loop-svg" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg">
+              {/* Figure-8 / infinity path — wider lobes */}
               <path
                 className="hm-loop-track"
-                d="M 150,140 C 150,60 300,60 300,140 C 300,220 450,220 450,140 C 450,60 300,60 300,140 C 300,220 150,220 150,140 Z"
+                d="M 200,180 C 200,60 450,60 450,180 C 450,300 700,300 700,180 C 700,60 450,60 450,180 C 450,300 200,300 200,180 Z"
                 fill="none"
               />
               <path
                 className="hm-loop-runner"
-                d="M 150,140 C 150,60 300,60 300,140 C 300,220 450,220 450,140 C 450,60 300,60 300,140 C 300,220 150,220 150,140 Z"
+                d="M 200,180 C 200,60 450,60 450,180 C 450,300 700,300 700,180 C 700,60 450,60 450,180 C 450,300 200,300 200,180 Z"
                 fill="none"
               />
-              {/* Phase labels positioned around the loop */}
-              {/* Top-left: Discovery */}
-              <text x="185" y="78" textAnchor="middle" className="hm-loop-phase-label">Discovery &amp;</text>
-              <text x="185" y="93" textAnchor="middle" className="hm-loop-phase-label">Alignment</text>
-              {/* Top-right: Architecture */}
-              <text x="415" y="78" textAnchor="middle" className="hm-loop-phase-label">Architecture &amp;</text>
-              <text x="415" y="93" textAnchor="middle" className="hm-loop-phase-label">Design</text>
-              {/* Bottom-right: Build */}
-              <text x="415" y="198" textAnchor="middle" className="hm-loop-phase-label">Build &amp;</text>
-              <text x="415" y="213" textAnchor="middle" className="hm-loop-phase-label">Facilitation</text>
-              {/* Bottom-left: Launch */}
-              <text x="185" y="198" textAnchor="middle" className="hm-loop-phase-label">Pilot &amp;</text>
-              <text x="185" y="213" textAnchor="middle" className="hm-loop-phase-label">Launch</text>
+
+              {/* Phase labels — positioned OUTSIDE the loop */}
+              {/* Left: Discovery & Alignment */}
+              <circle cx="200" cy="180" r="8" className="hm-loop-dot" />
+              <text x="120" y="175" textAnchor="middle" className="hm-loop-phase-label">Discovery &amp;</text>
+              <text x="120" y="195" textAnchor="middle" className="hm-loop-phase-label">Alignment</text>
+
+              {/* Top: Architecture & Design */}
+              <circle cx="325" cy="95" r="8" className="hm-loop-dot" style={{ animationDelay: "1.5s" }} />
+              <text x="325" y="50" textAnchor="middle" className="hm-loop-phase-label">Architecture &amp;</text>
+              <text x="325" y="70" textAnchor="middle" className="hm-loop-phase-label">Design</text>
+
+              {/* Right: Build & Facilitation */}
+              <circle cx="700" cy="180" r="8" className="hm-loop-dot" style={{ animationDelay: "3s" }} />
+              <text x="785" y="175" textAnchor="middle" className="hm-loop-phase-label">Build &amp;</text>
+              <text x="785" y="195" textAnchor="middle" className="hm-loop-phase-label">Facilitation</text>
+
+              {/* Bottom: Pilot & Launch */}
+              <circle cx="575" cy="265" r="8" className="hm-loop-dot" style={{ animationDelay: "4.5s" }} />
+              <text x="575" y="310" textAnchor="middle" className="hm-loop-phase-label">Pilot &amp;</text>
+              <text x="575" y="330" textAnchor="middle" className="hm-loop-phase-label">Launch</text>
+
               {/* Center crossing point — iteration marker */}
-              <circle cx="300" cy="140" r="22" className="hm-loop-center" />
-              <text x="300" y="137" textAnchor="middle" className="hm-loop-center-text">ITERATE</text>
-              <text x="300" y="150" textAnchor="middle" className="hm-loop-center-sub">V1 → V2 → V3</text>
-              {/* Phase dots */}
-              <circle cx="150" cy="140" r="5" className="hm-loop-dot" />
-              <circle cx="300" cy="68" r="5" className="hm-loop-dot" style={{ animationDelay: "1.5s" }} />
-              <circle cx="450" cy="140" r="5" className="hm-loop-dot" style={{ animationDelay: "3s" }} />
-              <circle cx="300" cy="212" r="5" className="hm-loop-dot" style={{ animationDelay: "4.5s" }} />
+              <circle cx="450" cy="180" r="38" className="hm-loop-center" />
+              <text x="450" y="176" textAnchor="middle" className="hm-loop-center-text">ITERATE</text>
+              <text x="450" y="196" textAnchor="middle" className="hm-loop-center-sub">V1 → V2 → V3</text>
             </svg>
             <p className="hm-loop-mantra">Try. Learn. Improve. Repeat.</p>
           </div>
