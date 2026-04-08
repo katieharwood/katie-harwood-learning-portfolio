@@ -1,39 +1,61 @@
 
 
-## Plan: Redesign "How I Build Zero to One" Infinite Loop Visual
+## Plan: Rebuild "How I Build Zero to One" — Side-by-Side Layout
 
-### Problem
-The current SVG figure-8 is cramped in a 600×280 viewBox with 9px and 6px font sizes. Labels overlap the animated path, the center "ITERATE" circle is too small, and everything is stacked vertically in a narrow column.
+### Current problems
+- Constellation SVG: node labels are 7px, circles are 26px radius — everything is tiny and text gets clipped
+- Infinity loop SVG: labels overlap the animated path, positioned inside the curves
+- Both visuals are stacked vertically — user wants them side by side
+- Neither works well at the current scale
 
-### Solution: Horizontal layout with larger, readable elements
+### New approach: Two-panel side-by-side layout
 
-**1. Expand the SVG canvas and make it horizontal**
-- Change `viewBox` from `0 0 600 280` to `0 0 900 360`
-- Increase `max-width` from `600px` to `900px` (or remove cap entirely to use full section width)
-- This gives each lobe of the figure-8 much more room
+```text
+┌─────────────────────────────────┬──────────────────────────────────┐
+│                                 │                                  │
+│   V1 DELIVERY                   │   THE ITERATION ENGINE           │
+│   Hub + Spokes                  │   Ribbon Loop + ∞ accent         │
+│                                 │                                  │
+│   Large center circle "V1"      │   4 big phase cards in a row     │
+│   with 7 workstream pills       │   connected by a return arrow    │
+│   radiating outward             │   with a soft ∞ watermark        │
+│                                 │                                  │
+└─────────────────────────────────┴──────────────────────────────────┘
+```
 
-**2. Enlarge all text and circles**
-- Phase labels: `9px` → `14px`
-- Center "ITERATE" text: `8px` → `14px`
-- Center "V1 → V2 → V3" sub-text: `6px` → `11px`
-- Center circle radius: `22` → `38`
-- Phase dots: radius `4–6` → `7–10`
+### Left panel: Hub + Spokes (replaces constellation SVG)
 
-**3. Move labels outside the path**
-- Position phase labels well outside the loop curves (above/below the path, not on top of it)
-- Add small connector lines or dots linking labels to their position on the path
-- Recalculate label positions: push Discovery/Architecture labels above the loop, Build/Launch labels below
+- **No more SVG diagram.** Replace with HTML/CSS layout.
+- Large central circle (forest green, ~120px) with "V1" and "DELIVERY" text inside.
+- 7 workstream cards arranged around it using CSS positioning or a simple radial layout — but implemented as positioned HTML elements, not SVG text.
+- Each card: a rounded pill/card with the workstream name (e.g. "User Research") in readable 14px+ DM Sans, plus a subtle dot connector line to center.
+- On hover: card expands slightly to show the description text (e.g. "Stakeholder interviews · understanding gaps").
+- Warm style: cream/sage card backgrounds, soft shadows, forest green center.
 
-**4. Adjust the figure-8 path geometry**
-- Widen the lobes so curves are more generous and less cramped
-- Updated path coordinates to use the full 900×360 space
+### Right panel: Ribbon Loop + decorative infinity
 
-**5. CSS updates**
-- `.hm-loop-wrap` max-width → `900px` or `100%`
-- All font-size values scaled up proportionally
-- Ensure the runner animation `stroke-dasharray` / `stroke-dashoffset` values match the new longer path length
+- **4 large phase cards** arranged horizontally in a ribbon:
+  - Discovery & Alignment → Architecture & Design → Build & Facilitation → Pilot & Launch
+- Each card: ~140px tall, warm cream background, clear typography (16px+).
+- Connected by directional arrows between cards.
+- A **return arrow** curves from "Pilot & Launch" back to "Discovery & Alignment" below the ribbon, with "ITERATE · V1 → V2 → V3" label on it.
+- A **decorative ∞ symbol** rendered as a large, low-opacity SVG watermark behind the ribbon — subtle ambient glow/pulse animation.
+- Mantra text below: "Try. Learn. Improve. Repeat."
+
+### Desktop layout
+- Use `cs-two-col` pattern (grid: 1fr 1fr) within the section.
+- Both panels sit side by side at the full 1080px content width.
+
+### Mobile layout (≤768px)
+- Stack vertically: hub first, then ribbon loop below.
+- Hub spokes collapse to a simple vertical list with dot markers (reuse existing mobile constellation pattern but with larger text).
+- Ribbon phases stack into a 2×2 grid of phase cards with a circular return arrow below.
+
+### Animation
+- Subtle ambient only: soft pulse on the center V1 circle, gentle glow on the ∞ watermark, and light opacity fade on connector lines when section scrolls into view.
+- No continuous motion on text or cards.
 
 ### Files affected
-- `src/pages/HappyMoney.tsx` — updated SVG viewBox, path `d` attribute, text positions, circle sizes
-- `src/styles/case-study.css` — updated font sizes, circle sizes, max-width for `.hm-loop-wrap`
+- `src/pages/HappyMoney.tsx` — replace constellation SVG and infinity loop SVG with new HTML/CSS hub-and-spokes + ribbon components
+- `src/styles/case-study.css` — new styles for hub layout, spoke cards, ribbon loop, ∞ watermark, mobile breakpoints; remove old `.hm-constellation-*` and `.hm-loop-*` styles
 
