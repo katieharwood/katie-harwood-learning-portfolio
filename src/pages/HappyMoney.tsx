@@ -282,142 +282,82 @@ const HappyMoney = () => {
             Most programs get built sequentially. I don't build that way. In the first two weeks — before a single session was facilitated — multiple workstreams were running simultaneously. This is the mental model I carry into every zero-to-one build.
           </p>
 
-          {/* Desktop: SVG constellation */}
-          <div className="hm-constellation-wrap" ref={constellationRef}>
-            <svg
-              className={`hm-constellation ${constellationVisible ? "visible" : ""}`}
-              viewBox="0 0 600 440"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {/* Lines from center to nodes */}
-              {nodePositions.map((pos, i) => (
-                <line
-                  key={`line-${i}`}
-                  className={`hm-constellation-line ${constellationVisible ? "draw" : ""}`}
-                  x1={cx} y1={cy} x2={pos.x} y2={pos.y}
-                  style={{ animationDelay: `${0.3 + i * 0.12}s` }}
-                />
-              ))}
-              {/* Cross-connections for web feel */}
-              {[
-                [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 0], [0, 3], [2, 5]
-              ].map(([a, b], i) => (
-                <line
-                  key={`cross-${i}`}
-                  className={`hm-constellation-crossline ${constellationVisible ? "draw" : ""}`}
-                  x1={nodePositions[a].x} y1={nodePositions[a].y}
-                  x2={nodePositions[b].x} y2={nodePositions[b].y}
-                  style={{ animationDelay: `${0.8 + i * 0.08}s` }}
-                />
-              ))}
-              {/* Center node */}
-              <g className={`hm-center-node ${constellationVisible ? "visible" : ""}`}>
-                <circle cx={cx} cy={cy} r={38} />
-                <text x={cx} y={cy - 6} textAnchor="middle" className="hm-center-label">V1</text>
-                <text x={cx} y={cy + 12} textAnchor="middle" className="hm-center-sublabel">DELIVERY</text>
-              </g>
-              {/* Outer nodes */}
-              {constellationNodes.map((node, i) => (
-                <g
-                  key={node.id}
-                  className={`hm-outer-node ${constellationVisible ? "visible" : ""} ${hoveredNode === node.id ? "hovered" : ""}`}
-                  style={{ animationDelay: `${0.4 + i * 0.12}s` }}
-                  onMouseEnter={() => setHoveredNode(node.id)}
-                  onMouseLeave={() => setHoveredNode(null)}
-                >
-                  <circle cx={nodePositions[i].x} cy={nodePositions[i].y} r={hoveredNode === node.id ? 30 : 26} />
-                  <text x={nodePositions[i].x} y={nodePositions[i].y + 4} textAnchor="middle" className="hm-node-label">
-                    {node.label.length > 14 ? node.label.split(" ").slice(0, 2).join(" ") : node.label}
-                  </text>
-                  {hoveredNode === node.id && (
-                    <foreignObject
-                      x={nodePositions[i].x - 90}
-                      y={nodePositions[i].y + 34}
-                      width={180}
-                      height={60}
+          {/* Two-panel side-by-side layout */}
+          <div className="hm-zero-to-one-grid">
+            {/* LEFT: Hub + Spokes */}
+            <div className="hm-hub-panel" ref={constellationRef}>
+              <h3 className="hm-panel-title">V1 Delivery</h3>
+              <div className="hm-hub-layout">
+                <div className={`hm-hub-center ${constellationVisible ? "visible" : ""}`}>
+                  <span className="hm-hub-v1">V1</span>
+                  <span className="hm-hub-delivery">DELIVERY</span>
+                </div>
+                <div className="hm-spokes">
+                  {constellationNodes.map((node, i) => (
+                    <div
+                      key={node.id}
+                      className={`hm-spoke-card ${constellationVisible ? "visible" : ""}`}
+                      style={{ animationDelay: `${0.2 + i * 0.1}s` }}
+                      onMouseEnter={() => setHoveredNode(node.id)}
+                      onMouseLeave={() => setHoveredNode(null)}
                     >
-                      <div className="hm-node-desc">{node.desc}</div>
-                    </foreignObject>
-                  )}
-                </g>
-              ))}
-            </svg>
-          </div>
-
-          {/* Mobile: Stacked nodes */}
-          <div className="hm-constellation-mobile">
-            {constellationNodes.map((node, i) => (
-              <div key={node.id} className="hm-mobile-node cs-section" style={{ marginBottom: 0 }}>
-                <div className="hm-mobile-node-dot" />
-                {i < constellationNodes.length - 1 && <div className="hm-mobile-node-line" />}
-                <div className="hm-mobile-node-content">
-                  <p className="hm-mobile-node-label">{node.label}</p>
-                  <p className="hm-mobile-node-desc">{node.desc}</p>
+                      <div className="hm-spoke-dot" />
+                      <div className="hm-spoke-content">
+                        <p className="hm-spoke-label">{node.label}</p>
+                        <p className={`hm-spoke-desc ${hoveredNode === node.id ? "visible" : ""}`}>{node.desc}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
-            <div className="hm-mobile-center-node">
-              <span>V1 DELIVERY</span>
             </div>
-          </div>
 
-          {/* Infinite Loop Visual — replaces timeline */}
-          <div className="hm-loop-wrap">
-            <svg className="hm-loop-svg" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg">
-              {/* Figure-8 / infinity path — wider lobes */}
-              <path
-                className="hm-loop-track"
-                d="M 200,180 C 200,60 450,60 450,180 C 450,300 700,300 700,180 C 700,60 450,60 450,180 C 450,300 200,300 200,180 Z"
-                fill="none"
-              />
-              <path
-                className="hm-loop-runner"
-                d="M 200,180 C 200,60 450,60 450,180 C 450,300 700,300 700,180 C 700,60 450,60 450,180 C 450,300 200,300 200,180 Z"
-                fill="none"
-              />
+            {/* RIGHT: Ribbon Loop + ∞ accent */}
+            <div className="hm-ribbon-panel">
+              <h3 className="hm-panel-title">The Iteration Engine</h3>
+              <div className="hm-ribbon-container">
+                {/* Decorative infinity watermark */}
+                <svg className="hm-infinity-watermark" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M50,50 C50,20 80,20 100,50 C120,80 150,80 150,50 C150,20 120,20 100,50 C80,80 50,80 50,50 Z"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                </svg>
 
-              {/* Phase labels — positioned OUTSIDE the loop */}
-              {/* Left: Discovery & Alignment */}
-              <circle cx="200" cy="180" r="8" className="hm-loop-dot" />
-              <text x="120" y="175" textAnchor="middle" className="hm-loop-phase-label">Discovery &amp;</text>
-              <text x="120" y="195" textAnchor="middle" className="hm-loop-phase-label">Alignment</text>
+                <div className="hm-ribbon-phases">
+                  {loopPhases.map((phase, i) => (
+                    <div key={i} className="hm-ribbon-phase-wrap">
+                      <div className="hm-ribbon-card">
+                        <span className="hm-ribbon-num">{String(i + 1).padStart(2, "0")}</span>
+                        <p className="hm-ribbon-label">{phase.short}</p>
+                        <p className="hm-ribbon-full">{phase.label.replace("\n", " ")}</p>
+                      </div>
+                      {i < loopPhases.length - 1 && (
+                        <span className="hm-ribbon-arrow">→</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
 
-              {/* Top: Architecture & Design */}
-              <circle cx="325" cy="95" r="8" className="hm-loop-dot" style={{ animationDelay: "1.5s" }} />
-              <text x="325" y="50" textAnchor="middle" className="hm-loop-phase-label">Architecture &amp;</text>
-              <text x="325" y="70" textAnchor="middle" className="hm-loop-phase-label">Design</text>
-
-              {/* Right: Build & Facilitation */}
-              <circle cx="700" cy="180" r="8" className="hm-loop-dot" style={{ animationDelay: "3s" }} />
-              <text x="785" y="175" textAnchor="middle" className="hm-loop-phase-label">Build &amp;</text>
-              <text x="785" y="195" textAnchor="middle" className="hm-loop-phase-label">Facilitation</text>
-
-              {/* Bottom: Pilot & Launch */}
-              <circle cx="575" cy="265" r="8" className="hm-loop-dot" style={{ animationDelay: "4.5s" }} />
-              <text x="575" y="310" textAnchor="middle" className="hm-loop-phase-label">Pilot &amp;</text>
-              <text x="575" y="330" textAnchor="middle" className="hm-loop-phase-label">Launch</text>
-
-              {/* Center crossing point — iteration marker */}
-              <circle cx="450" cy="180" r="38" className="hm-loop-center" />
-              <text x="450" y="176" textAnchor="middle" className="hm-loop-center-text">ITERATE</text>
-              <text x="450" y="196" textAnchor="middle" className="hm-loop-center-sub">V1 → V2 → V3</text>
-            </svg>
-            <p className="hm-loop-mantra">Try. Learn. Improve. Repeat.</p>
-          </div>
-
-          {/* Mobile: vertical loop */}
-          <div className="hm-loop-mobile">
-            {loopPhases.map((phase, i) => (
-              <div key={i} className="hm-loop-mobile-phase">
-                <div className="hm-loop-mobile-marker">{i + 1}</div>
-                <span className="hm-loop-mobile-label">{phase.short}</span>
-                {i < loopPhases.length - 1 && <span className="hm-loop-mobile-arrow">→</span>}
+                {/* Return arrow */}
+                <div className="hm-ribbon-return">
+                  <svg className="hm-return-arrow-svg" viewBox="0 0 400 40" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M380,5 C380,30 200,35 20,30"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeDasharray="4,4"
+                    />
+                    <polygon points="15,25 25,30 20,35" fill="currentColor" />
+                  </svg>
+                  <span className="hm-return-label">ITERATE · V1 → V2 → V3</span>
+                </div>
               </div>
-            ))}
-            <div className="hm-loop-mobile-return">
-              <span>↩ Loop back — V1 → V2 → V3</span>
+              <p className="hm-loop-mantra">Try. Learn. Improve. Repeat.</p>
             </div>
-            <p className="hm-loop-mantra">Try. Learn. Improve. Repeat.</p>
           </div>
         </div>
 
