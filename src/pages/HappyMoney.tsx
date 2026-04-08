@@ -277,80 +277,56 @@ const HappyMoney = () => {
           </p>
 
           {/* Two-panel side-by-side layout */}
-          <div className="hm-zero-to-one-grid">
-            {/* LEFT: Hub + Spokes */}
-            <div className="hm-hub-panel" ref={constellationRef}>
-              <h3 className="hm-panel-title">V1 Delivery</h3>
-              <div className="hm-hub-layout">
-                <div className={`hm-hub-center ${constellationVisible ? "visible" : ""}`}>
-                  <span className="hm-hub-v1">V1</span>
-                  <span className="hm-hub-delivery">DELIVERY</span>
-                </div>
-                <div className="hm-spokes">
-                  {constellationNodes.map((node, i) => (
-                    <div
-                      key={node.id}
-                      className={`hm-spoke-card ${constellationVisible ? "visible" : ""}`}
-                      style={{ animationDelay: `${0.2 + i * 0.1}s` }}
-                      onMouseEnter={() => setHoveredNode(node.id)}
-                      onMouseLeave={() => setHoveredNode(null)}
-                    >
-                      <div className="hm-spoke-dot" />
-                      <div className="hm-spoke-content">
-                        <p className="hm-spoke-label">{node.label}</p>
-                        <p className={`hm-spoke-desc ${hoveredNode === node.id ? "visible" : ""}`}>{node.desc}</p>
-                      </div>
+          <div className="hm-zero-to-one-grid" ref={constellationRef}>
+            {/* LEFT: Iterative Version Delivery */}
+            <div className="hm-version-panel">
+              <h3 className="hm-panel-title">Iterative Version Delivery</h3>
+              <div className="hm-workstream-grid">
+                {constellationNodes.map((node, i) => (
+                  <div
+                    key={node.id}
+                    className={`hm-workstream-card ${constellationVisible ? "visible" : ""}`}
+                    style={{ animationDelay: `${0.1 + i * 0.08}s` }}
+                  >
+                    <div className="hm-workstream-dot" />
+                    <div>
+                      <p className="hm-workstream-name">{node.label}</p>
+                      <p className="hm-workstream-desc">{node.desc}</p>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* RIGHT: Ribbon Loop + ∞ accent */}
-            <div className="hm-ribbon-panel">
+            {/* RIGHT: The Iteration Engine */}
+            <div className="hm-engine-panel">
               <h3 className="hm-panel-title">The Iteration Engine</h3>
-              <div className="hm-ribbon-container">
-                {/* Decorative infinity watermark */}
-                <svg className="hm-infinity-watermark" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M50,50 C50,20 80,20 100,50 C120,80 150,80 150,50 C150,20 120,20 100,50 C80,80 50,80 50,50 Z"
+              <div className="hm-engine-container">
+                {/* Dotted circular arrow overlay */}
+                <svg className="hm-circle-arrow" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                  <circle
+                    cx="150" cy="150" r="120"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
+                    strokeDasharray="8,6"
+                    strokeLinecap="round"
                   />
+                  {/* Arrowhead at top (clockwise) */}
+                  <polygon points="150,30 157,42 143,42" fill="currentColor" />
                 </svg>
 
-                <div className="hm-ribbon-phases">
+                <div className="hm-engine-grid">
                   {loopPhases.map((phase, i) => (
-                    <div key={i} className="hm-ribbon-phase-wrap">
-                      <div className="hm-ribbon-card">
-                        <span className="hm-ribbon-num">{String(i + 1).padStart(2, "0")}</span>
-                        <p className="hm-ribbon-label">{phase.short}</p>
-                        <p className="hm-ribbon-full">{phase.label.replace("\n", " ")}</p>
-                      </div>
-                      {i < loopPhases.length - 1 && (
-                        <span className="hm-ribbon-arrow">→</span>
-                      )}
+                    <div key={i} className="hm-engine-card">
+                      <span className="hm-engine-num">{String(i + 1).padStart(2, "0")}</span>
+                      <p className="hm-engine-short">{phase.short}</p>
+                      <p className="hm-engine-full">{phase.label.replace("\n", " ")}</p>
                     </div>
                   ))}
                 </div>
-
-                {/* Return arrow */}
-                <div className="hm-ribbon-return">
-                  <svg className="hm-return-arrow-svg" viewBox="0 0 400 40" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M380,5 C380,30 200,35 20,30"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeDasharray="4,4"
-                    />
-                    <polygon points="15,25 25,30 20,35" fill="currentColor" />
-                  </svg>
-                  <span className="hm-return-label">ITERATE · V1 → V2 → V3</span>
-                </div>
               </div>
-              <p className="hm-loop-mantra">Try. Learn. Improve. Repeat.</p>
+              <p className="hm-engine-mantra">Try. Fail. Learn. Repeat.</p>
             </div>
           </div>
         </div>
