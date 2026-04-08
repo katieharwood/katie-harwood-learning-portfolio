@@ -1,27 +1,22 @@
 
 
-## Plan: Redesign "How I Build Zero to One" — New Visual Approach
+## Plan: Fix Two Bugs
 
-### What's changing
+### Bug 1: Workstream cards invisible on Happy Money page
+**Root cause**: `.hm-workstream-card` starts at `opacity: 0`. The `.visible` class triggers `animation: spokeAppear 0.4s`, but the `@keyframes spokeAppear` rule was never defined in `case-study.css`. The animation does nothing, so cards remain invisible.
 
-**Left panel: "Iterative Version Delivery"** (renamed from "V1 Delivery")
-- Drop the hub-and-spokes radial layout entirely
-- Replace with a clean **numbered list or card grid** of the 7 workstreams — simple, readable, no SVG
-- Each workstream gets a card with the name and short description always visible (no hover needed)
-- Cards arranged in a compact 2-column grid or stacked list with dot accents
+**Fix** in `src/styles/case-study.css`:
+- Add `@keyframes spokeAppear` that goes from `opacity:0; transform:translateY(8px)` to `opacity:1; transform:translateY(0)`.
 
-**Right panel: "The Iteration Engine"**
-- Keep the 4 phase cards in a 2x2 grid
-- Overlay a **dotted circular arrow** (SVG) centered over the 4 cards — a dashed circle with an arrowhead that visually connects the cards in a clockwise loop
-- Remove the straight return arrow and infinity watermark
-- Add "Try. Fail. Learn. Repeat." below the cards
-- Subtle ambient animation: the dotted circle arrow slowly rotates or traces
+### Bug 2: Home page project scroll only shows 2 items
+**Root cause**: The initial reveal animation (lines 99-103 in Index.tsx) adds class `visible` to `.project-item` elements in the DOM at load time. But when the user clicks the scroll arrow, `projectOffset` changes and React re-renders a new slice of projects. The newly rendered items never get the `visible` class from the reveal (it already ran), so they stay at `opacity: 0; transform: translateY(10px)`.
 
-### Layout
-- Both panels remain **side by side** (grid: 1fr 1fr) on desktop
-- On mobile (≤768px): stack vertically
+The Link-based items use `className="project-item visible-link"` but there's no CSS rule for `.visible-link` — only `.project-item.visible` makes them opaque.
+
+**Fix** in `src/pages/Index.tsx`:
+- After the initial reveal animation completes, ensure all project items are always visible. Simplest approach: add `visible` class to all project items unconditionally once the reveal has finished (use a state flag like `revealDone`), so that scrolled-in items are immediately visible.
 
 ### Files affected
-- `src/pages/HappyMoney.tsx` — rename panel title, simplify left panel to card grid, replace right panel SVG overlay with circular dotted arrow
-- `src/styles/case-study.css` — update hub styles to simple grid, add circular arrow overlay styles, remove unused hub/spoke/infinity CSS
+- `src/styles/case-study.css` — add missing `@keyframes spokeAppear`
+- `src/pages/Index.tsx` — ensure scrolled project items get visibility after initial reveal
 
