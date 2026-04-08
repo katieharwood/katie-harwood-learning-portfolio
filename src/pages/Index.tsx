@@ -55,6 +55,7 @@ const Index = () => {
   );
 
   const [projectOffset, setProjectOffset] = useState(0);
+  const [revealDone, setRevealDone] = useState(false);
   const visibleCount = 3;
   const canScrollDown = projectOffset + visibleCount < projects.length;
   const canScrollUp = projectOffset > 0;
@@ -101,6 +102,7 @@ const Index = () => {
         await wait(100);
         items[i].classList.add("visible");
       }
+      setRevealDone(true);
       await wait(200);
       addVisible("currentlyBuilding");
       await wait(400);
@@ -159,7 +161,7 @@ const Index = () => {
                 <Link
                   key={p.num}
                   to={p.href}
-                  className="project-item visible-link"
+                  className={`project-item${revealDone ? " visible" : ""}`}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
                   <span className="project-num">{p.num}</span>
@@ -173,7 +175,7 @@ const Index = () => {
                 <Tooltip key={p.num}>
                   <TooltipTrigger asChild>
                     <div
-                      className="project-item"
+                      className={`project-item${revealDone ? " visible" : ""}`}
                       role="button"
                       tabIndex={0}
                       onClick={(e) => e.preventDefault()}
