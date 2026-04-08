@@ -1327,23 +1327,24 @@
   .hm-hero-quote-card {
     max-width: 100%;
   }
-  .hm-constellation-wrap {
-    display: none;
-  }
-  .hm-constellation-mobile {
-    display: flex;
-  }
-  .hm-module-grid {
+  .hm-zero-to-one-grid {
     grid-template-columns: 1fr;
+    gap: 40px;
   }
-  .hm-framework-grid {
-    grid-template-columns: 1fr;
+  .hm-hub-center {
+    width: 100px;
+    height: 100px;
   }
-  .hm-loop-wrap {
-    display: none;
+  .hm-hub-v1 {
+    font-size: 1.2rem;
   }
-  .hm-loop-mobile {
-    display: flex;
+  .hm-ribbon-phases {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .hm-infinity-watermark {
+    width: 180px;
+    height: 90px;
   }
   .hm-situation-item {
     flex-direction: column;
