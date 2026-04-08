@@ -388,7 +388,7 @@ const HappyMoney = () => {
           {/* Eric — editorial treatment */}
           <div className="hm-quote-editorial">
             <p className="hm-quote-editorial-text">
-              "She not only evolved [the program] to become a world-class program but also enlisted interest and engagement from the business to participate and drive some of the content management... I was so proud of and impressed by how she showed up, got buy-in quickly and project managed the effort across many levels and groups to get to a beautiful final product, which was appreciated and felt by our entire company."
+              "She not only evolved Onboarding to become a world-class program but also enlisted interest and engagement from the business to participate and drive some of the content management... I was so proud of and impressed by how she showed up, got buy-in quickly and project managed the effort across many levels and groups to get to a beautiful final product, which was appreciated and felt by our entire company."
             </p>
             <div className="hm-quote-editorial-attr">
               <span className="hm-quote-editorial-name">Eric Saggese</span>
