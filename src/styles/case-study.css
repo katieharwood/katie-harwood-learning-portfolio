@@ -856,7 +856,7 @@
   line-height: 1.55;
   color: hsl(var(--bark));
   text-align: center;
-  margin-top: 44px;
+  margin-top: 0;
 }
 
 @media (max-width: 768px) {
