@@ -12,19 +12,23 @@ const constellationNodes = [
   { id: "gtm", label: "Go-to-Market", desc: "Launch comms · registration · promotion · facilitator recruitment" },
 ];
 
-/* ── Hero testimonials ── */
-const heroTestimonials = [
-  {
-    quote: "It is rare to come across the combination of talent that Katie possesses. With a mind that is highly creative, innovative, and resourceful, and equally strategic and visionary, you get an explosive powerhouse that can bring incredible change, structure, process, and vision to an organization extremely quickly.",
-    name: "Lauren Benton-Cissel",
-    role: "Director of Talent Experience & Programs · Direct Manager",
-  },
-  {
-    quote: "She not only evolved Onboarding to become a world-class program but also enlisted interest and engagement from the business to participate and drive some of the content management...she showed up, got buy-in quickly and project managed the effort across many levels and groups to get to a beautiful final product.",
-    name: "Eric Saggese",
-    role: "Global People & Culture Leader · Senior Stakeholder",
-  },
+/* Node positions as % (clock positions) */
+const nodePositions = [
+  { top: "2%",  left: "50%", transform: "translateX(-50%)" },       // 12:00 — User Research
+  { top: "15%", left: "78%", transform: "none" },                    // 01:30 — Curriculum Architecture
+  { top: "42%", left: "84%", transform: "none" },                    // 03:00 — Content & Facilitation
+  { top: "68%", left: "74%", transform: "none" },                    // 04:30 — Operational Infrastructure
+  { top: "68%", left: "8%",  transform: "none" },                    // 07:30 — Go-to-Market
+  { top: "42%", left: "0%",  transform: "none" },                    // 09:00 — Stakeholder Alignment
+  { top: "15%", left: "12%", transform: "none" },                    // 10:30 — Brand & Identity
 ];
+
+/* ── Hero testimonial (Lauren only) ── */
+const heroTestimonial = {
+  quote: "It is rare to come across the combination of talent that Katie possesses. With a mind that is highly creative, innovative, and resourceful, and equally strategic and visionary, you get an explosive powerhouse that can bring incredible change, structure, process, and vision to an organization extremely quickly.",
+  name: "Lauren Benton-Cissel",
+  role: "Director of Talent Experience & Programs · Direct Manager",
+};
 
 /* ── Module data ── */
 const modules = [
@@ -36,27 +40,27 @@ const modules = [
 
 /* ── Framework data ── */
 const frameworks = [
-  { title: "The Handoff", tagline: "The critical gap between company onboarding and the team", desc: "The critical gap between company onboarding and team integration", body: "Visualized as a bridge that managers and new hires cross together. Made the invisible transition visible and gave managers a shared mental model for their role in it." },
-  { title: "The 411", tagline: "A first-1:1 framework built around six questions", desc: "A first-1:1 framework built around six questions", body: "Who, What, Where, Why, When, and How. Gave managers a practical structure for that first conversation that covered expectations, context, belonging, and purpose." },
-  { title: "The Dream Journey", tagline: "A day-by-day roadmap for a manager's first 30 days", desc: "A day-by-day, week-by-week roadmap for a manager's first 30 days", body: "From \"quiet prep days\" during OX to walking meetings in Week 3. Concrete, human, and grounded in what actually makes people feel welcomed." },
+  { title: "The Handoff", body: "The critical gap between company onboarding and team integration — visualized as a bridge. Made the invisible transition visible." },
+  { title: "The 411", body: "A first-1:1 framework built around six questions: Who, What, Where, Why, When, and How. Structure for the conversation that sets everything up." },
+  { title: "The Dream Journey", body: "A day-by-day manager roadmap for the first 30 days — from quiet prep during OX to walking meetings in Week 3." },
 ];
 
 /* ── Operational tools data ── */
 const operationalTools = [
-  { title: "Launch Plan: The First 30", tagline: "Structured onboarding checklist living in Lattice", body: "A structured onboarding checklist for new hires — covering culture integration, relationship building, team tools, and 30-day goals. Lived in Lattice as a reusable manager template." },
-  { title: "Manager Checklist", tagline: "Day-by-day action guide from pre-start through Week 4", body: "A day-by-day action guide for managers from pre-start-date through Week 4. Built to eliminate the \"I don't know what to do\" problem entirely." },
-  { title: "New Hire Scavenger Hunt", tagline: "Customizable discovery tool for new hires' first 30 days", body: "A customizable discovery tool for new hires covering their first 30 days — from Slack channels to wellness resources to cross-functional meet-and-greets. Designed to make culture integration feel like exploration, not orientation." },
+  { title: "Launch Plan: The First 30", body: "Structured onboarding checklist for new hires. Lived in Lattice as a reusable manager template." },
+  { title: "Manager Checklist", body: "Day-by-day action guide from pre-start-date through Week 4. Built to eliminate the \"I don't know what to do\" problem entirely." },
+  { title: "New Hire Scavenger Hunt", body: "A customizable 30-day discovery tool. Made culture integration feel like exploration, not orientation." },
 ];
 
-/* ── Infinite loop phases ── */
-const loopPhases = [
-  { label: "Discovery &\nAlignment", short: "Discover" },
-  { label: "Architecture &\nDesign", short: "Design" },
-  { label: "Build &\nFacilitation", short: "Build" },
-  { label: "Pilot &\nLaunch", short: "Launch" },
+/* ── 4-phase ribbon ── */
+const phases = [
+  { num: "01", title: "Discover", subtitle: "Discovery & Alignment" },
+  { num: "02", title: "Design", subtitle: "Architecture & Design" },
+  { num: "03", title: "Build", subtitle: "Build & Facilitation" },
+  { num: "04", title: "Launch", subtitle: "Pilot & Launch" },
 ];
 
-/* ── FlipCard component ── */
+/* ── FlipCard component (still used for modules) ── */
 const FlipCard = ({ front, back, className = "" }: { front: React.ReactNode; back: React.ReactNode; className?: string }) => {
   const [flipped, setFlipped] = useState(false);
   return (
@@ -80,7 +84,7 @@ const HappyMoney = () => {
   const fabRef = useRef<HTMLButtonElement>(null);
   const constellationRef = useRef<HTMLDivElement>(null);
   const [constellationVisible, setConstellationVisible] = useState(false);
-  const [activeQuote, setActiveQuote] = useState(0);
+  const [hoveredNode, setHoveredNode] = useState<number | null>(null);
 
   useEffect(() => {
     const sections = document.querySelectorAll(".cs-section");
@@ -122,14 +126,19 @@ const HappyMoney = () => {
     };
   }, []);
 
-  /* Auto-rotate hero testimonials */
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveQuote((prev) => (prev + 1) % heroTestimonials.length);
-    }, 7000);
-    return () => clearInterval(timer);
-  }, []);
+  /* Center of constellation container (%) */
+  const cx = 50, cy = 50;
 
+  /* Get center of each node in % for SVG lines */
+  const getNodeCenter = (i: number) => {
+    const pos = nodePositions[i];
+    const left = parseFloat(pos.left);
+    const top = parseFloat(pos.top);
+    // Approximate pill center: offset by ~half pill width/height in %
+    const xOff = pos.transform.includes("translateX(-50%)") ? 0 : 8;
+    const yOff = 3;
+    return { x: left + xOff, y: top + yOff };
+  };
 
   return (
     <>
@@ -144,7 +153,7 @@ const HappyMoney = () => {
         <Link to="/" className="cs-nav-label">Katie Harwood Portfolio</Link>
       </nav>
 
-      {/* HERO */}
+      {/* HERO — Lauren only */}
       <section className="cs-hero cs-hero-wide">
         <div className="cs-hero-twocol hm-hero-grid">
           <div className="cs-hero-left">
@@ -164,24 +173,8 @@ const HappyMoney = () => {
           </div>
           <div className="cs-hero-bubble-wrap">
             <div className="cs-speech-bubble">
-              <div className="cs-testimonial-rotator">
-                {heroTestimonials.map((t, i) => (
-                  <div key={i} className={`cs-testimonial-slide ${i === activeQuote ? "active" : ""}`}>
-                    <p className="cs-bubble-quote">"{t.quote}"</p>
-                    <p className="cs-bubble-name">— {t.name}, {t.role}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="cs-testimonial-dots">
-                {heroTestimonials.map((_, i) => (
-                  <button
-                    key={i}
-                    className={`cs-testimonial-dot ${i === activeQuote ? "active" : ""}`}
-                    onClick={() => setActiveQuote(i)}
-                    aria-label={`Testimonial ${i + 1}`}
-                  />
-                ))}
-              </div>
+              <p className="cs-bubble-quote">{heroTestimonial.quote}</p>
+              <p className="cs-bubble-name">— {heroTestimonial.name}, {heroTestimonial.role}</p>
             </div>
           </div>
         </div>
@@ -201,7 +194,6 @@ const HappyMoney = () => {
           </h2>
 
           <div className="hm-triptych">
-            {/* Card 01 */}
             <div className="hm-triptych-card">
               <div className="hm-triptych-illus" />
               <p className="hm-triptych-eyebrow">RETENTION</p>
@@ -210,8 +202,6 @@ const HappyMoney = () => {
                 A bad onboarding makes new hires 2x more likely to leave. The data was loud.
               </p>
             </div>
-
-            {/* Card 02 */}
             <div className="hm-triptych-card">
               <div className="hm-triptych-illus" />
               <p className="hm-triptych-eyebrow">TOOLING</p>
@@ -220,8 +210,6 @@ const HappyMoney = () => {
                 Lattice was live. Most managers had never opened it.
               </p>
             </div>
-
-            {/* Card 03 */}
             <div className="hm-triptych-card">
               <div className="hm-triptych-illus" />
               <p className="hm-triptych-eyebrow">READINESS</p>
@@ -233,9 +221,9 @@ const HappyMoney = () => {
           </div>
 
           <div style={{ textAlign: 'center', marginTop: '44px' }}>
-          <p className="hm-triptych-closing" style={{ background: 'hsl(123, 16%, 82%)', borderRadius: '999px', padding: '16px 40px', display: 'inline-block' }}>
-            The retention crisis was the burning platform. The opportunity was to give managers what they were missing.
-          </p>
+            <p className="hm-triptych-closing" style={{ background: 'hsl(123, 16%, 82%)', borderRadius: '999px', padding: '16px 40px', display: 'inline-block' }}>
+              The retention crisis was the burning platform. The opportunity was to give managers what they were missing.
+            </p>
           </div>
         </div>
 
@@ -255,7 +243,7 @@ const HappyMoney = () => {
           </div>
         </div>
 
-        {/* SECTION 3 — THE BUILD / CONSTELLATION + INFINITE LOOP */}
+        {/* SECTION 3 — HOW I BUILD ZERO TO ONE */}
         <div className="cs-section">
           <p className="cs-section-label">How I Build Zero to One</p>
           <h2 className="cs-section-heading">
@@ -266,62 +254,85 @@ const HappyMoney = () => {
             Most programs get built sequentially. I don't build that way. In the first two weeks — before a single session was facilitated — multiple workstreams were running simultaneously. This is the mental model I carry into every zero-to-one build.
           </p>
 
-          {/* Two-panel side-by-side layout */}
-          <div className="hm-zero-to-one-grid" ref={constellationRef}>
-            {/* LEFT: Iterative Version Delivery */}
-            <div className="hm-version-panel">
-              <h3 className="hm-panel-title">Iterative Version Delivery</h3>
-              <div className="hm-workstream-grid">
-                {constellationNodes.map((node, i) => (
-                  <div
-                    key={node.id}
-                    className={`hm-workstream-card ${constellationVisible ? "visible" : ""}`}
-                    style={{ animationDelay: `${0.1 + i * 0.08}s` }}
-                  >
-                    <div className="hm-workstream-dot" />
-                    <div>
-                      <p className="hm-workstream-name">{node.label}</p>
-                      <p className="hm-workstream-desc">{node.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* RIGHT: The Iteration Engine */}
-            <div className="hm-engine-panel">
-              <h3 className="hm-panel-title">The Iteration Engine</h3>
-              <div className="hm-engine-container">
-                {/* Dotted circular arrow overlay */}
-                <svg className="hm-circle-arrow" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-                  <circle
-                    cx="150" cy="150" r="120"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="3.5"
-                    strokeDasharray="10,7"
-                    strokeLinecap="round"
+          {/* CONSTELLATION — SVG lines + HTML pill cards */}
+          <div className="hm-constellation" ref={constellationRef}>
+            {/* SVG layer — lines only */}
+            <svg className="hm-constellation-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+              {constellationNodes.map((_, i) => {
+                const nc = getNodeCenter(i);
+                return (
+                  <line
+                    key={i}
+                    x1={cx} y1={cy}
+                    x2={nc.x} y2={nc.y}
+                    className={`hm-constellation-line ${constellationVisible ? "visible" : ""}`}
+                    style={{ animationDelay: `${0.3 + i * 0.08}s` }}
                   />
-                  {/* Arrowhead extending outward from the circle path (clockwise direction at top) */}
-                  <polygon points="150,18 157,30 143,30" fill="currentColor" />
-                </svg>
+                );
+              })}
+            </svg>
 
-                <div className="hm-engine-grid">
-                  {loopPhases.map((phase, i) => (
-                    <div key={i} className="hm-engine-card">
-                      <span className="hm-engine-num">{String(i + 1).padStart(2, "0")}</span>
-                      <p className="hm-engine-short">{phase.short}</p>
-                      <p className="hm-engine-full">{phase.label.replace("\n", " ")}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <p className="hm-engine-mantra">Try. Fail. Learn. Repeat.</p>
+            {/* Center node */}
+            <div className={`hm-center-node ${constellationVisible ? "visible" : ""}`}>
+              <span className="hm-center-v1">V1</span>
+              <span className="hm-center-delivery">DELIVERY</span>
             </div>
+
+            {/* 7 pill cards */}
+            {constellationNodes.map((node, i) => (
+              <div
+                key={node.id}
+                className={`hm-pill-card ${constellationVisible ? "visible" : ""} ${hoveredNode === i ? "hovered" : ""}`}
+                style={{
+                  top: nodePositions[i].top,
+                  left: nodePositions[i].left,
+                  transform: nodePositions[i].transform,
+                  animationDelay: `${0.5 + i * 0.08}s`,
+                }}
+                onMouseEnter={() => setHoveredNode(i)}
+                onMouseLeave={() => setHoveredNode(null)}
+              >
+                <span className="hm-pill-label">{node.label}</span>
+                <span className="hm-pill-desc">{node.desc}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* 4-PHASE RIBBON */}
+          <div className="hm-ribbon">
+            <div className="hm-ribbon-row">
+              {phases.map((p, i) => (
+                <div key={p.num} className="hm-ribbon-item">
+                  <div className="hm-phase-card">
+                    <span className="hm-phase-num">{p.num}</span>
+                    <span className="hm-phase-title">{p.title}</span>
+                    <span className="hm-phase-subtitle">{p.subtitle}</span>
+                  </div>
+                  {i < phases.length - 1 && (
+                    <span className="hm-ribbon-arrow">→</span>
+                  )}
+                </div>
+              ))}
+            </div>
+            {/* Return arrow */}
+            <div className="hm-ribbon-return">
+              <svg className="hm-ribbon-return-svg" viewBox="0 0 600 50" preserveAspectRatio="none">
+                <path
+                  d="M540,5 C580,5 590,25 590,25 C590,45 580,45 540,45 L60,45 C20,45 10,25 10,25 C10,5 20,5 60,5"
+                  fill="none"
+                  stroke="hsl(37, 65%, 47%)"
+                  strokeWidth="1.5"
+                  strokeDasharray="6 4"
+                  opacity="0.5"
+                />
+              </svg>
+              <span className="hm-ribbon-return-label">ITERATE · V1 → V2 → V3</span>
+            </div>
+            <p className="hm-ribbon-mantra">Try. Fail. Learn. Repeat.</p>
           </div>
         </div>
 
-        {/* SECTION 4 — WHAT GOT BUILT (Flip Cards) */}
+        {/* SECTION 4 — THE SYSTEM (Modules still flip cards) */}
         <div className="cs-section">
           <p className="cs-section-label">The System</p>
           <h2 className="cs-section-heading">
@@ -355,73 +366,44 @@ const HappyMoney = () => {
             ))}
           </div>
 
-          {/* Original Frameworks */}
+          {/* Original Frameworks — labeled list */}
           <div style={{ marginTop: 56 }}>
             <p className="cs-section-label">Original Frameworks</p>
             <h2 className="cs-section-heading">
               The language didn't exist.<br />
               <em>So I built it.</em>
             </h2>
-            <p className="cs-body-text">
-              Three frameworks created from scratch and woven through the entire program:
-            </p>
-            <p className="hm-flip-hint">Click any card to learn more</p>
-            <div className="hm-framework-grid">
+            <div className="hm-labeled-list hm-labeled-list--sage">
               {frameworks.map((fw) => (
-                <FlipCard
-                  key={fw.title}
-                  className="hm-flip-framework"
-                  front={
-                    <>
-                      <h3 className="hm-framework-title">{fw.title}</h3>
-                      <p className="hm-flip-tagline">{fw.tagline}</p>
-                    </>
-                  }
-                  back={
-                    <>
-                      <h3 className="hm-flip-back-title">{fw.title}</h3>
-                      <p className="hm-flip-back-body">{fw.body}</p>
-                    </>
-                  }
-                />
+                <div key={fw.title} className="hm-labeled-item">
+                  <p className="hm-labeled-name">{fw.title}</p>
+                  <p className="hm-labeled-desc">{fw.body}</p>
+                </div>
               ))}
             </div>
           </div>
 
-          {/* Operational Tools */}
+          {/* Operational Tools — labeled list */}
           <div style={{ marginTop: 48 }}>
             <p className="cs-section-label">Operational Tools</p>
-            <p className="cs-body-text">Three tools designed to live beyond the training:</p>
-            <div className="hm-framework-grid">
+            <p className="cs-body-text">Three tools designed to live beyond the training.</p>
+            <div className="hm-labeled-list hm-labeled-list--rose">
               {operationalTools.map((tool) => (
-                <FlipCard
-                  key={tool.title}
-                  className="hm-flip-framework"
-                  front={
-                    <>
-                      <h3 className="hm-framework-title">{tool.title}</h3>
-                      <p className="hm-flip-tagline">{tool.tagline}</p>
-                    </>
-                  }
-                  back={
-                    <>
-                      <h3 className="hm-flip-back-title">{tool.title}</h3>
-                      <p className="hm-flip-back-body">{tool.body}</p>
-                    </>
-                  }
-                />
+                <div key={tool.title} className="hm-labeled-item">
+                  <p className="hm-labeled-name">{tool.title}</p>
+                  <p className="hm-labeled-desc">{tool.body}</p>
+                </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* SECTION 5 — IN THEIR WORDS — REMOVED (quotes moved to hero) */}
-
-        {/* SECTION 6 — HONEST OUTCOMES */}
+        {/* SECTION 5 — OUTCOMES */}
         <div className="cs-section">
           <p className="cs-section-label">Outcomes</p>
           <h2 className="cs-section-heading">
-            Launched. <em>Then the company changed.</em>
+            Launched.<br />
+            <em>Then the company changed.</em>
           </h2>
           <p className="cs-body-text">
             The program reached managers across Happy Money. Cohorts ran. Managers built their first launch plans in Lattice. The frameworks — The Handoff, The 411, The Dream Journey — entered the shared language of the People team.
@@ -433,38 +415,38 @@ const HappyMoney = () => {
             What exists instead: the artifacts, the frameworks, the tools, and the testimony of the people who were there.
           </p>
 
-          <div className="hm-proved-list">
-            <p className="cs-body-text" style={{ fontWeight: 500, color: "hsl(var(--forest))", marginBottom: 12 }}>What the build proved:</p>
-            <ul className="cs-engagement-list">
-              <li>A four-module curriculum system can go from zero to facilitated in 8 weeks</li>
-              <li>Cross-functional alignment (L&D, People Ops, HRBPs, Recruiting) is achievable without a large team</li>
-              <li>Operational tools that live beyond the training room create durable value even when programs are discontinued</li>
-              <li>A program designed with care is felt — even if it can't yet be measured</li>
-            </ul>
+          {/* Eric's quote as section closer */}
+          <div className="hm-outcomes-quote">
+            <hr className="hm-outcomes-quote-rule" />
+            <p className="hm-outcomes-quote-text">
+              "She not only evolved Onboarding to become a world-class program but also enlisted interest and engagement from the business to participate and drive some of the content management...she showed up, got buy-in quickly and project managed the effort across many levels and groups to get to a beautiful final product, which was appreciated and felt by our entire company."
+            </p>
+            <p className="hm-outcomes-quote-attr">— Eric Saggese, Global People & Culture Leader · Senior Stakeholder</p>
+            <hr className="hm-outcomes-quote-rule" />
           </div>
         </div>
 
-        {/* SECTION 7 — WHAT THIS WORK REVEALS */}
-        <div className="cs-so-what cs-section">
-          <p className="cs-so-what-label">What This Work Reveals</p>
-          <p className="cs-so-what-text">
+        {/* SECTION 6 — WHAT THIS WORK REVEALS */}
+        <div className="hm-reveals cs-section">
+          <p className="hm-reveals-label">What This Work Reveals</p>
+          <p className="hm-reveals-opening">
             This wasn't a curriculum project. It was a <em>systems build.</em>
           </p>
-          <p className="cs-so-what-text" style={{ marginTop: 16 }}>
+          <p className="hm-reveals-body">
             I came in with a business problem, a blank page, and about eight weeks. I left with a sequenced learning ecosystem, original frameworks that gave managers a shared language, operational tools that outlived the program, and a philosophy baked into every component: that launching people well is one of the most human things an organization can do.
           </p>
-          <p className="cs-so-what-text" style={{ marginTop: 16 }}>
+          <p className="hm-reveals-body">
             I don't build training. I build the infrastructure that makes culture visible — and gives people the tools to actually live it.
           </p>
-          <p className="cs-so-what-text" style={{ marginTop: 16 }}>
-            <em>That's what zero to one looks like when it's done with intention.</em>
+          <p className="hm-reveals-closing">
+            That's what zero to one looks like when it's done with intention.
           </p>
-          <div style={{ marginTop: 32 }}>
+          <div style={{ marginTop: 40, textAlign: "center" }}>
             <a
               href="https://www.linkedin.com/in/katieharwood2/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hm-cta-button"
+              className="hm-reveals-cta"
             >
               → Let's talk about what I can build for your team
             </a>
