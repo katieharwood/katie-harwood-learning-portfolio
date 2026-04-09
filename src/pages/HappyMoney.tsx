@@ -37,7 +37,7 @@ const heroTestimonial = {
 const modules = [
   { num: "01", title: "How We Launch", tagline: "60-min workshop on onboarding philosophy & the critical Handoff", body: "A 60-minute workshop covering Happy Money's onboarding philosophy, the OX experience, retention data, and the critical \"Handoff\" period between company onboarding and team integration. Required for all managers. Prerequisite for everything that follows." },
   { num: "02", title: "Building Launch Plans", tagline: "Hands-on session building real First 30 plans in Lattice", body: "A 60-minute hands-on workshop where managers built their actual First 30 launch plan inside Lattice — the company's new performance management tool. Not theory. Live work time with facilitated support." },
-  { num: "03", title: "Coaching New Peeps", tagline: "Peer-to-peer manager panel surfacing tacit knowledge", body: "A 45-minute manager discussion panel — peer-to-peer learning from managers who were already launching well. Designed to surface tacit knowledge, build cross-functional connection, and give managers a space to learn from each other." },
+  { num: "03", title: "Coaching New Hires", tagline: "Peer-to-peer manager panel surfacing tacit knowledge", body: "A 45-minute manager discussion panel — peer-to-peer learning from managers who were already launching well. Designed to surface tacit knowledge, build cross-functional connection, and give managers a space to learn from each other." },
   { num: "04", title: "Launching Managers", tagline: "Advanced session for managers of managers", body: "A 60-minute advanced session for managers of managers. Covered team integration, cultural alignment, growth mindset, and Happy Money's commitment to Radical Belonging. Required Core Strengths as a prerequisite." },
 ];
 
@@ -277,7 +277,6 @@ const HappyMoney = () => {
 
             {/* Center node */}
             <div className={`hm-center-node ${constellationVisible ? "visible" : ""}`}>
-              <span className="hm-center-v1">V1</span>
               <span className="hm-center-delivery">DELIVERY</span>
             </div>
 
@@ -444,16 +443,6 @@ const HappyMoney = () => {
           <p className="hm-reveals-closing">
             That's what zero to one looks like when it's done with intention.
           </p>
-          <div style={{ marginTop: 40, textAlign: "center" }}>
-            <a
-              href="https://www.linkedin.com/in/katieharwood2/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hm-reveals-cta"
-            >
-              → Let's talk about what I can build for your team
-            </a>
-          </div>
         </div>
       </div>
 
