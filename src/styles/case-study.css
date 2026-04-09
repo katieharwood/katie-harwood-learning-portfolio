@@ -1425,27 +1425,53 @@
     gap: 28px;
   }
 
-  /* Constellation: hide SVG, show as pill grid */
+  /* ── Constellation: hub above + vertical card list with connectors ── */
   .hm-constellation {
     height: auto;
     min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
   }
-  .hm-constellation-svg,
-  .hm-center-node {
+  .hm-constellation-svg {
     display: none;
+  }
+  /* Show center node as smaller hub */
+  .hm-center-node {
+    position: static;
+    transform: none;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 8px;
+    flex-shrink: 0;
+  }
+  .hm-center-node.visible {
+    animation: none;
+    opacity: 1;
   }
   .hm-constellation .hm-pill-card {
     position: static !important;
     transform: none !important;
     width: 100%;
+    max-width: 280px;
     border-radius: 12px;
     text-align: left;
     padding: 12px 16px;
+    border-left: 3px solid hsl(var(--aspen-gold));
+    margin-top: 0;
   }
-  .hm-constellation {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+  /* Dashed connector line between hub and each card */
+  .hm-constellation .hm-pill-card::before {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 16px;
+    border-left: 1.5px dashed hsla(var(--aspen-gold) / 0.4);
+    margin: 0 auto 0;
+    position: relative;
+    top: -12px;
+    margin-bottom: -12px;
   }
   .hm-pill-card.visible {
     animation: none;
@@ -1456,18 +1482,38 @@
     color: hsl(var(--bark-light));
   }
 
-  /* Ribbon: 2x2 */
+  /* ── Ribbon: vertical stack with arrows between phases ── */
   .hm-ribbon-row {
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
   }
+  .hm-ribbon-item {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 260px;
+  }
+  /* Hide desktop horizontal arrows */
   .hm-ribbon-arrow {
     display: none;
   }
-  .hm-phase-card {
-    min-width: 120px;
+  /* Show downward arrows between phase cards */
+  .hm-ribbon-item::after {
+    content: "↓";
+    display: block;
+    font-size: 1.4rem;
+    color: hsl(var(--aspen-gold));
+    line-height: 1;
+    padding: 6px 0;
   }
+  .hm-ribbon-item:last-child::after {
+    display: none;
+  }
+  .hm-phase-card {
+    min-width: 100%;
+  }
+  /* Return arrow area */
   .hm-ribbon-return-svg {
     display: none;
   }
@@ -1480,13 +1526,24 @@
     position: static;
     transform: none;
   }
+  /* Iteration indicator */
+  .hm-ribbon-mantra {
+    margin-top: 16px;
+    padding: 12px 20px;
+    border: 1.5px dashed hsla(var(--forest) / 0.25);
+    border-radius: 999px;
+    font-size: 0.92rem;
+  }
+  .hm-ribbon-mantra::before {
+    content: "↻ ";
+  }
 
-  /* Labeled lists */
+  /* ── Labeled lists ── */
   .hm-labeled-list {
     grid-template-columns: 1fr;
   }
 
-  /* Reveals */
+  /* ── Reveals ── */
   .hm-reveals {
     margin-left: -24px;
     margin-right: -24px;
@@ -1499,10 +1556,20 @@
     display: block;
     text-align: center;
   }
+
+  /* ── Flip cards: taller + overflow handling ── */
   .hm-flip-card {
-    min-height: 140px;
+    min-height: 200px;
   }
   .hm-flip-card-inner {
-    min-height: 140px;
+    min-height: 200px;
+  }
+  .hm-flip-card-front,
+  .hm-flip-card-back {
+    padding: 16px;
+    overflow-y: auto;
+  }
+  .hm-flip-back-body {
+    font-size: 0.78rem;
   }
 }
