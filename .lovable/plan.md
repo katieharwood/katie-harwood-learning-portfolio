@@ -1,26 +1,19 @@
 
 
-## Plan: Fix Compass Color + Make Door Lines Thicker
+## Plan: Replace Compass with True Vector SVG + Recolor
 
-### Two issues to fix
+### What's happening
+The new compass file (`file_1.svg`) is proper vector line art — all paths use `stroke="#000000"` with `fill="none"`. Unlike the previous compass files that had rasterized PNGs embedded inside, this one can be recolored with a straightforward text replacement.
 
-**1. Compass (Readiness card) — still black lines**
-The new compass SVG (`compass_with_no_needle.svg`) has the same problem as the previous one: the illustration is a rasterized PNG embedded as base64 inside the SVG, not true vector paths. Text-based find-and-replace cannot change pixel colors.
+### Steps
 
-**Fix:** Use a Python script (Pillow) to:
-- Extract the embedded base64 PNG from the SVG
-- Replace all dark/black pixels with Sage green (#7A9E7E), preserving transparency and antialiasing
-- Strip the ~160KB of c2pa certificate metadata
-- Re-encode and save as `src/assets/triptych-retention.svg` (which the Readiness card imports)
-
-**2. Door (Retention card) — lines too thin**
-The door illustration is a true vector SVG with `stroke-width="3"` on all paths. At the rendered card size (~180px tall), these lines appear very faint.
-
-**Fix:** Find-and-replace `stroke-width="3"` → `stroke-width="5"` (or `6`) in `src/assets/triptych-readiness.svg` to make the lines visibly bolder. Can also slightly increase the stroke opacity if needed.
+1. **Copy the uploaded SVG** into `src/assets/triptych-retention.svg` (replacing the current broken raster version)
+2. **Recolor lines**: Replace all `stroke="#000000"` with `stroke="#7A9E7E"` (Sage green)
+3. **Add cream background**: Insert a `<rect>` element with `fill="#F5F2EC"` behind the paths
+4. **Verify** the door SVG stroke-width fix from earlier is still in place
 
 ### Files affected
-- `src/assets/triptych-retention.svg` — rebuilt from new compass upload, raster-recolored to Sage
-- `src/assets/triptych-readiness.svg` — stroke-width increased for bolder door lines
+- `src/assets/triptych-retention.svg` — replaced entirely with the new vector compass, recolored to Sage on cream
 
-No changes needed to `HappyMoney.tsx` or CSS — imports are already correctly mapped.
+No changes to `HappyMoney.tsx` or CSS — the import already points to this file.
 
