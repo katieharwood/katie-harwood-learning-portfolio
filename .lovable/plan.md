@@ -1,22 +1,33 @@
 
 
-## Plan: Fix Two Bugs
+## Plan: Recolor SVG Illustrations for Triptych Cards
 
-### Bug 1: Workstream cards invisible on Happy Money page
-**Root cause**: `.hm-workstream-card` starts at `opacity: 0`. The `.visible` class triggers `animation: spokeAppear 0.4s`, but the `@keyframes spokeAppear` rule was never defined in `case-study.css`. The animation does nothing, so cards remain invisible.
+### What we're doing
+The three uploaded SVGs (15.svg, 16.svg, 17.svg) are line illustrations for the Retention, Tooling, and Readiness triptych cards. We need to change the line/path colors from black to Sage green and ensure the background is cream.
 
-**Fix** in `src/styles/case-study.css`:
-- Add `@keyframes spokeAppear` that goes from `opacity:0; transform:translateY(8px)` to `opacity:1; transform:translateY(0)`.
+### Color changes
+- **Lines/strokes**: `#000000` → `#7A9E7E` (Sage)
+- **Background**: Already `#f5f2ec` (cream) in files 16 and 17. File 15 needs the background rects added or verified.
 
-### Bug 2: Home page project scroll only shows 2 items
-**Root cause**: The initial reveal animation (lines 99-103 in Index.tsx) adds class `visible` to `.project-item` elements in the DOM at load time. But when the user clicks the scroll arrow, `projectOffset` changes and React re-renders a new slice of projects. The newly rendered items never get the `visible` class from the reveal (it already ran), so they stay at `opacity: 0; transform: translateY(10px)`.
+### How it works
+Each SVG uses `#000000` in either `fill` or `stroke` attributes on `<path>` elements:
+- **16.svg** (Tooling): Uses `fill="#000000"` on filled paths
+- **17.svg** (Readiness): Uses `stroke="#000000"` on stroked paths
+- **15.svg** (Retention): Uses filled paths — needs metadata stripped and color replaced
 
-The Link-based items use `className="project-item visible-link"` but there's no CSS rule for `.visible-link` — only `.project-item.visible` makes them opaque.
+### Steps
 
-**Fix** in `src/pages/Index.tsx`:
-- After the initial reveal animation completes, ensure all project items are always visible. Simplest approach: add `visible` class to all project items unconditionally once the reveal has finished (use a state flag like `revealDone`), so that scrolled-in items are immediately visible.
+1. **Copy all 3 SVGs** into `src/assets/` (e.g., `triptych-retention.svg`, `triptych-tooling.svg`, `triptych-readiness.svg`)
+2. **Run a script** to replace `#000000` with `#7A9E7E` in all three files, and also replace `stroke="#000000"` and `fill="#000000"` variants
+3. **Strip the c2pa metadata** from 15.svg (it's bloating the file significantly — the actual illustration is buried under ~160K of base64 certificate data)
+4. **Ensure background rects** are `#f5f2ec` in all three
+5. **Update `HappyMoney.tsx`** — import the three SVGs and add `<img>` tags inside each triptych card, positioned above the card title
+6. **Add CSS** for the illustration sizing (e.g., `max-height: 180px`, centered, with some bottom margin)
 
 ### Files affected
-- `src/styles/case-study.css` — add missing `@keyframes spokeAppear`
-- `src/pages/Index.tsx` — ensure scrolled project items get visibility after initial reveal
+- `src/assets/triptych-retention.svg` — new file (from 15.svg, recolored)
+- `src/assets/triptych-tooling.svg` — new file (from 16.svg, recolored)
+- `src/assets/triptych-readiness.svg` — new file (from 17.svg, recolored)
+- `src/pages/HappyMoney.tsx` — import and render illustrations in triptych cards
+- `src/styles/case-study.css` — optional sizing styles for triptych illustrations
 
