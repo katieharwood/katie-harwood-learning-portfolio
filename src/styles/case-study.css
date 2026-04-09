@@ -770,16 +770,31 @@
   align-items: start;
 }
 
-/* ── Happy Money speech bubble overrides (forest outline on cream) ── */
+/* ── Happy Money speech bubble overrides (forest outline, bottom-left tail) ── */
 .hm-hero-grid .cs-speech-bubble {
   background: hsl(var(--cream));
   border: 2px solid hsl(var(--forest));
+  max-width: 380px;
 }
 .hm-hero-grid .cs-speech-bubble::before {
-  border-right-color: hsl(var(--forest));
+  left: 32px;
+  top: auto;
+  bottom: -16px;
+  transform: none;
+  border-top: 16px solid hsl(var(--forest));
+  border-left: 0 solid transparent;
+  border-right: 16px solid transparent;
+  border-bottom: 0;
 }
 .hm-hero-grid .cs-speech-bubble::after {
-  border-right-color: hsl(var(--cream));
+  left: 34px;
+  top: auto;
+  bottom: -13px;
+  transform: none;
+  border-top: 14px solid hsl(var(--cream));
+  border-left: 0 solid transparent;
+  border-right: 14px solid transparent;
+  border-bottom: 0;
 }
 .hm-hero-grid .cs-speech-bubble .cs-testimonial-rotator {
   min-height: 240px;
