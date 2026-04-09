@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
-import triptychRetention from "@/assets/triptych-retention.svg";
+import triptychRetention from "@/assets/triptych-readiness.svg";
 import triptychTooling from "@/assets/triptych-tooling.svg";
-import triptychReadiness from "@/assets/triptych-readiness.svg";
+import triptychReadiness from "@/assets/triptych-retention.svg";
 
 /* ── Constellation node data ── */
 const constellationNodes = [
