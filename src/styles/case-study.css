@@ -813,12 +813,12 @@
   padding: 28px 24px;
 }
 
-.hm-triptych-illus {
+.hm-triptych-illustration {
   width: 100%;
-  aspect-ratio: 16 / 10;
-  background: hsl(213 12% 61% / 0.18);
-  border-radius: 4px;
+  max-height: 180px;
+  object-fit: contain;
   margin-bottom: 20px;
+  border-radius: 4px;
 }
 
 .hm-triptych-eyebrow {

@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
+import triptychRetention from "@/assets/triptych-retention.svg";
+import triptychTooling from "@/assets/triptych-tooling.svg";
+import triptychReadiness from "@/assets/triptych-readiness.svg";
 
 /* ── Constellation node data ── */
 const constellationNodes = [
@@ -195,7 +198,7 @@ const HappyMoney = () => {
 
           <div className="hm-triptych">
             <div className="hm-triptych-card">
-              <div className="hm-triptych-illus" />
+              <img src={triptychRetention} alt="Retention illustration" className="hm-triptych-illustration" />
               <p className="hm-triptych-eyebrow">RETENTION</p>
               <h3 className="hm-triptych-title">Attrition<br />was climbing.</h3>
               <p className="hm-triptych-body">
@@ -203,7 +206,7 @@ const HappyMoney = () => {
               </p>
             </div>
             <div className="hm-triptych-card">
-              <div className="hm-triptych-illus" />
+              <img src={triptychTooling} alt="Tooling illustration" className="hm-triptych-illustration" />
               <p className="hm-triptych-eyebrow">TOOLING</p>
               <h3 className="hm-triptych-title">New tool,<br />no playbook.</h3>
               <p className="hm-triptych-body">
@@ -211,7 +214,7 @@ const HappyMoney = () => {
               </p>
             </div>
             <div className="hm-triptych-card">
-              <div className="hm-triptych-illus" />
+              <img src={triptychReadiness} alt="Readiness illustration" className="hm-triptych-illustration" />
               <p className="hm-triptych-eyebrow">READINESS</p>
               <h3 className="hm-triptych-title">No map.<br />No handoff.<br />No language.</h3>
               <p className="hm-triptych-body">
