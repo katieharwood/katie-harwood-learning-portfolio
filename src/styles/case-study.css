@@ -770,25 +770,25 @@
   align-items: start;
 }
 
-/* ── Happy Money speech bubble overrides (forest bg, longer quotes) ── */
+/* ── Happy Money speech bubble overrides (forest outline on cream) ── */
 .hm-hero-grid .cs-speech-bubble {
-  background: hsl(var(--forest));
-  border-color: hsl(var(--forest));
+  background: hsl(var(--cream));
+  border: 2px solid hsl(var(--forest));
 }
 .hm-hero-grid .cs-speech-bubble::before {
   border-right-color: hsl(var(--forest));
 }
 .hm-hero-grid .cs-speech-bubble::after {
-  border-right-color: hsl(var(--forest));
+  border-right-color: hsl(var(--cream));
 }
 .hm-hero-grid .cs-speech-bubble .cs-testimonial-rotator {
   min-height: 240px;
 }
 .hm-hero-grid .cs-bubble-quote {
-  color: hsl(var(--stone-white));
+  color: hsl(var(--bark));
 }
 .hm-hero-grid .cs-bubble-name {
-  color: hsl(var(--aspen-gold));
+  color: hsl(var(--forest));
 }
 .hm-hero-grid .cs-speech-bubble .cs-testimonial-dot {
   background: hsla(var(--stone-white) / 0.4);
@@ -966,21 +966,13 @@
   0%, 100% { transform: translate(-50%, -50%) scale(1); }
   50%      { transform: translate(-50%, -50%) scale(1.04); }
 }
-.hm-center-v1 {
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 300;
-  font-size: 1.2rem;
-  color: hsl(var(--stone-white));
-  line-height: 1;
-}
 .hm-center-delivery {
   font-family: "DM Sans", sans-serif;
   font-weight: 500;
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: hsl(var(--stone-white));
-  margin-top: 2px;
 }
 
 /* Pill cards */
