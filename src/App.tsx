@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Elevate from "./pages/Elevate";
 import UserGuideVilt from "./pages/UserGuideVilt";
 import HappyMoney from "./pages/HappyMoney";
+import CareerMindMap from "./pages/CareerMindMap";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/elevate" element={<Elevate />} />
           <Route path="/build-user-guide" element={<UserGuideVilt />} />
           <Route path="/happy-money" element={<HappyMoney />} />
+          <Route path="/career-mindmap" element={<CareerMindMap />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
