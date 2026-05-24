@@ -48,13 +48,27 @@ describe("analyze", () => {
     expect(top.score).toBeGreaterThanOrEqual(4);
   });
 
-  it("surfaces recurring unmatched words for reflection instead of dropping them", () => {
+  it("groups related interest words into a passion area even at one mention each", () => {
     const answers: Answers = {
-      hobbies: ["pottery"],
-      activities: ["pottery class"],
+      hobbies: ["hiking", "skiing"],
+      activities: ["climbing"],
     };
     const result = analyze(answers, FULL_PROMPTS);
-    expect(result.unmatched.some((t) => t.word === "pottery")).toBe(true);
+    const outdoors = result.passions.find((p) => p.id === "outdoors");
+    expect(outdoors).toBeDefined();
+    expect(outdoors!.score).toBe(3);
+    // None of these repeat as a single word, so the frequency themes miss them.
+    expect(result.themes.length).toBe(0);
+  });
+
+  it("lets creativity count as both a strength and a passion", () => {
+    const answers: Answers = {
+      hobbies: ["painting", "pottery"],
+      proud: ["designed a creative campaign"],
+    };
+    const result = analyze(answers, FULL_PROMPTS);
+    expect(result.passions.some((p) => p.id === "creativity")).toBe(true);
+    expect(result.strengths.some((s) => s.id === "strategic-thinking")).toBe(true);
   });
 });
 

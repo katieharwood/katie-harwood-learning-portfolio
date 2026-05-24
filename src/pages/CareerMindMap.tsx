@@ -546,9 +546,28 @@ const RevealScreen = (p: RevealProps) => {
               </div>
             )}
 
+            {p.analysis.passions.length > 0 && (
+              <div className="mm-insight-block">
+                <span className="mm-section-label">Themes &amp; passions</span>
+                <p className="mm-block-note">
+                  What you're drawn to — independent of talent.
+                </p>
+                <div className="mm-strengths">
+                  {p.analysis.passions.map((s) => (
+                    <div key={s.id} className="mm-strength mm-strength-passion">
+                      <span className="mm-strength-name">{s.label}</span>
+                      <span className="mm-strength-evidence">
+                        {s.matched.slice(0, 6).join(" · ")}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {p.analysis.themes.length > 0 && (
               <div className="mm-insight-block">
-                <span className="mm-section-label">Recurring themes</span>
+                <span className="mm-section-label">Words you kept returning to</span>
                 <div className="mm-theme-tags">
                   {p.analysis.themes.map((t) => (
                     <span
@@ -573,22 +592,6 @@ const RevealScreen = (p: RevealProps) => {
                     </li>
                   ))}
                 </ul>
-              </div>
-            )}
-
-            {p.analysis.unmatched.length > 0 && (
-              <div className="mm-insight-block">
-                <span className="mm-section-label">Worth a closer look</span>
-                <p className="mm-block-note">
-                  These recurred but didn't map to a domain. What's the real value here for you?
-                </p>
-                <div className="mm-theme-tags">
-                  {p.analysis.unmatched.map((t) => (
-                    <span key={t.word} className="mm-theme-tag mm-theme-tag-muted">
-                      {t.word}
-                    </span>
-                  ))}
-                </div>
               </div>
             )}
           </div>

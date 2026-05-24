@@ -414,6 +414,7 @@
   border-left: 2px solid hsl(var(--sage));
   padding-left: 14px;
 }
+.mm-strength-passion { border-left-color: hsl(var(--aspen-gold)); }
 .mm-strength-name {
   display: block;
   font-family: "Cormorant Garamond", serif;
