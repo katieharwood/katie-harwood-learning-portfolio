@@ -8,7 +8,9 @@ import {
   FULL_PROMPTS, QUICK_PROMPTS, PROMPT_SET_META, CATEGORY_META,
   buildCustomPrompts, type MindMapPrompt, type PromptSetId,
 } from "@/lib/mindmap/prompts";
-import { analyze, type Answers } from "@/lib/mindmap/insights";
+import {
+  analyze, entriesHaveSignal, STRENGTH_BUCKETS, type Answers,
+} from "@/lib/mindmap/insights";
 import {
   buildMarkdown, buildPlainText, downloadText, downloadSvgAsPng, exportFilename,
 } from "@/lib/mindmap/export";
@@ -239,9 +241,9 @@ const SetupScreen = (p: SetupProps) => (
     </h1>
     <p className="mm-lede">
       Answer one prompt at a time, fast and unfiltered. At the end we pull it
-      into a single mind map and surface the strengths and themes hiding in
-      your answers — then you can take it with you. Everything stays in your
-      browser; nothing is uploaded.
+      into a single mind map, sort the signal into the four CliftonStrengths
+      domains, and surface the themes hiding in your answers — then you can
+      take it with you. Everything stays in your browser; nothing is uploaded.
     </p>
 
     {p.hasSaved && (
@@ -337,9 +339,28 @@ interface FlowProps {
 
 const FlowScreen = (p: FlowProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const [awe, setAwe] = useState(false);
+
   useEffect(() => {
     inputRef.current?.focus();
+    setAwe(false);
   }, [p.index]);
+
+  // "And what else?" — fire one gentle coaching nudge when a manual Next
+  // would advance on a thin answer (empty or no recognizable strength signal).
+  const handleNext = () => {
+    const prospective = [...p.entries];
+    const d = p.draft.trim();
+    if (d && !prospective.includes(d)) prospective.push(d);
+    const thin = prospective.length === 0 || !entriesHaveSignal(prospective);
+    if (thin && !awe) {
+      if (d) p.onAddDraft();
+      setAwe(true);
+      inputRef.current?.focus();
+      return;
+    }
+    p.onNext();
+  };
 
   const timed = p.timerSeconds > 0;
   const frac = timed ? p.timeLeft / p.timerSeconds : 0;
@@ -412,6 +433,15 @@ const FlowScreen = (p: FlowProps) => {
         ))}
       </div>
 
+      {awe && (
+        <div className="mm-awe" role="status">
+          <span className="mm-awe-q">And what else?</span>
+          <span className="mm-awe-sub">
+            The best coaching question. Anything else come to mind — or continue.
+          </span>
+        </div>
+      )}
+
       <div className="mm-flow-controls">
         {timed && (
           <button className="mm-ghost" onClick={p.onTogglePause}>
@@ -422,8 +452,8 @@ const FlowScreen = (p: FlowProps) => {
         <button className="mm-ghost" onClick={p.onSkip}>
           <SkipForward size={15} /> Skip
         </button>
-        <button className="mm-primary mm-primary-sm" onClick={p.onNext}>
-          {p.index + 1 >= p.total ? "See my map" : "Next"}
+        <button className="mm-primary mm-primary-sm" onClick={handleNext}>
+          {awe ? "Continue" : p.index + 1 >= p.total ? "See my map" : "Next"}
         </button>
       </div>
     </div>
@@ -494,17 +524,25 @@ const RevealScreen = (p: RevealProps) => {
 
             {p.analysis.strengths.length > 0 && (
               <div className="mm-insight-block">
-                <span className="mm-section-label">Signature strengths</span>
+                <span className="mm-section-label">CliftonStrengths domains</span>
                 <div className="mm-strengths">
-                  {p.analysis.strengths.map((s) => (
-                    <div key={s.id} className="mm-strength">
-                      <span className="mm-strength-name">{s.label}</span>
-                      <span className="mm-strength-evidence">
-                        {s.matched.slice(0, 5).join(" · ")}
-                      </span>
-                    </div>
-                  ))}
+                  {p.analysis.strengths.map((s) => {
+                    const meta = STRENGTH_BUCKETS.find((b) => b.id === s.id);
+                    return (
+                      <div key={s.id} className="mm-strength">
+                        <span className="mm-strength-name">{s.label}</span>
+                        {meta && <span className="mm-strength-desc">{meta.description}</span>}
+                        <span className="mm-strength-evidence">
+                          {s.matched.slice(0, 5).join(" · ")}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
+                <p className="mm-credit">
+                  Domains inspired by Don Clifton's CliftonStrengths® (Gallup). This is a
+                  reflection aid, not the official assessment.
+                </p>
               </div>
             )}
 
@@ -535,6 +573,22 @@ const RevealScreen = (p: RevealProps) => {
                     </li>
                   ))}
                 </ul>
+              </div>
+            )}
+
+            {p.analysis.unmatched.length > 0 && (
+              <div className="mm-insight-block">
+                <span className="mm-section-label">Worth a closer look</span>
+                <p className="mm-block-note">
+                  These recurred but didn't map to a domain. What's the real value here for you?
+                </p>
+                <div className="mm-theme-tags">
+                  {p.analysis.unmatched.map((t) => (
+                    <span key={t.word} className="mm-theme-tag mm-theme-tag-muted">
+                      {t.word}
+                    </span>
+                  ))}
+                </div>
               </div>
             )}
           </div>

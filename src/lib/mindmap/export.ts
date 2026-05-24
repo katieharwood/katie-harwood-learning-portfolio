@@ -22,11 +22,13 @@ export function buildMarkdown(
   lines.push(analysis.summary);
   lines.push("");
   if (analysis.strengths.length) {
-    lines.push("**Top strengths**");
+    lines.push("**CliftonStrengths domains**");
     lines.push("");
     for (const s of analysis.strengths) {
       lines.push(`- **${s.label}** — signals: ${s.matched.slice(0, 6).join(", ")}`);
     }
+    lines.push("");
+    lines.push("_Domains inspired by Don Clifton's CliftonStrengths® (Gallup); a reflection aid, not the official assessment._");
     lines.push("");
   }
   if (analysis.themes.length) {
@@ -41,6 +43,12 @@ export function buildMarkdown(
     for (const c of analysis.connections) {
       lines.push(`- _${c.word}_ shows up across ${c.branches.length} prompts`);
     }
+    lines.push("");
+  }
+  if (analysis.unmatched.length) {
+    lines.push("**Worth a closer look** — recurred but didn't map to a domain");
+    lines.push("");
+    lines.push(analysis.unmatched.map((t) => `${t.word} (${t.count})`).join(" · "));
     lines.push("");
   }
 
@@ -73,7 +81,7 @@ export function buildPlainText(
   lines.push(analysis.summary);
   lines.push("");
   if (analysis.strengths.length) {
-    lines.push("Top strengths:");
+    lines.push("CliftonStrengths domains:");
     for (const s of analysis.strengths) {
       lines.push(`  - ${s.label} (${s.matched.slice(0, 6).join(", ")})`);
     }

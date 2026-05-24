@@ -335,6 +335,33 @@
 }
 .mm-chip button:hover { background: hsla(var(--aspen-gold) / 0.4); }
 
+.mm-awe {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 22px;
+  padding: 14px 18px;
+  border-left: 3px solid hsl(var(--aspen-gold));
+  background: hsla(var(--aspen-gold) / 0.1);
+  border-radius: 0 8px 8px 0;
+  animation: mm-awe-in 0.25s ease;
+}
+@keyframes mm-awe-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.mm-awe-q {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 1.35rem;
+  color: hsl(var(--forest));
+}
+.mm-awe-sub {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.78rem;
+  color: hsl(var(--bark-light));
+}
+
 .mm-flow-controls {
   display: flex;
   align-items: center;
@@ -393,9 +420,33 @@
   font-size: 1.2rem;
   color: hsl(var(--bark));
 }
+.mm-strength-desc {
+  display: block;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.8rem;
+  color: hsl(var(--bark-light));
+  margin: 1px 0 3px;
+}
 .mm-strength-evidence {
   font-family: "DM Sans", sans-serif;
   font-size: 0.74rem;
+  color: hsl(var(--granite));
+}
+.mm-credit {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.68rem;
+  font-style: italic;
+  color: hsl(var(--granite));
+  margin-top: 14px;
+}
+.mm-block-note {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.8rem;
+  color: hsl(var(--bark-light));
+  margin-bottom: 12px;
+}
+.mm-theme-tag-muted {
+  background: hsla(var(--granite) / 0.12);
   color: hsl(var(--granite));
 }
 .mm-theme-tags { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: baseline; }

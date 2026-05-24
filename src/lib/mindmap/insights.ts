@@ -17,65 +17,47 @@ const STOPWORDS = new Set([
 export interface StrengthBucket {
   id: string;
   label: string;
+  /** One-line gloss of the CliftonStrengths domain (paraphrased, not Gallup's verbatim text). */
+  description: string;
   /** Sentence fragment used in the summary. */
   phrase: string;
   keywords: string[];
 }
 
+/**
+ * The four CliftonStrengths® domains (Don Clifton / Gallup). Each domain's
+ * keyword list is aggregated from the vocabulary of its constituent themes.
+ * Inspired by — not affiliated with or endorsed by — Gallup; this is a
+ * lightweight reflection aid, not the official assessment.
+ */
 export const STRENGTH_BUCKETS: StrengthBucket[] = [
   {
-    id: "developing-others",
-    label: "Developing others",
-    phrase: "helps people grow",
-    keywords: ["coach", "coaching", "mentor", "mentoring", "teach", "teaching", "train", "training", "facilitate", "facilitating", "guide", "develop", "developing", "enable", "empower", "empowering", "support", "supporting", "learner", "learners", "students", "tutor", "onboard"],
+    id: "executing",
+    label: "Executing",
+    description: "Making things happen — turning intent into done.",
+    phrase: "gets things done and makes ideas real",
+    keywords: ["achieve", "achievement", "accomplish", "accomplished", "finish", "finished", "complete", "completed", "deliver", "delivered", "productive", "hardworking", "busy", "goal", "goals", "done", "organize", "organized", "organizing", "arrange", "coordinate", "logistics", "juggle", "multitask", "belief", "beliefs", "mission", "purpose", "ethics", "ethical", "fair", "fairness", "consistent", "consistency", "rule", "rules", "routine", "structure", "structured", "discipline", "disciplined", "deadline", "deadlines", "order", "detail", "details", "careful", "cautious", "deliberate", "thorough", "focus", "focused", "priority", "prioritize", "responsible", "responsibility", "reliable", "dependable", "ownership", "commit", "commitment", "fix", "fixing", "fixed", "restore", "repair", "turnaround", "troubleshoot", "execute"],
   },
   {
-    id: "building",
-    label: "Building & creating",
-    phrase: "makes new things",
-    keywords: ["build", "building", "create", "creating", "creative", "design", "designing", "make", "making", "craft", "crafting", "prototype", "invent", "writing", "write", "code", "coding", "draw", "drawing", "paint", "art", "music", "compose", "produce", "produced"],
+    id: "influencing",
+    label: "Influencing",
+    description: "Taking charge, speaking up, and reaching a wider audience.",
+    phrase: "steps up, speaks out, and rallies others",
+    keywords: ["lead", "leader", "leading", "leadership", "manage", "manager", "managing", "direct", "initiate", "initiative", "activate", "action", "drive", "momentum", "command", "charge", "decisive", "decision", "communicate", "communication", "speak", "speaking", "present", "presenting", "presentation", "story", "storytelling", "persuade", "persuasive", "influence", "pitch", "compete", "competition", "competitive", "win", "winning", "won", "maximize", "excellence", "optimize", "confidence", "confident", "independent", "autonomy", "significance", "recognition", "impact", "audience", "stage", "network", "networking", "outgoing", "charisma", "sell"],
   },
   {
-    id: "leadership",
-    label: "Leadership & direction",
-    phrase: "sets direction and drives outcomes",
-    keywords: ["lead", "leader", "leading", "leadership", "manage", "managing", "manager", "direct", "organize", "organizing", "organized", "strategy", "strategic", "vision", "drive", "driving", "own", "owner", "ownership", "initiative", "plan", "planning", "decision", "decisions"],
+    id: "relationship-building",
+    label: "Relationship Building",
+    description: "The glue that holds a team together.",
+    phrase: "builds trust and brings people together",
+    keywords: ["relationship", "relationships", "connect", "connecting", "connection", "team", "teams", "teamwork", "together", "collaborate", "collaboration", "community", "belong", "belonging", "include", "inclusive", "welcome", "mentor", "mentoring", "coach", "coaching", "develop", "developing", "grow", "growth", "teach", "teaching", "support", "supporting", "help", "helping", "care", "caring", "empathy", "empathetic", "listen", "listening", "feelings", "emotion", "compassion", "kind", "kindness", "harmony", "consensus", "individual", "personalize", "positive", "positivity", "optimism", "optimistic", "encourage", "encouraging", "friend", "friends", "trust", "bond", "family", "nurture", "serve", "service", "volunteer", "volunteering", "adaptable", "flexible", "flexibility"],
   },
   {
-    id: "collaboration",
-    label: "Collaboration & connection",
-    phrase: "brings people together",
-    keywords: ["team", "teams", "teamwork", "collaborate", "collaborating", "collaboration", "together", "community", "relationship", "relationships", "connect", "connecting", "connection", "partner", "partnership", "group", "groups", "social", "network", "networking"],
-  },
-  {
-    id: "curiosity",
-    label: "Curiosity & learning",
-    phrase: "is endlessly curious",
-    keywords: ["research", "researching", "learn", "learning", "read", "reading", "study", "studying", "curious", "curiosity", "explore", "exploring", "discover", "experiment", "experimenting", "books", "book", "ideas", "question", "questions", "podcast", "podcasts", "course", "courses"],
-  },
-  {
-    id: "service",
-    label: "Care & service",
-    phrase: "cares for and serves others",
-    keywords: ["care", "caring", "help", "helping", "serve", "serving", "service", "volunteer", "volunteering", "give", "giving", "nurture", "nurturing", "kindness", "compassion", "advocate", "advocacy", "patient", "patients", "family", "caregiving"],
-  },
-  {
-    id: "achievement",
-    label: "Achievement & excellence",
-    phrase: "holds a high bar",
-    keywords: ["award", "awards", "win", "winning", "won", "proud", "achieve", "achievement", "achieved", "success", "successful", "recognition", "recognized", "excellence", "accomplish", "accomplished", "honor", "honors", "best", "top", "promoted", "promotion"],
-  },
-  {
-    id: "adventure",
-    label: "Adventure & the outdoors",
-    phrase: "thrives on movement and challenge",
-    keywords: ["sport", "sports", "athlete", "athletic", "outdoor", "outdoors", "hike", "hiking", "ski", "skiing", "run", "running", "climb", "climbing", "mountain", "mountains", "travel", "traveling", "adventure", "bike", "biking", "swim", "ocean", "trail"],
-  },
-  {
-    id: "problem-solving",
-    label: "Analysis & problem-solving",
-    phrase: "untangles hard problems",
-    keywords: ["solve", "solving", "analyze", "analyzing", "analysis", "data", "problem", "problems", "system", "systems", "improve", "improving", "optimize", "optimizing", "fix", "fixing", "logic", "structure", "process", "efficient", "efficiency", "debug"],
+    id: "strategic-thinking",
+    label: "Strategic Thinking",
+    description: "Absorbing information and shaping what could be.",
+    phrase: "absorbs ideas and thinks several moves ahead",
+    keywords: ["analyze", "analysis", "analytical", "data", "logic", "logical", "evidence", "reason", "reasoning", "pattern", "patterns", "context", "history", "background", "research", "researching", "future", "futuristic", "vision", "visionary", "imagine", "possibility", "possibilities", "idea", "ideas", "ideation", "creative", "creativity", "create", "design", "brainstorm", "innovate", "innovation", "invent", "input", "information", "knowledge", "curious", "curiosity", "learn", "learning", "read", "reading", "study", "studying", "books", "book", "course", "courses", "explore", "exploring", "discover", "think", "thinking", "thinker", "reflect", "reflection", "intellectual", "ponder", "strategy", "strategic", "options", "anticipate", "theory", "concept", "concepts"],
   },
 ];
 
@@ -120,6 +102,8 @@ export interface Analysis {
   strengths: Strength[];
   /** Words that bridge two or more branches. */
   connections: Theme[];
+  /** Recurring words that matched no domain — surfaced for reflection, not dropped. */
+  unmatched: Theme[];
   summary: string;
 }
 
@@ -136,6 +120,16 @@ const STEM_TO_BUCKETS = (() => {
   }
   return map;
 })();
+
+/** True if any word in the text maps to a CliftonStrengths domain. */
+export function matchesAnyDomain(text: string): boolean {
+  return tokenize(text).some((w) => STEM_TO_BUCKETS.has(normalizeToken(w)));
+}
+
+/** True if at least one entry carries recognizable strength signal. */
+export function entriesHaveSignal(entries: string[]): boolean {
+  return entries.some(matchesAnyDomain);
+}
 
 export function analyze(answers: Answers, prompts: MindMapPrompt[]): Analysis {
   const wordInfo = new Map<string, { count: number; branches: Set<string> }>();
@@ -187,14 +181,22 @@ export function analyze(answers: Answers, prompts: MindMapPrompt[]): Analysis {
       return { id, label: meta.label, score: bs.score, matched: [...bs.matched] };
     })
     .sort((a, b) => b.score - a.score)
-    .slice(0, 5);
+    .slice(0, 4);
+
+  const unmatched: Theme[] = [...wordInfo.entries()]
+    .filter(([word]) => !STEM_TO_BUCKETS.has(normalizeToken(word)))
+    .map(([word, info]) => ({ word, count: info.count, branches: [...info.branches] }))
+    .filter((t) => t.count >= 2)
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 8);
 
   return {
     leafCount,
     branchCount: branchesWithContent.size,
     themes,
-    connections,
     strengths,
+    connections,
+    unmatched,
     summary: buildSummary(strengths, themes),
   };
 }

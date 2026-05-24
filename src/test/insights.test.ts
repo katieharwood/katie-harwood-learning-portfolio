@@ -1,5 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { analyze, tokenize, type Answers } from "@/lib/mindmap/insights";
+import {
+  analyze, tokenize, entriesHaveSignal, type Answers,
+} from "@/lib/mindmap/insights";
 import { FULL_PROMPTS } from "@/lib/mindmap/prompts";
 
 describe("tokenize", () => {
@@ -34,7 +36,7 @@ describe("analyze", () => {
     expect(result.branchCount).toBe(2);
   });
 
-  it("surfaces strengths from keyword signals across stemming", () => {
+  it("maps coaching/developing language to the Relationship Building domain", () => {
     const answers: Answers = {
       roles: ["coaching new hires", "mentoring interns"],
       proud: ["teaching a workshop"],
@@ -42,8 +44,27 @@ describe("analyze", () => {
     };
     const result = analyze(answers, FULL_PROMPTS);
     const top = result.strengths[0];
-    expect(top.id).toBe("developing-others");
+    expect(top.id).toBe("relationship-building");
     expect(top.score).toBeGreaterThanOrEqual(4);
+  });
+
+  it("surfaces recurring unmatched words for reflection instead of dropping them", () => {
+    const answers: Answers = {
+      hobbies: ["pottery"],
+      activities: ["pottery class"],
+    };
+    const result = analyze(answers, FULL_PROMPTS);
+    expect(result.unmatched.some((t) => t.word === "pottery")).toBe(true);
+  });
+});
+
+describe("entriesHaveSignal", () => {
+  it("is true when an entry carries domain signal", () => {
+    expect(entriesHaveSignal(["I love mentoring juniors"])).toBe(true);
+  });
+
+  it("is false for entries with no recognizable strength words", () => {
+    expect(entriesHaveSignal(["pottery", "purple", "tuesdays"])).toBe(false);
   });
 
   it("detects themes that recur and threads that bridge branches", () => {
